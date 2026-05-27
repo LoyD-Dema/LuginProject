@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
-        direction = value.Get<Vector2>();
-
-        movementComponent.SetDirection(direction);
+        movementComponent.SetDirection(value.Get<Vector2>());
     }
 }
