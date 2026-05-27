@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private MovementComponent movementComponent;
-    private Vector2 direction;
 
     private void Awake()
     {
