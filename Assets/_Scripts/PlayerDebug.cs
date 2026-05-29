@@ -14,8 +14,8 @@ public class PlayerDebug : MonoBehaviour
     public InputActionAsset inputActionAsset;
     private InputActionMap debugMap;
     
-    private InputAction takeDmgAction;
-    private InputAction gainHealthAction;
+    private InputAction takeDmgAction; //Keyboard[1]
+    private InputAction gainHealthAction; //Keyboard[2]
     
     private HealthComponent hc;
 

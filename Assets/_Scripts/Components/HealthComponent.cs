@@ -34,8 +34,8 @@ public class HealthComponent : MonoBehaviour
   
     public void TakeDamage(float damage)
     {
-        Debug.Log($"HealthComponent taking damage: {damage}");
-
+        if (IsDead) return;
+        
         CurrentHealth -= damage;
         Damage?.Invoke();
         
@@ -46,8 +46,6 @@ public class HealthComponent : MonoBehaviour
     
     public void GainHealth(float amount)
     {
-        Debug.Log($"HealthComponent gaining health: {amount}");
-
         CurrentHealth += amount;
         
         if (CurrentHealth > maxHealth)
@@ -61,6 +59,9 @@ public class HealthComponent : MonoBehaviour
     {
         CurrentHealth = 0;
         IsDead = true;
+        
+        Debug.Log("I am dead");
+        
         Death?.Invoke();
     }
     
