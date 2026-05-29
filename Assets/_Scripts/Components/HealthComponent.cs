@@ -49,12 +49,12 @@ public class HealthComponent : MonoBehaviour
         Debug.Log($"HealthComponent gaining health: {amount}");
 
         CurrentHealth += amount;
-        Heal?.Invoke();
         
-        Debug.Log($"Current health: {CurrentHealth}");
-
         if (CurrentHealth > maxHealth)
             CurrentHealth = maxHealth;
+        
+        Heal?.Invoke();
+        Debug.Log($"Current health: {CurrentHealth}");
     }
 
     private void Die()

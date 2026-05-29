@@ -997,7 +997,7 @@
             "id": "d443d358-8077-461f-8737-e7f4fe76d38d",
             "actions": [
                 {
-                    "name": "TakeDmg",
+                    "name": "TakeDamage",
                     "type": "Button",
                     "id": "2e5383b7-8779-43f4-ba8c-bf72d12bc85a",
                     "expectedControlType": "",
@@ -1023,7 +1023,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "TakeDmg",
+                    "action": "TakeDamage",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -22,21 +22,6 @@ public class PlayerDebug : MonoBehaviour
     private void Awake()
     {
         debugMap = inputActionAsset.FindActionMap("Debug");
-
-        try
-        {
-            takeDmgAction = debugMap.FindAction("TakeDmg");
-            gainHealthAction = debugMap.FindAction("GainHealth");
-        }catch (Exception e)
-        {
-            Debug.LogError($"Error finding debug actions: {e.Message}");
-        }
-    }
-
-    private void OnEnable()
-    {
-        takeDmgAction.performed += OnTakeDamage;
-        gainHealthAction.performed += OnGainHealth;
     }
 
     private void Start()
@@ -46,21 +31,16 @@ public class PlayerDebug : MonoBehaviour
         Debug.Log("PlayerDebug initialized. Listening for input events...");
     }
     
-    private void OnGainHealth(InputAction.CallbackContext obj)
+    public void OnGainHealth(InputValue value)
     {
         hc.GainHealth(10);
     }
 
-    private void OnTakeDamage(InputAction.CallbackContext obj)
+    public void OnTakeDamage(InputValue value)
     {
         hc.TakeDamage(10);
     }
 
-    private void OnDisable()
-    {
-        takeDmgAction.performed -= OnTakeDamage;
-        gainHealthAction.performed -= OnGainHealth;
-    }
     
     public void OnDestroy()
     {
