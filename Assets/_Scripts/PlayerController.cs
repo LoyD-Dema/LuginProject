@@ -14,4 +14,5 @@ public class PlayerController : MonoBehaviour
     {
         movementComponent.SetDirection(value.Get<Vector2>());
     }
+    
 }
