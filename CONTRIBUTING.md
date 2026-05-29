@@ -20,7 +20,7 @@
 4. Sposta la task in **"DOING"**
 
 ### 2. Sul tuo PC
-1. Crea un nuovo branch (commit e push di inizializzazione) (vedi "convenzione naming del branch")
+Crea un nuovo branch (commit e push di inizializzazione) (vedi "convenzione naming del branch")
 ```bash
 # Aggiorna development
 git switch development
@@ -31,7 +31,7 @@ git switch -c feature/abc123def-task-name
 ```
 
 ### 3. Su Trello
-7. Lega il branch alla card di Trello (verificare se si può fare automaticamente con naming conventions speciali)
+Lega il branch alla card di Trello (verificare se si può fare automaticamente con naming conventions speciali)
 Apri la card di trello. Sotto Power-Up -> GitHub -> Allega branch... dovresti trovare il branch appena pushato. (Nota: a volte Trello ci mette un po' ad aggiornare i branch disponibili)
 
 ### Convenzione naming dei branch
