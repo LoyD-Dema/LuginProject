@@ -923,6 +923,7 @@ GameObject:
   - component: {fileID: 528219682}
   - component: {fileID: 528219681}
   - component: {fileID: 528219680}
+  - component: {fileID: 528219683}
   m_Layer: 5
   m_Name: BTN_Options
   m_TagString: Untagged
@@ -1032,6 +1033,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528219678}
   m_CullTransparentMesh: 1
+--- !u!114 &528219683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528219678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce39aa978d4d2c8489eb694dbcc6e1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHelper
 --- !u!1001 &530379579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1637,6 +1650,7 @@ GameObject:
   - component: {fileID: 769004518}
   - component: {fileID: 769004517}
   - component: {fileID: 769004516}
+  - component: {fileID: 769004519}
   m_Layer: 5
   m_Name: BTN_Play
   m_TagString: Untagged
@@ -1758,6 +1772,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769004514}
   m_CullTransparentMesh: 1
+--- !u!114 &769004519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769004514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce39aa978d4d2c8489eb694dbcc6e1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHelper
 --- !u!1 &772996855
 GameObject:
   m_ObjectHideFlags: 0
@@ -3500,6 +3526,7 @@ GameObject:
   - component: {fileID: 1950027340}
   - component: {fileID: 1950027339}
   - component: {fileID: 1950027338}
+  - component: {fileID: 1950027341}
   m_Layer: 5
   m_Name: BTN_QuitGame
   m_TagString: Untagged
@@ -3621,6 +3648,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950027336}
   m_CullTransparentMesh: 1
+--- !u!114 &1950027341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950027336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce39aa978d4d2c8489eb694dbcc6e1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHelper
 --- !u!1 &2119867315
 GameObject:
   m_ObjectHideFlags: 0
