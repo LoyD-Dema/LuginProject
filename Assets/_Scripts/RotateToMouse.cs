@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Utilities;
 
+//TODO: move this in the PlayerController?
 public class RotateToMouse : MonoBehaviour
 {
     [Range(1.0f, 50.0f)]
