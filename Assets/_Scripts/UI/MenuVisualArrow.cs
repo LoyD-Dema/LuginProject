@@ -18,6 +18,7 @@ public class MenuVisualArrow : MonoBehaviour
     [Header("Positions")]
     [SerializeField] float padding = 45f;
 
+    //ricevo un RectTransform e setto la posizione delle frecce
     public void MoveArrowsToTarget(RectTransform target)
     {
         if (!target || !leftArrowRect ||  !rightArrowRect) return;
@@ -29,7 +30,7 @@ public class MenuVisualArrow : MonoBehaviour
         leftArrowRect.localPosition = new Vector3(targetPos.x - targetHalfWidth - padding, targetPos.y, targetPos.z);
         rightArrowRect.localPosition = new Vector3(targetPos.x + targetHalfWidth + padding, targetPos.y, targetPos.z);
     }
-
+    //update visivo delle frecce quando si effettua una selezione
     public void SetPressedState(bool bIsPressed)
     {
         if (!leftArrowImage || !rightArrowImage) return;
