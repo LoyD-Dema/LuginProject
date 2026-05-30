@@ -264,6 +264,8 @@ GameObject:
   - component: {fileID: 331279642}
   - component: {fileID: 331279641}
   - component: {fileID: 331279643}
+  - component: {fileID: 331279645}
+  - component: {fileID: 331279644}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -428,11 +430,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97fc5f5881543e64eb5718cd6722f45b, type: 3}
-  m_Script: {fileID: 11500000, guid: 3adc7d28064341c38cf7378252c30c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateToMouse
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDebug
-  inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rotationSpeed: 20
 --- !u!114 &331279642
 MonoBehaviour:
@@ -444,11 +443,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
-  m_Script: {fileID: 11500000, guid: 0ec455f3d2b2432791a2f64f9d54ddbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shoot
-  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
-  maxHealth: 100
   fireRate: 0.1
   distanceMultiplayer: 3
   bullet: {fileID: 333472430}
@@ -479,9 +475,35 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: df70fa95-8a34-4494-b137-73ab6b9c7d37
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &331279644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331279632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3adc7d28064341c38cf7378252c30c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDebug
+  inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &331279645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331279632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbb636f56db8e44bb9f1eac91677a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
+  maxHealth: 100
 --- !u!1 &333472430
 GameObject:
   m_ObjectHideFlags: 0
