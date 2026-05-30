@@ -128,26 +128,41 @@ Questo approccio offre:
 
 ```bash
 # 1. Assicurati che dev sia aggiornato
-git checkout dev
-git pull --rebase
+git switch development
+git rebase origin/development #rebase da origin per essere sicuri di avere tutto
 
 # 2. Vai sulla feature branch e fai rebase
-git checkout feature/abc123_task-name
-git rebase dev
+git switch feature/abc123_task-name
+git rebase origin/development
 
-# 3. Risolvi eventuali conflitti
+# 3. Risolvi eventuali conflitti di merge
 # Se ci sono conflitti: risolvi, poi git add <file> e git rebase --continue
 
-# 4. Verifica che tutto compili e funzioni
+# 4. Se ci si blocca per qualche ragione
+ git rebase --abort
 
-# 5. Torna su dev e fai merge --no-ff
-git checkout dev
+# 5. Verifica che tutto compili e funzioni -> Apri Unity e controlla che tutte le feature indicate funzionino correttamente anche dopo l'integrazione.
+
+# 6. Update del branch remoto
+# Git chiederà di fare update e push perché la storia del branch sta venendo riscritta.
+ git push --force-with-lease
+# (evita di sovrascrivere se qualcuno intanto ha fatto un push. Aggiorna la storia del branch remoto)
+# NON fare pull
+
+# 8. Sanity check per controllare che tutte le modifiche siano state portate
+git log --oneline HEAD..origin/development
+# Deve ritornare vuoto
+
+# 9. Torna su dev e fai merge --no-ff
+git checkout development
 git merge --no-ff feature/abc123_task-name
 
-# 6. Push di dev
+# Ricontrollare se compila tutto correttamente anche da development in caso
+
+# 10. Push di dev
 git push origin dev
 
-# 7. Su GitHub, chiudi manualmente la PR (sarà marcata come merged automaticamente)
+# 11. Su GitHub, chiudi manualmente la PR (sarà marcata come merged automaticamente)
 ```
 
 **Opzione B: Via GitHub UI (accettabile per semplicità)**
