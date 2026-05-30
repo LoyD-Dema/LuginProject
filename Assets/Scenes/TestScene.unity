@@ -259,10 +259,11 @@ GameObject:
   - component: {fileID: 331279634}
   - component: {fileID: 331279633}
   - component: {fileID: 331279637}
+  - component: {fileID: 331279643}
+  - component: {fileID: 331279646}
   - component: {fileID: 331279638}
   - component: {fileID: 331279640}
   - component: {fileID: 331279641}
-  - component: {fileID: 331279643}
   - component: {fileID: 331279645}
   - component: {fileID: 331279646}
   - component: {fileID: 331279647}

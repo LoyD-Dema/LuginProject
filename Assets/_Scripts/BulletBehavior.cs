@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utilities;
 
 [RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
 public class BulletBehavior : MonoBehaviour
@@ -14,30 +15,21 @@ public class BulletBehavior : MonoBehaviour
     [Header("SO")]
     [SerializeField] private BulletDataSO bulletDataSO;
     private int currentPirce;
-
-
+    
     // Multiplayer
     private float damageMultiplayer = 1.0f;
     public float DamageMultiplayer
     {
         get { return damageMultiplayer; }
-        set
-        {
-            damageMultiplayer = Mathf.Max(1.0f, value);
-        }
+        set { damageMultiplayer = Mathf.Max(1.0f, value); }
     }
-
     private float speedMultiplayer = 1.0f;
     public float SpeedMultiplayer
     {
         get { return speedMultiplayer; }
-        set
-        {
-            speedMultiplayer = Mathf.Max(1.0f, value);
-        }
+        set { speedMultiplayer = Mathf.Max(1.0f, value); }
     }
-
-
+    
     private Rigidbody rigidBody;
     
     // Events
@@ -109,6 +101,17 @@ public class BulletBehavior : MonoBehaviour
             else
             {
                 currentPirce -= 1;
+            }
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            if (other.TryGetComponent<Actor>(out Actor actor))
+            {
+                actor.ReceiveHit(new HitInfo
+                {
+                    Damage = 5 //TODO -> this value should be calculated based on the bullet's damage and the player's defense or other factors
+                });
             }
         }
     }

@@ -28,17 +28,8 @@ public class Actor : MonoBehaviour
         RigidBody = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ReceiveHit(HitInfo hitInfo)
     {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            //TODO: here i made it like this but this struct can of course be passed by the projectile and contain more information
-            HitReceived?.Invoke(new HitInfo
-            {
-                Damage = 1
-            });
-            Debug.Log("Collided with a bullet!");
-        }
+        HitReceived?.Invoke(hitInfo);
     }
-    
 }
