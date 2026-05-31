@@ -964,13 +964,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 769004516}
+    m_SelectOnDown: {fileID: 1950027338}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -981,7 +981,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 1543979555, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1042,9 +1042,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 528219678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce39aa978d4d2c8489eb694dbcc6e1a8, type: 3}
+  m_Script: {fileID: 11500000, guid: fa42530c083db6142a5668a64572bfb6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHelper
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonBehavior
+  images:
+  - {fileID: 1063004191}
+  - {fileID: 52163705}
+  moveSpeed: 30
 --- !u!1001 &530379579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1461,10 +1465,10 @@ GameObject:
   - component: {fileID: 756837489}
   - component: {fileID: 756837488}
   - component: {fileID: 756837487}
-  - component: {fileID: 756837491}
   - component: {fileID: 756837493}
-  - component: {fileID: 756837492}
-  - component: {fileID: 756837494}
+  - component: {fileID: 756837495}
+  - component: {fileID: 756837496}
+  - component: {fileID: 756837497}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1556,46 +1560,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &756837491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756837486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137cdcbd6b6d9834f88ecca2b09dd056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuNavigation
-  leftArrowRect: {fileID: 1063004190}
-  rightArrowRect: {fileID: 52163704}
-  leftArrowImage: {fileID: 1063004191}
-  rightArrowImage: {fileID: 52163705}
-  leftNormalSprite: {fileID: 1671386867, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
-  rightNormalSprite: {fileID: -840375495, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
-  leftPressedSprite: {fileID: 1216189273, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
-  rightPressedSprite: {fileID: 260803220, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
-  padding: 45
---- !u!114 &756837492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756837486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0485e45b3a33e16428fb6caffb77b197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuNavigation
-  arrowVisual: {fileID: 756837491}
-  buttons:
-  - {fileID: 769004516}
-  - {fileID: 528219680}
-  - {fileID: 1950027338}
-  pressedButtonSprite: {fileID: 1543979555, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
-  clickDelay: 0.2
 --- !u!114 &756837493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,7 +1590,31 @@ MonoBehaviour:
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &756837494
+--- !u!114 &756837495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756837486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5617c4efd7d59fa46beadf12b3b15f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &756837496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756837486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5617c4efd7d59fa46beadf12b3b15f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResetSelection
+--- !u!114 &756837497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1691,13 +1679,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1950027338}
+    m_SelectOnDown: {fileID: 528219680}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1708,7 +1696,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 1543979555, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1722,7 +1710,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 756837494}
+      - m_Target: {fileID: 756837497}
         m_TargetAssemblyTypeName: MainMenuActions, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -1731,7 +1719,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: TestScene
+          m_StringArgument: Testscene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &769004517
@@ -1781,9 +1769,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 769004514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce39aa978d4d2c8489eb694dbcc6e1a8, type: 3}
+  m_Script: {fileID: 11500000, guid: fa42530c083db6142a5668a64572bfb6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHelper
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonBehavior
+  images:
+  - {fileID: 1063004191}
+  - {fileID: 52163705}
+  moveSpeed: 30
 --- !u!1 &772996855
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,7 +2160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 769004514}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1003931180
@@ -3567,13 +3559,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 528219680}
+    m_SelectOnDown: {fileID: 769004516}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3584,7 +3576,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 1543979555, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -3598,7 +3590,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 756837494}
+      - m_Target: {fileID: 756837497}
         m_TargetAssemblyTypeName: MainMenuActions, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -3657,9 +3649,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1950027336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce39aa978d4d2c8489eb694dbcc6e1a8, type: 3}
+  m_Script: {fileID: 11500000, guid: fa42530c083db6142a5668a64572bfb6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHelper
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonBehavior
+  images:
+  - {fileID: 1063004191}
+  - {fileID: 52163705}
+  moveSpeed: 30
 --- !u!1 &2119867315
 GameObject:
   m_ObjectHideFlags: 0
