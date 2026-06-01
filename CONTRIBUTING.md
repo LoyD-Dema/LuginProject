@@ -172,13 +172,23 @@ Se preferite usare l'interfaccia GitHub per comodità:
 1. Fai **rebase locale** prima di aprire/aggiornare la PR:
    ```bash
    git checkout feature/abc123_task-name
-   git rebase dev
+   git rebase development
    git push --force-with-lease
    ```
 
 2. Su GitHub, usa **"Create a merge commit"** (l'unica opzione abilitata)
 
 3. **NON usare** il bottone "Update branch" nell'UI di GitHub (fa un merge, non un rebase)
+
+---
+
+## 🧹 Housekeeping
+comandi per pulire il proprio locale in seguito a merge di PR:
+  ```bash
+   git fetch --prune
+   git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d
+   ```
+Elimina da locale i branch che non hanno più un corrispettivo in origin.
 
 ---
 
