@@ -497,9 +497,9 @@
     "m_PerRendererData": false,
     "m_customAttributes": [],
     "m_Value": {
-        "r": 0.2289515882730484,
-        "g": 0.8710970878601074,
-        "b": 0.9905660152435303,
+        "r": 1.0,
+        "g": 0.062745101749897,
+        "b": 0.0,
         "a": 1.0
     },
     "isMainColor": false,
@@ -1000,9 +1000,9 @@
     "m_PerRendererData": false,
     "m_customAttributes": [],
     "m_Value": {
-        "r": 0.0,
-        "g": 0.8429374694824219,
-        "b": 1.0,
+        "r": 1.0,
+        "g": 0.05991653725504875,
+        "b": 0.0,
         "a": 1.0
     },
     "isMainColor": false,
@@ -1732,7 +1732,7 @@
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
-    "m_Value": 1.0,
+    "m_Value": 2.0999999046325685,
     "m_FloatType": 0,
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
