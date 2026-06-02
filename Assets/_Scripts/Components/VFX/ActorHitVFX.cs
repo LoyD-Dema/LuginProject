@@ -43,7 +43,6 @@ namespace Components.VFX
         private void Start()
         {
             renderer = GetComponent<Renderer>();
-            mpb = new MaterialPropertyBlock();
             originalMaterial = renderer.material;
         }
 
