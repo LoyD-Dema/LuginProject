@@ -19,8 +19,6 @@ namespace Components.VFX
         private Material originalMaterial;
         private Coroutine hitRoutine;
         
-        private MaterialPropertyBlock mpb;
-        
         [SerializeField] private VisualEffectAsset hitParticlesAsset; //particles to play when hit
         [SerializeField] private Material hitMaterial; //a shader to apply to the Actor when hit
         
@@ -65,19 +63,6 @@ namespace Components.VFX
             //flash Material
             PlayHitEffect();
             //play sound
-        }
-
-        IEnumerator RunShaderEffect2()
-        {
-            renderer.GetPropertyBlock(mpb);
-            mpb.SetFloat("_FlashHit", 1f);
-            renderer.GetPropertyBlock(mpb);
-            
-            yield return new WaitForSeconds(hitEffcetDuration);
-
-            renderer.GetPropertyBlock(mpb);
-            mpb.SetFloat("_FlashHit", 0f);
-            renderer.SetPropertyBlock(mpb);
         }
 
         public void PlayHitEffect()
