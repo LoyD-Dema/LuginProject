@@ -31,6 +31,10 @@ public class BulletBehavior : MonoBehaviour
     }
     
     private Rigidbody rigidBody;
+
+    private Vector3 previousPosition;
+    private Vector3 impactPoint;
+    private bool bHasHit = false;
     
     // Events
     public event EventHandler<EventArgs> OnInstantiate;
@@ -69,8 +73,28 @@ public class BulletBehavior : MonoBehaviour
         }
 
         currentPirce = maxNumOfObjectToPirce;
+        
+        previousPosition = transform.position;
     }
 
+    private void Update()
+    {
+        Vector3 movement = gameObject.transform.position - previousPosition;
+        float distance = movement.magnitude;
+        Debug.DrawLine(
+            previousPosition,
+            transform.position,
+            Color.red,
+            5f
+        );
+        
+        if (Physics.Raycast(previousPosition, movement.normalized, out RaycastHit hit, distance))
+        {
+            impactPoint = hit.point;
+        }
+        
+    }
+    
     private void FixedUpdate()
     {
         if (isStartingTraveling)
@@ -110,6 +134,8 @@ public class BulletBehavior : MonoBehaviour
             {
                 actor.ReceiveHit(new HitInfo
                 {
+                    OtherObject = this.gameObject,
+                    HitPoint = impactPoint,
                     Damage = 5 //TODO -> this value should be calculated based on the bullet's damage and the player's defense or other factors
                 });
             }
@@ -123,7 +149,6 @@ public class BulletBehavior : MonoBehaviour
 
         damage += amount;   
     }
-
     public void IncreaseSpeed(float amount)
     {
         if (amount <= 0)

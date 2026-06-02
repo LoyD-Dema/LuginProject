@@ -16,7 +16,7 @@ public class HealthComponent : MonoBehaviour
     #region Events of the HealthComponent
     private event Action MaxHealthChanged; //in caso vogliamo modificare la salute massima in runtime
     private event Action Heal;
-    private event Action Damage;
+    public event Action Damage;
     private event Action Death;
     #endregion
     private Actor owningActor => GetComponent<Actor>(); //lazy loading of the owning actor, we can cache it if we want to optimize it

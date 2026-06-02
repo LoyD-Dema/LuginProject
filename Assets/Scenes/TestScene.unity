@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 331279640}
   - component: {fileID: 331279641}
   - component: {fileID: 331279645}
+  - component: {fileID: 331279647}
   - component: {fileID: 331279646}
   - component: {fileID: 331279647}
   - component: {fileID: 331279644}
@@ -507,6 +508,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateToMouse
   m_EditorClassIdentifier: Assembly-CSharp::Actor
+--- !u!114 &331279647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331279632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6b47e4f3104716a517f5a6d470e170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Components.VFX.HitEffects
+  hitParticlesAsset: {fileID: 8926484042661614526, guid: f5e68f66b0ae43f4bb42a22e15bc899f, type: 3}
+  lifetimeBuffer: 1
+--- !u!1 &333472430
   rotationSpeed: 20
 --- !u!1818360608 &331279647
 PositionConstraint:
