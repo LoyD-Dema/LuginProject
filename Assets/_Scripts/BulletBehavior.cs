@@ -38,7 +38,7 @@ public class BulletBehavior : MonoBehaviour
     // Events
     public event EventHandler<EventArgs> OnInstantiate;
     public event EventHandler<EventArgs> OnTraveling;
-    public event EventHandler<OnHitEventArgs> OnHit;
+    public event EventHandler<HitInfo> OnHit;
 
     public class OnHitEventArgs : EventArgs
     {
@@ -85,7 +85,6 @@ public class BulletBehavior : MonoBehaviour
         {
             impactPoint = hit.point;
         }
-        
     }
     
     private void FixedUpdate()
@@ -103,8 +102,13 @@ public class BulletBehavior : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            OnHit?.Invoke(this, new OnHitEventArgs { enemy = other.gameObject });
-            // TODO - Add damage to the enemy
+            OnHit?.Invoke(this, new HitInfo
+            {
+                OtherObject = this.gameObject,
+                HitPoint = impactPoint,
+                Damage = 5 //TODO -> this value should be calculated based on the bullet's damage and the player's defense or other factors
+            });
+            
             float actualDamage = damage * DamageMultiplayer;
             Debug.Log($"Damage: {actualDamage} applied to {other.gameObject.name}");
 
@@ -123,15 +127,18 @@ public class BulletBehavior : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            if (other.TryGetComponent<Actor>(out Actor actor))
+            HitInfo hitInfo = new HitInfo()
             {
-                actor.ReceiveHit(new HitInfo
-                {
-                    OtherObject = this.gameObject,
-                    HitPoint = impactPoint,
-                    Damage = 5 //TODO -> this value should be calculated based on the bullet's damage and the player's defense or other factors
-                });
-            }
+                OtherObject = this.gameObject,
+                HitPoint = impactPoint,
+                Damage = 5 //TODO -> this value should be calculated based on the bullet's damage and the player's defense or other factors
+            };
+            
+            //Hit the player
+            other.GetComponent<Actor>()?.ReceiveHit(hitInfo);
+            
+            //Other hit reactions (VFX, SFX, etc) can be handled by subscribing to the OnHit event
+            OnHit?.Invoke(this, hitInfo);
         }
     }
 

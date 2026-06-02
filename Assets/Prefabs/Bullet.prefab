@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 118830392588879827}
   - component: {fileID: 4497254015212238946}
   - component: {fileID: 5427883030957612818}
+  - component: {fileID: -6592579520092573752}
   m_Layer: 7
   m_Name: Bullet
   m_TagString: Bullet
@@ -304,3 +305,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOutOfRange
   range: 100
+--- !u!114 &-6592579520092573752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5363965849906640939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5110167eb304817993b2321a4ae4638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Components.VFX.BulletVFX
+  hitEffectAsset: {fileID: 8926484042661614526, guid: f5e68f66b0ae43f4bb42a22e15bc899f, type: 3}

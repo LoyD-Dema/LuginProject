@@ -39,7 +39,7 @@ namespace Components.VFX
         {
             owningActor.HitReceived -= OnHit;
         }
-
+        
         private void Start()
         {
             renderer = GetComponent<Renderer>();
@@ -61,6 +61,7 @@ namespace Components.VFX
 
             //flash Material
             PlayHitEffect();
+            
             //play sound
         }
 
