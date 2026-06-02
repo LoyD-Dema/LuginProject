@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Components.VFX.HitEffects
   hitParticlesAsset: {fileID: 8926484042661614526, guid: f5e68f66b0ae43f4bb42a22e15bc899f, type: 3}
-  hitShader: {fileID: -6465566751694194690, guid: 48f18f1cf77c7fc49b12ed8a460fe371, type: 3}
+  hitMaterial: {fileID: -876546973899608171, guid: 48f18f1cf77c7fc49b12ed8a460fe371, type: 3}
 --- !u!1 &333472430
   rotationSpeed: 20
 --- !u!1818360608 &331279647

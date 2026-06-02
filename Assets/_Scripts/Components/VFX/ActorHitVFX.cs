@@ -15,8 +15,14 @@ namespace Components.VFX
     public class ActorHitVFX : MonoBehaviour
     {
         private Actor owningActor;
+        private Renderer renderer;
+        private Material originalMaterial;
+        private Coroutine hitRoutine;
+        
+        private MaterialPropertyBlock mpb;
+        
         [SerializeField] private VisualEffectAsset hitParticlesAsset; //particles to play when hit
-        [SerializeField] private Shader hitShader; //a shader to apply to the Actor when hit
+        [SerializeField] private Material hitMaterial; //a shader to apply to the Actor when hit
         
         #region Utilities
         private GameObject go;
@@ -36,6 +42,13 @@ namespace Components.VFX
             owningActor.HitReceived -= OnHit;
         }
 
+        private void Start()
+        {
+            renderer = GetComponent<Renderer>();
+            mpb = new MaterialPropertyBlock();
+            originalMaterial = renderer.material;
+        }
+
         private void OnHit(HitInfo hitInfo)
         {
             go = new GameObject("HitEffectsVFX");
@@ -50,17 +63,37 @@ namespace Components.VFX
             StartCoroutine(DestroyWhenFinished(go, HitParticlesVfx));
 
             //flash Material
-            StartCoroutine(RunShaderEffect());
+            PlayHitEffect();
             //play sound
+        }
+
+        IEnumerator RunShaderEffect2()
+        {
+            renderer.GetPropertyBlock(mpb);
+            mpb.SetFloat("_FlashHit", 1f);
+            renderer.GetPropertyBlock(mpb);
+            
+            yield return new WaitForSeconds(hitEffcetDuration);
+
+            renderer.GetPropertyBlock(mpb);
+            mpb.SetFloat("_FlashHit", 0f);
+            renderer.SetPropertyBlock(mpb);
+        }
+
+        public void PlayHitEffect()
+        {
+            if(hitRoutine != null)
+                StopCoroutine(hitRoutine);
+
+            hitRoutine = StartCoroutine(RunShaderEffect());
         }
 
         IEnumerator RunShaderEffect()
         {
-            Renderer renderer = owningActor.GetComponent<Renderer>();
-            Material originalMaterial = renderer.material;
-            renderer.material = new Material(hitShader);
+            renderer.material = hitMaterial;
             yield return new WaitForSeconds(hitEffcetDuration);
-            owningActor.GetComponent<Renderer>().material = originalMaterial;
+            renderer.material = originalMaterial;
+            hitRoutine = null;
         }
 
         private IEnumerator DestroyWhenFinished(GameObject go, VisualEffect vfx)
