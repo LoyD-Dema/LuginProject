@@ -34,7 +34,6 @@ public class BulletBehavior : MonoBehaviour
 
     private Vector3 previousPosition;
     private Vector3 impactPoint;
-    private bool bHasHit = false;
     
     // Events
     public event EventHandler<EventArgs> OnInstantiate;
@@ -79,15 +78,9 @@ public class BulletBehavior : MonoBehaviour
 
     private void Update()
     {
+        // Calculate the movement of the bullet since the last frame to spawn VFX at the right position in case of a hit
         Vector3 movement = gameObject.transform.position - previousPosition;
         float distance = movement.magnitude;
-        Debug.DrawLine(
-            previousPosition,
-            transform.position,
-            Color.red,
-            5f
-        );
-        
         if (Physics.Raycast(previousPosition, movement.normalized, out RaycastHit hit, distance))
         {
             impactPoint = hit.point;
