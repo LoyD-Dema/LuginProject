@@ -1,8 +1,15 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelBar : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] Slider slider;
+    [SerializeField] TMP_Text text;
+
+    [Header("Parameters")]
     [SerializeField] float experienceRequiredMultiplayer;
     [SerializeField] float[] experienceRequiredToLevelUp;
 
@@ -15,7 +22,7 @@ public class LevelBar : MonoBehaviour
 
     private void Start()
     {
-        if(experienceRequiredToLevelUp.Length <= 0)
+        if (experienceRequiredToLevelUp.Length <= 0)
         {
             Debug.LogError("Add at least one element in the array to have the first target to level up", this);
             return;
@@ -27,16 +34,20 @@ public class LevelBar : MonoBehaviour
     public void AddExp(float amount)
     {
         currentExperience += amount;
-        /* TODO - Update UI
-         * Normalize the value and take the min[ Mathf.Min(currentExperience / currentExperienceRequiredToLevelUp, currentExperienceRequiredToLevelUp) ]
-         */
+
+        // Update UI
+        UpdateSlider();
+
+        // For Debug
+        Debug.Log(currentExperience + " / " + currentExperienceRequiredToLevelUp);
 
         if (currentExperience >= currentExperienceRequiredToLevelUp)
         {
             experienceLeftOver = currentExperience - currentExperienceRequiredToLevelUp;
+            currentExperience = experienceLeftOver;
             level++;
 
-            if(level < experienceRequiredToLevelUp.Length - 1)
+            if (level < experienceRequiredToLevelUp.Length)
             {
                 currentExperienceRequiredToLevelUp = experienceRequiredToLevelUp[level];
             }
@@ -45,8 +56,16 @@ public class LevelBar : MonoBehaviour
                 currentExperienceRequiredToLevelUp *= experienceRequiredMultiplayer;
             }
 
+            // Update UI
+            text.text = level.ToString();
+            UpdateSlider();
+
             OnLevelUp?.Invoke();
         }
     }
 
+    private void UpdateSlider()
+    {
+        slider.value = Mathf.Min(currentExperience / currentExperienceRequiredToLevelUp, currentExperienceRequiredToLevelUp);
+    }
 }
