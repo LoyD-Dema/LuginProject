@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 435552705}
   - component: {fileID: 435552704}
   - component: {fileID: 435552703}
+  - component: {fileID: 435552707}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -369,6 +370,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
+--- !u!1818360608 &435552707
+PositionConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435552702}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_TranslationAtRest: {x: -10.57, y: 15.95, z: -10.57}
+  m_TranslationOffset: {x: -10.57, y: 14.95, z: -10.57}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_Active: 1
+  m_IsLocked: 0
+  m_Sources:
+  - sourceTransform: {fileID: 2035222203}
+    weight: 1
 --- !u!1 &906906891
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +497,7 @@ GameObject:
   - component: {fileID: 1136281027}
   - component: {fileID: 1136281035}
   - component: {fileID: 1136281034}
+  - component: {fileID: 1136281036}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -538,7 +560,6 @@ MonoBehaviour:
   target: {fileID: 2035222203}
   shootRadius: 5
   followRadius: 10
-  visionRadius: 15
 --- !u!65 &1136281030
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -647,7 +668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
   distanceMultiplayer: 1
-  bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  magazine: {fileID: 1136281036}
 --- !u!114 &1136281035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,6 +682,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   maxHealth: 100
+--- !u!114 &1136281036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136281026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba81a5270647b34780ab7684afde826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
+  chamberTypes: 000000000000000000000000000000000000000000000000
+  bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
 --- !u!1 &1232913785
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +843,7 @@ GameObject:
   - component: {fileID: 2035222194}
   - component: {fileID: 2035222193}
   - component: {fileID: 2035222192}
-  - component: {fileID: 2035222191}
+  - component: {fileID: 2035222204}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -816,26 +851,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1818360608 &2035222191
-PositionConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035222190}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 1, z: 0}
-  m_TranslationOffset: {x: 0, y: 0, z: 0}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_Active: 1
-  m_IsLocked: 0
-  m_Sources:
-  - sourceTransform: {fileID: 2035222203}
-    weight: 1
 --- !u!114 &2035222192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,7 +878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
   distanceMultiplayer: 1
-  bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  magazine: {fileID: 2035222204}
 --- !u!114 &2035222194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,6 +1082,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035222204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035222190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba81a5270647b34780ab7684afde826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
+  chamberTypes: 010000000000000000000000020000000000000000000000
+  bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
