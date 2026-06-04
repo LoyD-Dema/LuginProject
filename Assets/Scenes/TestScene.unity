@@ -540,6 +540,7 @@ GameObject:
   - component: {fileID: 1477076591}
   - component: {fileID: 1477076593}
   - component: {fileID: 1477076592}
+  - component: {fileID: 1477076594}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -655,6 +656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIController
   target: {fileID: 331279636}
   shootRadius: 5
+  followRadius: 10
 --- !u!114 &1477076592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +697,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1477076594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477076586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
+  fireRate: 0.5
+  distanceMultiplayer: 0
+  bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
 --- !u!1 &1773676455
 GameObject:
   m_ObjectHideFlags: 0
