@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utilities;
 
 public class TestBulletBehavior : MonoBehaviour
 {
@@ -42,11 +43,11 @@ public class TestBulletBehavior : MonoBehaviour
         b.enabled = true;
     }
 
-    private void Bullet_OnHit(object sender, BulletBehavior.OnHitEventArgs e)
+    private void Bullet_OnHit(object sender, HitInfo e)
     {
         if (sender is BulletBehavior bulletBehavior)
         {
-            Debug.Log($"{bulletBehavior} hitted {e.enemy}", bulletBehavior);
+            Debug.Log($"{bulletBehavior} hit {e.OtherObject.name}", bulletBehavior);
         }
     }
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utilities;
 
 [RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
 public class BulletBehavior : MonoBehaviour
@@ -14,36 +15,30 @@ public class BulletBehavior : MonoBehaviour
     [Header("SO")]
     [SerializeField] private BulletDataSO bulletDataSO;
     private int currentPirce;
-
-
+    
     // Multiplayer
     private float damageMultiplayer = 1.0f;
     public float DamageMultiplayer
     {
         get { return damageMultiplayer; }
-        set
-        {
-            damageMultiplayer = Mathf.Max(1.0f, value);
-        }
+        set { damageMultiplayer = Mathf.Max(1.0f, value); }
     }
-
     private float speedMultiplayer = 1.0f;
     public float SpeedMultiplayer
     {
         get { return speedMultiplayer; }
-        set
-        {
-            speedMultiplayer = Mathf.Max(1.0f, value);
-        }
+        set { speedMultiplayer = Mathf.Max(1.0f, value); }
     }
-
-
+    
     private Rigidbody rigidBody;
+
+    private Vector3 previousPosition;
+    private Vector3 impactPoint;
     
     // Events
     public event EventHandler<EventArgs> OnInstantiate;
     public event EventHandler<EventArgs> OnTraveling;
-    public event EventHandler<OnHitEventArgs> OnHit;
+    public event EventHandler<HitInfo> OnHit;
 
     public class OnHitEventArgs : EventArgs
     {
@@ -77,8 +72,21 @@ public class BulletBehavior : MonoBehaviour
         }
 
         currentPirce = maxNumOfObjectToPirce;
+        
+        previousPosition = transform.position;
     }
 
+    private void Update()
+    {
+        // Calculate the movement of the bullet since the last frame to spawn VFX at the right position in case of a hit
+        Vector3 movement = gameObject.transform.position - previousPosition;
+        float distance = movement.magnitude;
+        if (Physics.Raycast(previousPosition, movement.normalized, out RaycastHit hit, distance))
+        {
+            impactPoint = hit.point;
+        }
+    }
+    
     private void FixedUpdate()
     {
         if (isStartingTraveling)
@@ -94,8 +102,13 @@ public class BulletBehavior : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            OnHit?.Invoke(this, new OnHitEventArgs { enemy = other.gameObject });
-            // TODO - Add damage to the enemy
+            OnHit?.Invoke(this, new HitInfo
+            {
+                OtherObject = this.gameObject,
+                HitPoint = impactPoint,
+                Damage = 5 //TODO -> this value should be calculated based on the bullet's damage and the player's defense or other factors
+            });
+            
             float actualDamage = damage * DamageMultiplayer;
             Debug.Log($"Damage: {actualDamage} applied to {other.gameObject.name}");
 
@@ -111,6 +124,22 @@ public class BulletBehavior : MonoBehaviour
                 currentPirce -= 1;
             }
         }
+
+        if (other.CompareTag("Player"))
+        {
+            HitInfo hitInfo = new HitInfo()
+            {
+                OtherObject = this.gameObject,
+                HitPoint = impactPoint,
+                Damage = 5 //TODO -> this value should be calculated based on the bullet's damage and the player's defense or other factors
+            };
+            
+            //Hit the player
+            other.GetComponent<Actor>()?.ReceiveHit(hitInfo);
+            
+            //Other hit reactions (VFX, SFX, etc) can be handled by subscribing to the OnHit event
+            OnHit?.Invoke(this, hitInfo);
+        }
     }
 
     public void IncreaseDamage(float amount)
@@ -120,7 +149,6 @@ public class BulletBehavior : MonoBehaviour
 
         damage += amount;   
     }
-
     public void IncreaseSpeed(float amount)
     {
         if (amount <= 0)
