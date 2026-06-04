@@ -317,4 +317,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5110167eb304817993b2321a4ae4638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Components.VFX.BulletVFX
-  hitEffectAsset: {fileID: 8926484042661614526, guid: f5e68f66b0ae43f4bb42a22e15bc899f, type: 3}
+  hitVfxPrefab: {fileID: 4925473652135112609, guid: 3ca8dd13dc7918148abe540f53ee8f9e, type: 3}

@@ -15,7 +15,8 @@ namespace Components.VFX
     [RequireComponent(typeof(BulletBehavior))]
     public class BulletVFX : MonoBehaviour
     {
-        [SerializeField] private VisualEffectAsset hitEffectAsset; //particles to play when hit
+        [SerializeField] private GameObject hitVfxPrefab;
+        //[SerializeField] private VisualEffectAsset hitEffectAsset; //particles to play when hit
         private VisualEffect hitVfx;
 
         private BulletBehavior bulletBehavior;
@@ -34,31 +35,16 @@ namespace Components.VFX
 
         private void OnHit(object sender, HitInfo hitInfo)
         {
-            go = new GameObject("HitEffectsVFX");
-            go.transform.position = hitInfo.HitPoint;
-            
-            Debug.Log("VFX position: " + go.transform.position);
-            
-            hitVfx = go.AddComponent<VisualEffect>();
-            hitVfx.visualEffectAsset = hitEffectAsset;
-            
-            hitVfx.Play();
-            StartCoroutine(DestroyWhenFinished(go, hitVfx));
+            GameObject vfx = Instantiate(hitVfxPrefab, hitInfo.HitPoint, Quaternion.identity);
+            Debug.Log("Spawned: " + vfx.GetInstanceID());
+            Destroy(vfx, 1f);
+            Debug.Log("Destroyed: " + vfx.GetInstanceID());
         }
         
-        private IEnumerator DestroyWhenFinished(GameObject go, VisualEffect vfx)
+        private IEnumerator DestroyWhenFinished(GameObject go)
         {
             // Wait until the effect actually starts emitting
-            yield return null;
-
-            while (vfx.aliveParticleCount == 0)
-                yield return null;
-            
-            while (vfx.aliveParticleCount > 0)
-                yield return null;
-
-            yield return new WaitForSeconds(1f); //added a small buffer to ensure that the effect is completely finished before destroying the game object
-            
+            yield return new WaitForSeconds(.5f); //added a small buffer to ensure that the effect is completely finished before destroying the game object
             Destroy(go);
         }
     }

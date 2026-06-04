@@ -48,19 +48,19 @@ namespace Components.VFX
 
         private void OnHit(HitInfo hitInfo)
         {
-            go = new GameObject("HitEffectsVFX");
-            go.transform.position = hitInfo.HitPoint;
+            //go = new GameObject("HitEffectsVFX");
+            //go.transform.position = hitInfo.HitPoint;
             
-            Debug.Log("VFX position: " + go.transform.position);
+            //Debug.Log("VFX position: " + go.transform.position);
             
-            HitParticlesVfx = go.AddComponent<VisualEffect>();
-            HitParticlesVfx.visualEffectAsset = hitParticlesAsset;
+            //HitParticlesVfx = go.AddComponent<VisualEffect>();
+            //HitParticlesVfx.visualEffectAsset = hitParticlesAsset;
             
-            HitParticlesVfx.Play();
-            StartCoroutine(DestroyWhenFinished(go, HitParticlesVfx));
+            //HitParticlesVfx.Play();
+            //StartCoroutine(DestroyWhenFinished(go, HitParticlesVfx));
 
             //flash Material
-            PlayHitEffect();
+            //PlayHitEffect();
             
             //play sound
         }
