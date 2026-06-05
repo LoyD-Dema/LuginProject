@@ -3,7 +3,7 @@ using UnityEngine;
 public class TestLevelBar : MonoBehaviour
 {
     [SerializeField] private LevelBar levelBar;
-    [SerializeField] private float expToAdd;
+    [SerializeField] private float expToAdd = 10.0f;
     [SerializeField] private bool enableDebugMessage = true;
 
     private void OnEnable()
