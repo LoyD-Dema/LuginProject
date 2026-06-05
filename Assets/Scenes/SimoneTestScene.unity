@@ -694,7 +694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba81a5270647b34780ab7684afde826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
-  chamberTypes: 000000000000000000000000000000000000000000000000
   bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
 --- !u!1 &1232913785
 GameObject:
@@ -1091,11 +1090,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2035222190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ba81a5270647b34780ab7684afde826, type: 3}
+  m_Script: {fileID: 11500000, guid: fbbbb846a96d946438599b03c15739bc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
-  chamberTypes: 010000000000000000000000020000000000000000000000
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMagazineSystem
   bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  chamberTypes: 000000000100000000000000000000000200000000000000
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
