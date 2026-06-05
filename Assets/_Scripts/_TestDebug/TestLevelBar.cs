@@ -3,7 +3,7 @@ using UnityEngine;
 public class TestLevelBar : MonoBehaviour
 {
     [SerializeField] private LevelBar levelBar;
-
+    [SerializeField] private float expToAdd;
     [SerializeField] private bool enableDebugMessage = true;
 
     private void OnEnable()
@@ -27,6 +27,6 @@ public class TestLevelBar : MonoBehaviour
     // Called when space is pressed
     private void OnJump()
     {
-        levelBar.AddExp(10f);
+        levelBar.AddExp(expToAdd);
     }
 }
