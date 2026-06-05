@@ -1,3 +1,4 @@
+
 using System;
 using TMPro;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 
 public class LevelBar : MonoBehaviour
 {
+
     [Header("UI")]
     [SerializeField] Slider slider;
     [SerializeField] TMP_Text text;
@@ -14,11 +16,20 @@ public class LevelBar : MonoBehaviour
     [SerializeField] float[] experienceRequiredToLevelUp;
 
     private int level;
+    public int Level => level;
+
     private float experienceLeftOver;
     private float currentExperience;
     private float currentExperienceRequiredToLevelUp;
 
     public event Action OnLevelUp;
+
+
+#if UNITY_EDITOR
+    // Da vedere
+    [Header("Debug")]
+    [SerializeField] bool enableDebugMessages;
+#endif
 
     private void Start()
     {
@@ -31,6 +42,7 @@ public class LevelBar : MonoBehaviour
         currentExperienceRequiredToLevelUp = experienceRequiredToLevelUp[0];
     }
 
+
     public void AddExp(float amount)
     {
         currentExperience += amount;
@@ -38,8 +50,16 @@ public class LevelBar : MonoBehaviour
         // Update UI
         UpdateSlider();
 
+
+
+#if UNITY_EDITOR
         // For Debug
-        Debug.Log(currentExperience + " / " + currentExperienceRequiredToLevelUp);
+        if (enableDebugMessages)
+        {
+            Debug.Log(currentExperience + " / " + currentExperienceRequiredToLevelUp);
+        }
+#endif
+
 
         if (currentExperience >= currentExperienceRequiredToLevelUp)
         {
