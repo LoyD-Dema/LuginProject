@@ -9,13 +9,15 @@ using Utilities;
 public class HealthComponent : MonoBehaviour
 {
     #region Stats
-    [SerializeField, Min(0f)] private float maxHealth = 100f; 
+    [SerializeField, Min(0f)] private float maxHealth = 100f;
+    //Aggiunta proprietà per leggere la maxHealth ovunque
+    public float MaxHealth => maxHealth;
     public float CurrentHealth { get; private set; }
     public bool IsDead { get; private set; }
     #endregion
     #region Events of the HealthComponent
     private event Action MaxHealthChanged; //in caso vogliamo modificare la salute massima in runtime
-    private event Action Heal;
+    public event Action Heal; //Ho messo questo pubblico così posso gestire anche la cura tramite l'evento altrimenti non potevo usarlo
     public event Action Damage;
     private event Action Death;
     #endregion
