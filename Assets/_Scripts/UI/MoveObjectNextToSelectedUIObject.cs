@@ -1,12 +1,14 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MoveObjectNextToSelectedUIObject : MonoBehaviour
 {
     [SerializeField] MoveingUIElement[] elements;
     private Vector2[] targetPos;
-    
+
     private Canvas canvas;
     private RectTransform canvasRectTransform;
 
@@ -19,20 +21,42 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
 
     private void Awake()
     {
-        if(TryGetComponent<Canvas>(out canvas))
+        if (TryGetComponent<Canvas>(out canvas))
         {
             canvasRectTransform = canvas.GetComponent<RectTransform>();
         }
 
         targetPos = new Vector2[elements.Length];
+
+        for (int i = 0; i < elements.Length; i++)
+        {
+            if (!elements[i].RectTransform) continue;
+            elements[i].SetImage();
+        }
     }
 
     private void OnEnable()
     {
         if (elements.Length <= 0 || canvasRectTransform == null)
             return;
-        
+
         resetSelection.OnSelectedElementChange += ResetSelection_OnSelectedElementChange;
+    }
+
+    private void Start()
+    {
+        //Forziamo il reset della canvas nel primo frame
+        Canvas.ForceUpdateCanvases();
+
+        ResetSelection_OnSelectedElementChange();
+
+        //Settiamo senza lerp la posizione delle frecce appena si va in play
+        for (int i = 0; i < elements.Length; i++)
+        {
+            elements[i].RectTransform.anchoredPosition = targetPos[i];
+            elements[i].SetSprite(elements[i].NormalSprite);
+        }
+        canMove = false;
     }
 
     private void OnDisable()
@@ -49,7 +73,7 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
         Vector2 elementPos = SimulateReparentAndReanchor(sObjectRectTransform);
 
         Debug.Log(elementPos);
-        
+
         float left = elementPos.x - (sObjectRectTransform.rect.width * sObjectRectTransform.pivot.x);
         float right = elementPos.x + (sObjectRectTransform.rect.width * (1 - sObjectRectTransform.pivot.x));
 
@@ -59,8 +83,11 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
             float xPos = elements[i].IsXPositive ? right + elements[i].XOffset : left - elements[i].XOffset;
 
             targetPos[i] = new Vector2(xPos, yPos);
+
+            elements[i].SetSprite(elements[i].NormalSprite);
         }
     }
+
     public Vector2 SimulateReparentAndReanchor(RectTransform element)
     {
         Vector2 centeredAncors = new Vector2(0.5f, 0.5f);
@@ -76,6 +103,7 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
         }
     }
 
+
     private void MoveObject()
     {
         int elemetsReached = 0;
@@ -87,6 +115,7 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
             if ((elements[i].RectTransform.anchoredPosition - targetPos[i]).magnitude < 0.05f)
             {
                 elements[i].RectTransform.anchoredPosition = targetPos[i];
+                elements[i].SetSprite(elements[i].NormalSprite);
                 elemetsReached++;
             }
         }
@@ -94,6 +123,30 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
         if (elemetsReached == elements.Length)
         {
             canMove = false;
+        }
+    }
+
+    public void UpdateArrow()
+    {
+        //Per evitare che si blocchi la freccia nello stato di pressed
+        StopAllCoroutines();
+
+        //Inizia la coroutine per aggiornare le frecce
+        StartCoroutine(PressAndResetArrow());
+    }
+
+    private IEnumerator PressAndResetArrow()
+    {
+        for (int i = 0; i < elements.Length; i++)
+        {
+            elements[i].SetSprite(elements[i].PressedSprite);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        for (int i = 0; i < elements.Length; i++)
+        {
+            elements[i].SetSprite(elements[i].NormalSprite);
         }
     }
 }
@@ -105,4 +158,21 @@ public struct MoveingUIElement
     public bool IsXPositive;
     public float XOffset;
     public float YOffset;
+
+    [Header("Sprite Images")]
+    public Sprite NormalSprite;
+    public Sprite PressedSprite;
+
+    private Image image;
+
+    public void SetImage()
+    {
+        image = RectTransform.GetComponent<Image>();
+    }
+
+    public void SetSprite(Sprite sprite)
+    {
+        if (!image && !sprite) return;
+        image.sprite = sprite;
+    }
 }
