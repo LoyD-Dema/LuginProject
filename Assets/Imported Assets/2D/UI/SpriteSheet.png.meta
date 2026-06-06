@@ -273,15 +273,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_11
+      name: HealthBarFillYellow
       rect:
         serializedVersion: 2
         x: 516
         y: 2085
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -935,6 +935,7 @@ TextureImporter:
       ButtonPressed-9Slice: 1543979555
       Frame-9Slice: 2029253913
       HealthBarFill: -1825815633
+      HealthBarFillYellow: -556696448
       HealthBarFrame: 2013659694
       HealthBarFrameEmpty: 1114976679
       SpAriteSheet_3: -1825815633
@@ -951,7 +952,6 @@ TextureImporter:
       SpriteSheet_107: 893802190
       SpriteSheet_108: 1949927329
       SpriteSheet_109: -1567256783
-      SpriteSheet_11: -556696448
       SpriteSheet_110: -1785439878
       SpriteSheet_111: -810922536
       SpriteSheet_112: -1768624588

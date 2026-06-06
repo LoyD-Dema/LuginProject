@@ -5,7 +5,14 @@ using UnityEngine.UI;
 public class HealthBarUnderPlayer : MonoBehaviour
 {
     [SerializeField] HealthComponent healthComponent;
+
+    [Header("Images")]
     [SerializeField] Image healthFillImage;
+    [SerializeField] Image visualFillImage;
+
+    [SerializeField] float lerpSpeed = 3.0f;
+
+    private float targetFillAmt = 1.0f;
     void Awake()
     {
         //Debug
@@ -31,18 +38,36 @@ public class HealthBarUnderPlayer : MonoBehaviour
 
     private void Start()
     {
-        OnHealthChange();
+        if (!healthComponent || healthComponent.MaxHealth <= 0) return;
+
+        targetFillAmt = healthComponent.CurrentHealth / healthComponent.MaxHealth;
+        healthFillImage.fillAmount = targetFillAmt;
+        visualFillImage.fillAmount = targetFillAmt;
+    }
+
+    private void Update()
+    {
+        if (!healthFillImage || !visualFillImage) return;
+
+        healthFillImage.fillAmount = Mathf.Lerp(healthFillImage.fillAmount, targetFillAmt, lerpSpeed * Time.deltaTime);
+
+        if (healthFillImage.fillAmount > targetFillAmt)
+        {
+            if (Mathf.Abs(healthFillImage.fillAmount - targetFillAmt) < 0.005f) //Ho provato con Mathf.Approximately ma ci mette troppo a sparire
+            {
+                visualFillImage.fillAmount = targetFillAmt; 
+            }
+        }
+        else
+        {
+            visualFillImage.fillAmount = targetFillAmt;
+        }
     }
 
     private void OnHealthChange()
     {
-        if (!healthComponent || !healthFillImage) return;
-        
-        if (healthComponent.MaxHealth <= 0) return;
+        if (!healthComponent || healthComponent.MaxHealth <= 0) return;
 
-        float health = healthComponent.CurrentHealth / healthComponent.MaxHealth;
-
-        healthFillImage.fillAmount = health;
-
+        targetFillAmt = healthComponent.CurrentHealth / healthComponent.MaxHealth;
     }
 }
