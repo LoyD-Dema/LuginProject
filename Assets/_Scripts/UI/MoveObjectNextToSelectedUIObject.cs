@@ -110,7 +110,7 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
 
         for (int i = 0; i < elements.Length; i++)
         {
-            elements[i].RectTransform.anchoredPosition = Vector2.Lerp(elements[i].RectTransform.anchoredPosition, targetPos[i], moveSpeed * Time.deltaTime);
+            elements[i].RectTransform.anchoredPosition = Vector2.Lerp(elements[i].RectTransform.anchoredPosition, targetPos[i], moveSpeed * Time.unscaledDeltaTime);
 
             if ((elements[i].RectTransform.anchoredPosition - targetPos[i]).magnitude < 0.05f)
             {
@@ -142,7 +142,7 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
             elements[i].SetSprite(elements[i].PressedSprite);
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
 
         for (int i = 0; i < elements.Length; i++)
         {
