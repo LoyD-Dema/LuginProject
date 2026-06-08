@@ -60,7 +60,7 @@ namespace Components.VFX
             //StartCoroutine(DestroyWhenFinished(go, HitParticlesVfx));
 
             //flash Material
-            //PlayHitEffect();
+            PlayHitEffect();
             
             //play sound
         }
