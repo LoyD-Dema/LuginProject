@@ -97,15 +97,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpriteSheet_3
+      name: HealthBarFill
       rect:
         serializedVersion: 2
         x: 516
         y: 2117
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -273,15 +273,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_11
+      name: HealthBarFillYellow
       rect:
         serializedVersion: 2
         x: 516
         y: 2085
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -361,15 +361,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_15
+      name: HealthBarFrame
       rect:
         serializedVersion: 2
         x: 516
         y: 2069
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -449,15 +449,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_19
+      name: HealthBarFrameEmpty
       rect:
         serializedVersion: 2
         x: 516
         y: 2053
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -934,6 +934,10 @@ TextureImporter:
       Button-9Slice: 1483989173
       ButtonPressed-9Slice: 1543979555
       Frame-9Slice: 2029253913
+      HealthBarFill: -1825815633
+      HealthBarFillYellow: -556696448
+      HealthBarFrame: 2013659694
+      HealthBarFrameEmpty: 1114976679
       SpAriteSheet_3: -1825815633
       SpriteSheet_0: -622682880
       SpriteSheet_1: -374134466
@@ -948,7 +952,6 @@ TextureImporter:
       SpriteSheet_107: 893802190
       SpriteSheet_108: 1949927329
       SpriteSheet_109: -1567256783
-      SpriteSheet_11: -556696448
       SpriteSheet_110: -1785439878
       SpriteSheet_111: -810922536
       SpriteSheet_112: -1768624588
@@ -975,11 +978,9 @@ TextureImporter:
       SpriteSheet_131: 907221861
       SpriteSheet_132: -356383682
       SpriteSheet_14: 1628671438
-      SpriteSheet_15: 2013659694
       SpriteSheet_16: -852267294
       SpriteSheet_17: 210622216
       SpriteSheet_18: 2108872887
-      SpriteSheet_19: 1114976679
       SpriteSheet_2: -776415236
       SpriteSheet_20: 532031180
       SpriteSheet_21: 690115889
@@ -991,7 +992,6 @@ TextureImporter:
       SpriteSheet_27: -129196227
       SpriteSheet_28: -944368297
       SpriteSheet_29: -58478443
-      SpriteSheet_3: -1825815633
       SpriteSheet_30: -1208143971
       SpriteSheet_31: 241250667
       SpriteSheet_32: -729230561
@@ -1060,6 +1060,7 @@ TextureImporter:
       SpriteSheet_97: -1384098732
       SpriteSheet_98: 596006819
       SpriteSheet_99: 1289680095
+      e: 1114976679
       r: -840375495
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
