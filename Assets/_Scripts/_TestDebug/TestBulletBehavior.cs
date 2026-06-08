@@ -13,6 +13,9 @@ public class TestBulletBehavior : MonoBehaviour
     private Vector3 spawnPos;
     private Quaternion rotation;
 
+    [Header("Debug")]
+    [SerializeField] private bool enableDebugMessages = true;
+
     private void Start()
     {
         if (spawn)
@@ -45,7 +48,7 @@ public class TestBulletBehavior : MonoBehaviour
 
     private void Bullet_OnHit(object sender, HitInfo e)
     {
-        if (sender is BulletBehavior bulletBehavior)
+        if (sender is BulletBehavior bulletBehavior && enableDebugMessages)
         {
             Debug.Log($"{bulletBehavior} hit {e.OtherObject.name}", bulletBehavior);
         }
@@ -53,7 +56,7 @@ public class TestBulletBehavior : MonoBehaviour
 
     private void Bullet_OnTraveling(object sender, EventArgs e)
     {
-        if (sender is BulletBehavior bulletBehavior)
+        if (sender is BulletBehavior bulletBehavior && enableDebugMessages)
         {
             Debug.Log($"{bulletBehavior} is traveling", bulletBehavior);
         }
@@ -61,12 +64,10 @@ public class TestBulletBehavior : MonoBehaviour
 
     private void Bullet_OnInstantiate(object sender, EventArgs e)
     {
-        if(sender is BulletBehavior bulletBehavior)
+        if(sender is BulletBehavior bulletBehavior && enableDebugMessages)
         {
             Debug.Log($"{bulletBehavior} has instanced", bulletBehavior);
         }
     }
-
-
 }
 
