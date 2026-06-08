@@ -483,6 +483,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2956635111771484163}
+        m_TargetAssemblyTypeName: MoveObjectNextToSelectedUIObject, Assembly-CSharp
+        m_MethodName: UpdateArrow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4755621257830431298}
         m_TargetAssemblyTypeName: PauseMenuActions, Assembly-CSharp
         m_MethodName: LoadScene
@@ -978,6 +990,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2956635111771484163}
+        m_TargetAssemblyTypeName: MoveObjectNextToSelectedUIObject, Assembly-CSharp
+        m_MethodName: UpdateArrow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4755621257830431298}
         m_TargetAssemblyTypeName: PauseMenuActions, Assembly-CSharp
         m_MethodName: ResumeGame
@@ -1014,8 +1038,8 @@ GameObject:
   - component: {fileID: 1189680560836188479}
   - component: {fileID: 3519659643680734916}
   - component: {fileID: 4835104435520428384}
-  - component: {fileID: 2956635111771484163}
   - component: {fileID: 1256382770616278381}
+  - component: {fileID: 2956635111771484163}
   - component: {fileID: 4755621257830431298}
   m_Layer: 5
   m_Name: PauseCanvas
@@ -1110,6 +1134,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1256382770616278381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2539439484279303656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5617c4efd7d59fa46beadf12b3b15f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResetSelection
+  firstSelected: {fileID: 2481546680937581688}
 --- !u!114 &2956635111771484163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,19 +1174,6 @@ MonoBehaviour:
     PressedSprite: {fileID: 1216189273, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
   resetSelection: {fileID: 1256382770616278381}
   moveSpeed: 30
---- !u!114 &1256382770616278381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2539439484279303656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5617c4efd7d59fa46beadf12b3b15f17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResetSelection
-  firstSelected: {fileID: 2481546680937581688}
 --- !u!114 &4755621257830431298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1627,6 +1651,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MainMenuV2
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2956635111771484163}
+        m_TargetAssemblyTypeName: MoveObjectNextToSelectedUIObject, Assembly-CSharp
+        m_MethodName: UpdateArrow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1449982497108607441

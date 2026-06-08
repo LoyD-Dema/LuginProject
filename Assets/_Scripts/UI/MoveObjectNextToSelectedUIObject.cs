@@ -66,8 +66,15 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
 
     private void ResetSelection_OnSelectedElementChange()
     {
+        if (EventSystem.current.currentSelectedGameObject == null)
+        {
+            return;
+        }
         GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+
         RectTransform sObjectRectTransform = selectedObject.GetComponent<RectTransform>();
+        if (!sObjectRectTransform) return;
+
         canMove = true;
 
         Vector2 elementPos = SimulateReparentAndReanchor(sObjectRectTransform);
