@@ -31,7 +31,7 @@ public class AIController : MonoBehaviour
     {
         movementComponent = GetComponent<MovementComponent>();
         shootComponent = GetComponent<ShootComponent>();
-        material = GetComponent<Renderer>().material;
+        material = GetComponentInChildren<Renderer>().material;
 
         statesColors[States.Moving] = Color.blue;
         statesColors[States.Shooting] = Color.red;
