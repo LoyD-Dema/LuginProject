@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using Utilities;
 
@@ -10,16 +11,17 @@ public class HealthComponent : MonoBehaviour
 {
     #region Stats
     [SerializeField, Min(0f)] private float maxHealth = 100f;
-    //Aggiunta proprietà per leggere la maxHealth ovunque
+    //Aggiunta proprietï¿½ per leggere la maxHealth ovunque
     public float MaxHealth => maxHealth;
     public float CurrentHealth { get; private set; }
     public bool IsDead { get; private set; }
     #endregion
+    
     #region Events of the HealthComponent
     private event Action MaxHealthChanged; //in caso vogliamo modificare la salute massima in runtime
-    public event Action Heal; //Ho messo questo pubblico così posso gestire anche la cura tramite l'evento altrimenti non potevo usarlo
+    public event Action Heal; //Ho messo questo pubblico cosï¿½ posso gestire anche la cura tramite l'evento altrimenti non potevo usarlo
     public event Action Damage;
-    private event Action Death;
+    public event Action<GameObject> Death;
     #endregion
     private Actor owningActor => GetComponent<Actor>(); //lazy loading of the owning actor, we can cache it if we want to optimize it
     private void Awake()
@@ -79,6 +81,6 @@ public class HealthComponent : MonoBehaviour
         
         Debug.Log("I am dead");
         
-        Death?.Invoke();
+        Death?.Invoke(gameObject);
     }
 }

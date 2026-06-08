@@ -42,7 +42,7 @@ namespace Components.VFX
         
         private void Start()
         {
-            renderer = GetComponent<Renderer>();
+            renderer = GetComponentInChildren<Renderer>();
             originalMaterial = renderer.material;
         }
 
