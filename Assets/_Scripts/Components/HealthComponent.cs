@@ -6,8 +6,7 @@ using Utilities;
 /// <summary>
 /// Provides basic health management for a game object, including taking damage, healing, and death handling.
 /// </summary>
- [RequireComponent(typeof(Actor))]
-public class HealthComponent : MonoBehaviour
+public class HealthComponent : MonoBehaviour, IHealthReceiver
 {
     #region Stats
     [SerializeField, Min(0f)] private float maxHealth = 100f;
@@ -23,29 +22,17 @@ public class HealthComponent : MonoBehaviour
     public event Action Damage;
     public event Action<GameObject> Death;
     #endregion
-    private Actor owningActor => GetComponent<Actor>(); //lazy loading of the owning actor, we can cache it if we want to optimize it
     private void Awake()
     {
         CurrentHealth = maxHealth;
         IsDead = false;
     }
-    private void OnEnable()
-    {
-        owningActor.HitReceived += OnHitReceived;
-    }
-    private void OnDisable()
-    {
-        owningActor.HitReceived -= OnHitReceived;
-    }
+    
     private void Start()
     {
         Debug.Log($"HealthComponent initialized with MaxHealth: {maxHealth} and CurrentHealth: {CurrentHealth}");
     }
-    //dispatches the information about the hit received by the owningActor
-    private void OnHitReceived(HitInfo hitInfo)
-    {
-        TakeDamage(hitInfo.Damage);
-    }
+    
     // Allows external systems to modify the maximum health of the component at runtime
     //TODO: I don't like this level of control that we give to external systems,maybe we can add some checks or conditions to prevent abuse of this method
     public void SetMaxHealth(float newMaxHealth)
@@ -60,7 +47,7 @@ public class HealthComponent : MonoBehaviour
         CurrentHealth -= damage;
         Damage?.Invoke();
         
-        Debug.Log($"Current health: {CurrentHealth}");
+        Debug.Log($"{gameObject.name} - Current health: {CurrentHealth}");
         if (CurrentHealth <= 0)
             Die();
     }
@@ -72,7 +59,7 @@ public class HealthComponent : MonoBehaviour
             CurrentHealth = maxHealth;
         
         Heal?.Invoke();
-        Debug.Log($"Current health: {CurrentHealth}");
+        Debug.Log($"{gameObject.name} - Current health: {CurrentHealth}");
     }
     private void Die()
     {
@@ -82,5 +69,18 @@ public class HealthComponent : MonoBehaviour
         Debug.Log("I am dead");
         
         Death?.Invoke(gameObject);
+    }
+
+    public void ApplyEffect(HealthEffect effect)
+    {
+        switch (effect.Type)
+        {
+            case HealthEffectType.Heal:
+                GainHealth(effect.Amount);
+                break;
+            case HealthEffectType.Damage:
+                TakeDamage(effect.Amount);
+                break;
+        }
     }
 }

@@ -36,9 +36,7 @@ namespace Components.VFX
         private void OnHit(object sender, HitInfo hitInfo)
         {
             GameObject vfx = Instantiate(hitVfxPrefab, hitInfo.HitPoint, Quaternion.identity);
-            Debug.Log("Spawned: " + vfx.GetInstanceID());
             Destroy(vfx, 1f);
-            Debug.Log("Destroyed: " + vfx.GetInstanceID());
         }
         
         private IEnumerator DestroyWhenFinished(GameObject go)

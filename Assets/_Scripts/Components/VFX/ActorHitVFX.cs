@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -11,13 +12,13 @@ namespace Components.VFX
     /// such as playing hit particles and applying a hit shader to the Actor's material.
     /// The component also ensures that the visual effects are properly cleaned up after they have finished playing.
     /// </summary>
-    [RequireComponent(typeof(Actor))]
     public class ActorHitVFX : MonoBehaviour
     {
-        private Actor owningActor;
         private Renderer renderer;
         private Material originalMaterial;
         private Coroutine hitRoutine;
+        
+        private HealthComponent healthComponent;
         
         [SerializeField] private VisualEffectAsset hitParticlesAsset; //particles to play when hit
         [SerializeField] private Material hitMaterial; //a shader to apply to the Actor when hit
@@ -27,17 +28,23 @@ namespace Components.VFX
         private VisualEffect HitParticlesVfx;
         private float hitEffcetDuration = 1f; //duration of the hit effect, we can adjust this based on the actual duration of the particle system or shader effect
         private float lifetimeBuffer = .4f; //a small buffer to ensure that the effect is completely finished before destroying the game object
-        #endregion 
+        #endregion
+
+        private void Awake()
+        {
+            healthComponent = GetComponent<HealthComponent>();
+        }
         
         private void OnEnable()
         {
-            owningActor = GetComponent<Actor>();
-            owningActor.HitReceived += OnHit;
+            healthComponent.Damage += OnDamage;
+            healthComponent.Heal += OnHeal;
         }
 
         private void OnDisable()
         {
-            owningActor.HitReceived -= OnHit;
+            healthComponent.Damage -= OnDamage;
+            healthComponent.Heal -= OnHeal;
         }
         
         private void Start()
@@ -45,24 +52,15 @@ namespace Components.VFX
             renderer = GetComponentInChildren<Renderer>();
             originalMaterial = renderer.material;
         }
-
-        private void OnHit(HitInfo hitInfo)
+        
+        private void OnHeal()
         {
-            //go = new GameObject("HitEffectsVFX");
-            //go.transform.position = hitInfo.HitPoint;
-            
-            //Debug.Log("VFX position: " + go.transform.position);
-            
-            //HitParticlesVfx = go.AddComponent<VisualEffect>();
-            //HitParticlesVfx.visualEffectAsset = hitParticlesAsset;
-            
-            //HitParticlesVfx.Play();
-            //StartCoroutine(DestroyWhenFinished(go, HitParticlesVfx));
+            throw new NotImplementedException();
+        }
 
-            //flash Material
+        private void OnDamage()
+        {
             PlayHitEffect();
-            
-            //play sound
         }
 
         public void PlayHitEffect()
@@ -80,22 +78,5 @@ namespace Components.VFX
             renderer.material = originalMaterial;
             hitRoutine = null;
         }
-
-        private IEnumerator DestroyWhenFinished(GameObject go, VisualEffect vfx)
-        {
-            // Wait until the effect actually starts emitting
-            yield return null;
-
-            while (vfx.aliveParticleCount == 0)
-                yield return null;
-            
-            while (vfx.aliveParticleCount > 0)
-                yield return null;
-
-            yield return new WaitForSeconds(lifetimeBuffer); //added a small buffer to ensure that the effect is completely finished before destroying the game object
-            
-            Destroy(go);
-        }
-        
     }
 }

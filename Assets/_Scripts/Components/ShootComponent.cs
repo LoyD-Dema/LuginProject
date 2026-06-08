@@ -22,8 +22,6 @@ public class ShootComponent : MonoBehaviour
 
         // TODO - Change it by taking the bullet from the pool
         Instantiate(bullet, bulletSpawn.position + bulletSpawn.forward * distanceMultiplayer, bulletSpawn.rotation);
-
-        Debug.Log("Shot");
         elapsedFireRateTime = fireRate;
     }
 
