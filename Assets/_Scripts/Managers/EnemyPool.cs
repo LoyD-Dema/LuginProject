@@ -25,7 +25,7 @@ public class EnemyPool : MonoBehaviour
     private void Start()
     {
         CreateItem();
-        StartCoroutine(SpawnEnemiesAtInterval(5f));
+        StartCoroutine(SpawnEnemiesAtInterval(2f));
     }
     
     private IEnumerator SpawnEnemiesAtInterval(float interval)

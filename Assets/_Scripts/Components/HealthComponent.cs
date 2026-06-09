@@ -10,7 +10,6 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
 {
     #region Stats
     [SerializeField, Min(0f)] private float maxHealth = 100f;
-    //Aggiunta propriet� per leggere la maxHealth ovunque
     public float MaxHealth => maxHealth;
     public float CurrentHealth { get; private set; }
     public bool IsDead { get; private set; }

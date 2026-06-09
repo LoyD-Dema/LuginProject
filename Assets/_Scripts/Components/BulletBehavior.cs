@@ -73,13 +73,7 @@ public class BulletBehavior : MonoBehaviour
 
     private void Update()
     {
-        // Calculate the movement of the bullet since the last frame to spawn VFX at the right position in case of a hit
-        Vector3 movement = gameObject.transform.position - previousPosition;
-        float distance = movement.magnitude;
-        if (Physics.Raycast(previousPosition, movement.normalized, out RaycastHit hit, distance))
-        {
-            impactPoint = hit.point;
-        }
+       
     }
     
     private void FixedUpdate()
@@ -95,6 +89,12 @@ public class BulletBehavior : MonoBehaviour
      
     private void OnTriggerEnter(Collider other)
     {
+        
+        Debug.Log(
+            $"Bullet hit {other.name} on layer {LayerMask.LayerToName(other.gameObject.layer)}"
+        );
+
+        
         //evaluate the damage
         HealthEffect healthEffect = new HealthEffect
             {
@@ -112,9 +112,11 @@ public class BulletBehavior : MonoBehaviour
         else
             currentPirce -= 1;
         
+        //notify anyone interested that a Hit has happened
         //Try to invoke on the receiving object any type of damage
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
-        //notify anyone interested that a Hit has happened
+        
+        impactPoint = other.ClosestPoint(impactPoint); //for the VFX position
         OnHit?.Invoke(this, new HitInfo //spatial information about the collision
         {
             HitPoint = impactPoint,
