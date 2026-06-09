@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,35 +7,39 @@ public class MagazineVisualizer : MonoBehaviour
     GameObject[] chambers;
 
     private BulletType[] chamberTypes;
-    private ushort currentChamber;
+    private BulletType[] currentChamberTypes;
+    private int currentChamber;
 
-    private void Start()
+    private void OnEnable()
     {
         chamberTypes = new BulletType[chambers.Length];
+        currentChamberTypes = new BulletType[chambers.Length];
 
-        PlayerMagazineSystem.OnInfuseBullet += UpdateUI;
+        PlayerMagazineSystem.OnInfuseBullet += UpdateChamber;
         PlayerMagazineSystem.OnShoot += RotateChamber;
     }
 
-    private void UpdateUI(ushort chamber, BulletType chamberType)
+    private void UpdateChamber(int chamber, BulletType newChamberType)
+    {
+        chamberTypes[chamber] = newChamberType;
+    }
+
+    private void UpdateUI(int chamber, BulletType chamberType)
     {
         if (chamber < 0) return;
 
         chambers[chamber].GetComponent<Image>().color = GetBulletColor(chamberType);
-        chamberTypes[chamber] = chamberType;
+        currentChamberTypes[chamber] = chamberType;
     }
 
-    private void RotateChamber(ushort shotChamber)
+    private void RotateChamber(int shotChamber)
     {
-        for(int i = shotChamber; i < chambers.Length + shotChamber; i++)
+        currentChamber = shotChamber + 1;
+
+        for (int i = 0; i < chambers.Length; i++)
         {
-            ushort chamberToModify = Convert.ToUInt16(i % chambers.Length);
-            BulletType bulletType = chamberTypes[i % chambers.Length];
-
-            Debug.Log($"Chamber to modify: {chamberToModify}");
-            Debug.Log($"Modification to: {bulletType}");
-
-            UpdateUI(chamberToModify, bulletType);
+            int chamberIndex = (currentChamber + i) % chambers.Length;
+            UpdateUI(i, chamberTypes[chamberIndex]); 
         }
     }
 

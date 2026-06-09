@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     {
         movementComponent = GetComponent<MovementComponent>();
         shootComponent = GetComponent<ShootComponent>();
+        GetComponent<Renderer>().material.color = Color.green;
     }
 
     public void OnShoot(InputValue value)

@@ -29,8 +29,7 @@ public class ShootComponent : MonoBehaviour
         newBullet.transform.position = transform.position + transform.forward * distanceMultiplayer;
         newBullet.transform.rotation = transform.rotation;
         //Instantiate(bullet, transform.position + transform.forward * distanceMultiplayer, transform.rotation);
-
-        Debug.Log("Shot");
+ 
         elapsedFireRateTime = fireRate;
     }
 

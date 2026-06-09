@@ -1,15 +1,13 @@
 using UnityEngine;
 
-
-
 public class MagazineSystem : MonoBehaviour
 {
     [SerializeField]
     protected GameObject bulletPrefab;
     [SerializeField]
-    protected const ushort maxChambers = 6;
+    protected const int maxChambers = 6;
 
-    protected ushort selectedChamber = 0;
+    protected int selectedChamber = 0;
 
     public virtual GameObject GetBullet()
     {

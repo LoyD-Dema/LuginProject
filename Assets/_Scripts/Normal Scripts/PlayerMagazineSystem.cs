@@ -14,8 +14,8 @@ public class PlayerMagazineSystem : MagazineSystem
     [SerializeField] // Remove serialize field (just for test)
     private BulletType[] chamberTypes = new BulletType[6];
 
-    public static Action<ushort, BulletType> OnInfuseBullet;
-    public static Action<ushort> OnShoot;
+    public static Action<int, BulletType> OnInfuseBullet;
+    public static Action<int> OnShoot;
 
     private void Start()
     {
@@ -26,11 +26,19 @@ public class PlayerMagazineSystem : MagazineSystem
         //}
 
         // TEST ONLY
-        for(ushort i = 0; i < chamberTypes.Length; i++)
+        for(int i = 0; i < chamberTypes.Length; i++)
         {
-            if (chamberTypes[i] != BulletType.Normal)
+            if (i % 4 == 0)
             {
-                InfuseChamber(i, chamberTypes[i]);
+                InfuseChamber(i, BulletType.Fire);
+            }
+            else if(i % 2 == 0)
+            {
+                InfuseChamber(i, BulletType.Ice);
+            }
+            else
+            {
+                chamberTypes[i] = BulletType.Normal;
             }
         }
     }
@@ -51,11 +59,11 @@ public class PlayerMagazineSystem : MagazineSystem
         return bullet;
     }
 
-    public void InfuseChamber(ushort chamberNum, BulletType type)
+    public void InfuseChamber(int chamberNum, BulletType type)
     {
-        if (chamberNum > chamberTypes.Length - 1) return;
+        if (chamberNum > chamberTypes.Length - 1 || chamberTypes[chamberNum] == type) return;
 
-        // ADD COMPONENT TO BULLET
+        // ADD COMPONENTS TO BULLET
 
         chamberTypes[chamberNum] = type;
 
