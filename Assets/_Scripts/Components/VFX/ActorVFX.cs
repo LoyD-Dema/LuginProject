@@ -12,7 +12,7 @@ namespace Components.VFX
     /// such as playing hit particles and applying a hit shader to the Actor's material.
     /// The component also ensures that the visual effects are properly cleaned up after they have finished playing.
     /// </summary>
-    public class ActorHitVFX : MonoBehaviour
+    public class ActorVFX : MonoBehaviour
     {
         private Renderer renderer;
         private Material originalMaterial;
@@ -60,20 +60,20 @@ namespace Components.VFX
 
         private void OnDamage()
         {
-            PlayHitEffect();
+            PlayTemporaryShaderEffect(hitMaterial);
         }
 
-        public void PlayHitEffect()
+        public void PlayTemporaryShaderEffect(Material material = null)
         {
             if(hitRoutine != null)
                 StopCoroutine(hitRoutine);
 
-            hitRoutine = StartCoroutine(RunShaderEffect());
+            hitRoutine = StartCoroutine(RunShaderEffect(material));
         }
 
-        IEnumerator RunShaderEffect()
+        IEnumerator RunShaderEffect(Material shaderMaterial = null)
         {
-            renderer.material = hitMaterial;
+            renderer.material = shaderMaterial;
             yield return new WaitForSeconds(hitEffcetDuration);
             renderer.material = originalMaterial;
             hitRoutine = null;

@@ -22,6 +22,7 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
     public event Action Damage;
     public event Action<GameObject> Death;
     #endregion
+    
     private void Awake()
     {
         CurrentHealth = maxHealth;
@@ -40,6 +41,7 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         maxHealth = newMaxHealth;
         MaxHealthChanged?.Invoke();
     }
+    
     public void TakeDamage(float damage)
     {
         if (IsDead) return;
@@ -51,6 +53,7 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         if (CurrentHealth <= 0)
             Die();
     }
+    
     public void GainHealth(float amount)
     {
         CurrentHealth += amount;
@@ -61,6 +64,7 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         Heal?.Invoke();
         Debug.Log($"{gameObject.name} - Current health: {CurrentHealth}");
     }
+    
     private void Die()
     {
         CurrentHealth = 0;

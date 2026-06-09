@@ -37,6 +37,17 @@ public class AIController : MonoBehaviour
         statesColors[States.Shooting] = Color.red;
     }
 
+    private void OnEnable()
+    {
+        currentState = States.Moving;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void OnDisable()
+    {
+        currentState = States.None;
+    }
+
     private void Update()
     {
         if (!target) return;

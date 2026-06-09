@@ -112,8 +112,9 @@ public class BulletBehavior : MonoBehaviour
         else
             currentPirce -= 1;
         
+        //Try to invoke on the receiving object any type of damage
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
-        //notify anyone interested
+        //notify anyone interested that a Hit has happened
         OnHit?.Invoke(this, new HitInfo //spatial information about the collision
         {
             HitPoint = impactPoint,

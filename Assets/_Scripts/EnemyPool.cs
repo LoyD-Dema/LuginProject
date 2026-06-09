@@ -1,18 +1,17 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class EnemyPool : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] [Range(1,100)] private int capacity = 10;
     [SerializeField] [Range(1, 100)] private int maxSize = 50;
     
-    private ObjectPool<GameObject> _pool;
+    private ObjectPool<GameObject> pool;
 
-    public EnemyPool(GameObject enemyPrefab)
-    {
-        this._enemyPrefab = enemyPrefab;
-        this._pool = new ObjectPool<GameObject>(
+    private void Awake(){
+        pool = new ObjectPool<GameObject>(
             createFunc: CreateItem,
             actionOnGet: OnGetItem,
             actionOnRelease: OnReleaseItem,
@@ -22,10 +21,28 @@ public class EnemyPool : MonoBehaviour
             maxSize: 100
         );
     }
-
+    
+    private void Start()
+    {
+        CreateItem();
+        StartCoroutine(SpawnEnemiesAtInterval(5f));
+    }
+    
+    private IEnumerator SpawnEnemiesAtInterval(float interval)
+    {
+        Debug.Log("Spawning enemies");
+        while (true)
+        {
+            Vector3 newRandomSpawnPos = Vector3.zero + Random.insideUnitSphere * 10;
+            newRandomSpawnPos.y = transform.position.y;
+            OnGetItem(pool.Get());
+            yield return new WaitForSeconds(interval);
+        }
+    }
+    
     private GameObject CreateItem()
     {
-        GameObject enemy = Instantiate(_enemyPrefab);
+        GameObject enemy = Instantiate(enemyPrefab);
         enemy.name = "Enemy";
         enemy.GetComponent<HealthComponent>().Death += OnEnemyDead;
         enemy.SetActive(false);
@@ -33,7 +50,7 @@ public class EnemyPool : MonoBehaviour
     }
     
     //Get an enemy from the pool
-    private void OnGetItem(GameObject enemy)
+    public void OnGetItem(GameObject enemy)
     {
         enemy.SetActive(true);
     }
@@ -45,7 +62,7 @@ public class EnemyPool : MonoBehaviour
     
     private void OnEnemyDead(GameObject enemy)
     {
-        _pool.Release(enemy);
+        pool.Release(enemy);
         //Other stuff to do on death?
     }
 
