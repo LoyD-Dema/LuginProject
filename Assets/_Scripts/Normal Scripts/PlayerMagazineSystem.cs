@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum BulletType
@@ -13,23 +14,39 @@ public class PlayerMagazineSystem : MagazineSystem
     [SerializeField] // Remove serialize field (just for test)
     private BulletType[] chamberTypes = new BulletType[6];
 
-    // UNCOMMENT WHEN NOT TESTING
-    //private void Start()
-    //{
-    //    for(int i = 0; i < chamberTypes.Length; i++)
-    //    {
-    //        chamberTypes[i] = BulletType.Normal;
-    //    }
-    //}
+    public static Action<ushort, BulletType> OnInfuseBullet;
+    public static Action<ushort> OnShoot;
+
+    private void Start()
+    {
+        // UNCOMMENT WHEN NOT TESTING
+        //for (int i = 0; i < chamberTypes.Length; i++)
+        //{
+        //    chamberTypes[i] = BulletType.Normal;
+        //}
+
+        // TEST ONLY
+        for(ushort i = 0; i < chamberTypes.Length; i++)
+        {
+            if (chamberTypes[i] != BulletType.Normal)
+            {
+                InfuseChamber(i, chamberTypes[i]);
+            }
+        }
+    }
 
     public override GameObject GetBullet()
     {
-        GameObject bullet = base.GetBullet();
+        GameObject bullet = Instantiate(bulletPrefab); // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
 
         if (chamberTypes[selectedChamber] != BulletType.Normal)
         {
             Debug.Log($"Sto ritornando un proiettile magicoh: {chamberTypes[selectedChamber]}");
         }
+
+        OnShoot?.Invoke(selectedChamber);
+
+        ChangeChamber();
 
         return bullet;
     }
@@ -41,5 +58,7 @@ public class PlayerMagazineSystem : MagazineSystem
         // ADD COMPONENT TO BULLET
 
         chamberTypes[chamberNum] = type;
+
+        OnInfuseBullet?.Invoke(chamberNum, type);
     }
 }
