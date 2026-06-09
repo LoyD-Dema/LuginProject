@@ -7,6 +7,8 @@ public class EnemyPool : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] [Range(1,100)] private int capacity = 10;
     [SerializeField] [Range(1, 100)] private int maxSize = 50;
+    [SerializeField] [Range(1, 100)] private int spawnRateS = 5;
+    
     
     private ObjectPool<GameObject> pool;
 
@@ -25,7 +27,7 @@ public class EnemyPool : MonoBehaviour
     private void Start()
     {
         CreateItem();
-        StartCoroutine(SpawnEnemiesAtInterval(2f));
+        StartCoroutine(SpawnEnemiesAtInterval(spawnRateS));
     }
     
     private IEnumerator SpawnEnemiesAtInterval(float interval)
@@ -33,7 +35,7 @@ public class EnemyPool : MonoBehaviour
         Debug.Log("Spawning enemies");
         while (true)
         {
-            Vector3 newRandomSpawnPos = Vector3.zero + Random.insideUnitSphere * 10;
+            Vector3 newRandomSpawnPos = Vector3.zero + Random.insideUnitSphere * 10; //TODO: check this why it doesn't spawn in a random point in a radius
             newRandomSpawnPos.y = transform.position.y;
             OnGetItem(pool.Get());
             yield return new WaitForSeconds(interval);

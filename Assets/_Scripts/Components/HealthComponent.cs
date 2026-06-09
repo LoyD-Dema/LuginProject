@@ -30,7 +30,13 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
     
     private void Start()
     {
-        Debug.Log($"HealthComponent initialized with MaxHealth: {maxHealth} and CurrentHealth: {CurrentHealth}");
+        Debug.Log($"HealthComponent initialized with ExpToNextLvl: {maxHealth} and CurrentExp: {CurrentHealth}");
+    }
+
+    private void OnEnable()
+    {
+        IsDead = false;
+        CurrentHealth = maxHealth;    
     }
     
     // Allows external systems to modify the maximum health of the component at runtime
@@ -47,8 +53,12 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         
         CurrentHealth -= damage;
         Damage?.Invoke();
+
+        if (gameObject.tag == "Enemy")
+        {
+            Debug.Log($"{gameObject.name} - Current health: {CurrentHealth}");
+        }
         
-        Debug.Log($"{gameObject.name} - Current health: {CurrentHealth}");
         if (CurrentHealth <= 0)
             Die();
     }

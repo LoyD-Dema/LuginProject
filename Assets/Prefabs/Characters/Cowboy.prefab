@@ -1118,6 +1118,7 @@ GameObject:
   - component: {fileID: 5071183205946011245}
   - component: {fileID: 5081367976965349186}
   - component: {fileID: 9045238507261057124}
+  - component: {fileID: 8387086207441139324}
   m_Layer: 6
   m_Name: Cowboy
   m_TagString: Player
@@ -1333,6 +1334,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Components.VFX.ActorHitVFX
   hitParticlesAsset: {fileID: 0}
   hitMaterial: {fileID: -876546973899608171, guid: 48f18f1cf77c7fc49b12ed8a460fe371, type: 3}
+--- !u!114 &8387086207441139324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ef0092ba74437f8bd73acf60cff4ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExperienceComponent
+  expToNextLvl: 100
 --- !u!1 &6044714389505839466
 GameObject:
   m_ObjectHideFlags: 0

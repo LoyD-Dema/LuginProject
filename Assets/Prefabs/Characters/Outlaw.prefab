@@ -2549,6 +2549,7 @@ GameObject:
   - component: {fileID: 3628558865285055122}
   - component: {fileID: 1480687423575830215}
   - component: {fileID: 776882310428386305}
+  - component: {fileID: 221488337871078055}
   m_Layer: 8
   m_Name: Outlaw
   m_TagString: Enemy
@@ -2710,6 +2711,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   maxHealth: 100
+--- !u!114 &221488337871078055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942289980213182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2cb6569a7a47b88c8455f24190018c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  enemyData: {fileID: 11400000, guid: cca724aea99b4124fbbb791259e20311, type: 2}
 --- !u!1 &1954743680365594
 GameObject:
   m_ObjectHideFlags: 0

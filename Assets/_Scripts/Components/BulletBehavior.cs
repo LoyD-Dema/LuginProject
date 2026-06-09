@@ -90,11 +90,6 @@ public class BulletBehavior : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-        Debug.Log(
-            $"Bullet hit {other.name} on layer {LayerMask.LayerToName(other.gameObject.layer)}"
-        );
-
-        
         //evaluate the damage
         HealthEffect healthEffect = new HealthEffect
             {
@@ -114,6 +109,9 @@ public class BulletBehavior : MonoBehaviour
         
         //notify anyone interested that a Hit has happened
         //Try to invoke on the receiving object any type of damage
+        //if(other.gameObject.tag == "Enemy")
+            //Debug.Log($"Applying effect {healthEffect.Type} with value {healthEffect.Amount}");
+        
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
         
         impactPoint = other.ClosestPoint(impactPoint); //for the VFX position
