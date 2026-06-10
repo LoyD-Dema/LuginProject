@@ -5,14 +5,19 @@ using UnityEngine.Pool;
 public class EnemyPool : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] [Range(1,100)] private int capacity = 10;
-    [SerializeField] [Range(1, 100)] private int maxSize = 50;
-    [SerializeField] [Range(1, 100)] private int spawnRateS = 5;
-    
-    
+    [SerializeField][Range(1, 100)] private int capacity = 10;
+    [SerializeField][Range(1, 100)] private int maxSize = 50;
+    [SerializeField][Range(1, 100)] private int spawnRateS = 5;
+
+    [Header("SpanwDistances")]
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private float spawnDistance = 25;
+
+
     private ObjectPool<GameObject> pool;
 
-    private void Awake(){
+    private void Awake()
+    {
         pool = new ObjectPool<GameObject>(
             createFunc: CreateItem,
             actionOnGet: OnGetItem,
@@ -23,25 +28,34 @@ public class EnemyPool : MonoBehaviour
             maxSize: 100
         );
     }
-    
+
     private void Start()
     {
         CreateItem();
         StartCoroutine(SpawnEnemiesAtInterval(spawnRateS));
     }
-    
+
     private IEnumerator SpawnEnemiesAtInterval(float interval)
     {
         Debug.Log("Spawning enemies");
         while (true)
         {
-            Vector3 newRandomSpawnPos = Vector3.zero + Random.insideUnitSphere * 10; //TODO: check this why it doesn't spawn in a random point in a radius
-            newRandomSpawnPos.y = transform.position.y;
-            OnGetItem(pool.Get());
+            if (playerTransform != null)
+            {
+                Vector2 randomDirection = Random.insideUnitCircle.normalized; //TODO: check this why it doesn't spawn in a random point in a radius
+
+                Vector3 spawnPoint = new Vector3(randomDirection.x, 0, randomDirection.y) * spawnDistance;
+
+                Vector3 spawnPosition = playerTransform.position + spawnPoint;
+
+                GameObject enemy = pool.Get();
+                enemy.transform.position = spawnPosition;
+
+            }
             yield return new WaitForSeconds(interval);
         }
     }
-    
+
     private GameObject CreateItem()
     {
         GameObject enemy = Instantiate(enemyPrefab);
@@ -50,18 +64,18 @@ public class EnemyPool : MonoBehaviour
         enemy.SetActive(false);
         return enemy;
     }
-    
+
     //Get an enemy from the pool
     public void OnGetItem(GameObject enemy)
     {
         enemy.SetActive(true);
     }
-    
+
     private void OnReleaseItem(GameObject enemy)
     {
         enemy.SetActive(false);
     }
-    
+
     private void OnEnemyDead(GameObject enemy)
     {
         pool.Release(enemy);
