@@ -56,11 +56,20 @@ public class EnemyPool : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        HealthComponent.Death += OnEnemyDead;
+    }
+
+    private void OnDisable()
+    {
+        HealthComponent.Death -= OnEnemyDead;
+    }
+
     private GameObject CreateItem()
     {
         GameObject enemy = Instantiate(enemyPrefab);
         enemy.name = "Enemy";
-        enemy.GetComponent<HealthComponent>().Death += OnEnemyDead;
         enemy.SetActive(false);
         return enemy;
     }
@@ -78,13 +87,14 @@ public class EnemyPool : MonoBehaviour
 
     private void OnEnemyDead(GameObject enemy)
     {
+        Debug.Log($"Morto {enemy}", enemy);
         pool.Release(enemy);
         //Other stuff to do on death?
     }
 
     private void OnDestroyItem(GameObject enemy)
     {
-        enemy.GetComponent<HealthComponent>().Death -= OnEnemyDead;
+        //HealthComponent.Death -= OnEnemyDead;
         Destroy(enemy);
     }
 }

@@ -19,7 +19,7 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
     private event Action MaxHealthChanged; //in caso vogliamo modificare la salute massima in runtime
     public event Action Heal; //Ho messo questo pubblico cos� posso gestire anche la cura tramite l'evento altrimenti non potevo usarlo
     public event Action Damage;
-    public event Action<GameObject> Death;
+    public static event Action<GameObject> Death;
     #endregion
     
     private void Awake()
