@@ -50,7 +50,7 @@ public class TestBulletBehavior : MonoBehaviour
     {
         if (sender is BulletBehavior bulletBehavior && enableDebugMessages)
         {
-            Debug.Log($"{bulletBehavior} hit {e.OtherObject.name}", bulletBehavior);
+            Debug.Log($"{bulletBehavior} hit {e.HitPoint}", bulletBehavior);
         }
     }
 

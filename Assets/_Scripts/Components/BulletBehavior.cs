@@ -40,11 +40,6 @@ public class BulletBehavior : MonoBehaviour
     public event EventHandler<EventArgs> OnTraveling;
     public event EventHandler<HitInfo> OnHit;
 
-    public class OnHitEventArgs : EventArgs
-    {
-        public GameObject enemy;
-    }
-
     private bool isStartingTraveling;
 
     private void Awake()
@@ -56,7 +51,6 @@ public class BulletBehavior : MonoBehaviour
     {
         OnInstantiate?.Invoke(this,  EventArgs.Empty);
         isStartingTraveling = true;
-       
     }
 
     private void Start()
@@ -78,13 +72,7 @@ public class BulletBehavior : MonoBehaviour
 
     private void Update()
     {
-        // Calculate the movement of the bullet since the last frame to spawn VFX at the right position in case of a hit
-        Vector3 movement = gameObject.transform.position - previousPosition;
-        float distance = movement.magnitude;
-        if (Physics.Raycast(previousPosition, movement.normalized, out RaycastHit hit, distance))
-        {
-            impactPoint = hit.point;
-        }
+       
     }
     
     private void FixedUpdate()
@@ -100,45 +88,29 @@ public class BulletBehavior : MonoBehaviour
      
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
-        {
-            OnHit?.Invoke(this, new HitInfo
+        //evaluate the damage
+        HealthEffect healthEffect = new HealthEffect
             {
-                OtherObject = this.gameObject,
-                HitPoint = impactPoint,
-                Damage = 5 //TODO -> this value should be calculated based on the bullet's damage and the player's defense or other factors
-            });
-            
-            float actualDamage = damage * DamageMultiplayer;
-            Debug.Log($"Damage: {actualDamage} applied to {other.gameObject.name}");
-
-            if(currentPirce == 0)
-            {
-                /* TODO - Put back to the pool
-                 * delete Destroy()
-                 */
-                Destroy(gameObject);
-            }
-            else
-            {
-                currentPirce -= 1;
-            }
-        }
-
-        if (other.CompareTag("Player"))
-        {
-            HitInfo hitInfo = new HitInfo()
-            {
-                OtherObject = this.gameObject,
-                HitPoint = impactPoint,
-                Damage = 5 //TODO -> this value should be calculated based on the bullet's damage and the player's defense or other factors
+                Amount = EvalBulletDamage(),
+                Type = HealthEffectType.Damage
             };
-            
-            //Hit the player
-            other.GetComponent<Actor>()?.ReceiveHit(hitInfo);
-            
-            //Other hit reactions (VFX, SFX, etc) can be handled by subscribing to the OnHit event
-            OnHit?.Invoke(this, hitInfo);
+        
+        other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
+        
+        impactPoint = other.ClosestPoint(impactPoint); //for the VFX position
+        OnHit?.Invoke(this, new HitInfo //spatial information about the collision
+        {
+            HitPoint = impactPoint,
+        });
+        
+        if(currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            currentPirce -= 1;
         }
     }
 
@@ -154,5 +126,10 @@ public class BulletBehavior : MonoBehaviour
         if (amount <= 0)
             return;
         speed += amount;
+    }
+
+    private float EvalBulletDamage()
+    { 
+        return damage * DamageMultiplayer; //moved it to a function if we want to make it more complex
     }
 }

@@ -9,6 +9,7 @@ public class ShootComponent : MonoBehaviour
 
     // TODO - Change with the BulletBehavior Class
     [SerializeField] GameObject bullet;
+    [SerializeField] Transform bulletSpawn;
 
     private void Start()
     {
@@ -20,9 +21,7 @@ public class ShootComponent : MonoBehaviour
         if (elapsedFireRateTime >= 0) return;
 
         // TODO - Change it by taking the bullet from the pool
-        Instantiate(bullet, transform.position + transform.forward * distanceMultiplayer, transform.rotation);
-
-        Debug.Log("Shot");
+        Instantiate(bullet, bulletSpawn.position + bulletSpawn.forward * distanceMultiplayer, bulletSpawn.rotation);
         elapsedFireRateTime = fireRate;
     }
 
