@@ -6,6 +6,7 @@ public enum BulletType
     Normal,
     Fire,
     Ice,
+    Shot,
     LAST
 }
 
@@ -14,8 +15,11 @@ public class PlayerMagazineSystem : MagazineSystem
     [SerializeField] // Remove serialize field (just for test)
     private BulletType[] chamberTypes = new BulletType[6];
 
-    public static Action<int, BulletType> OnInfuseBullet;
-    public static Action<int> OnShoot;
+    public static event Action<int, BulletType> OnInfuseBullet;
+    public static event Action<int> OnShoot;
+    public static event Action OnReload;
+
+    private int shotBulletCount;
 
     private void Start()
     {
@@ -45,6 +49,8 @@ public class PlayerMagazineSystem : MagazineSystem
 
     public override GameObject GetBullet()
     {
+        if (shotBulletCount >= maxChambers) return null;
+
         GameObject bullet = Instantiate(bulletPrefab); // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
 
         if (chamberTypes[selectedChamber] != BulletType.Normal)
@@ -56,7 +62,16 @@ public class PlayerMagazineSystem : MagazineSystem
 
         ChangeChamber();
 
+        ++shotBulletCount;
+
         return bullet;
+    }
+
+    public void Reaload()
+    {
+        shotBulletCount = 0;
+        selectedChamber = 0;
+        OnReload?.Invoke();
     }
 
     public void InfuseChamber(int chamberNum, BulletType type)

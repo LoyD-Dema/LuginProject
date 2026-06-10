@@ -10,7 +10,7 @@ public class ShootComponent : MonoBehaviour
     [SerializeField] float distanceMultiplayer;
     private float elapsedFireRateTime;
     [SerializeField]
-    private MagazineSystem magazine;
+    private PlayerMagazineSystem magazine;
 
     // TODO - Change with the BulletBehavior Class
     //[SerializeField] GameObject bullet;
@@ -26,11 +26,16 @@ public class ShootComponent : MonoBehaviour
 
         // TODO - Change it by taking the bullet from the pool
         GameObject newBullet = magazine.GetBullet();
+        if (!newBullet) return;
         newBullet.transform.position = transform.position + transform.forward * distanceMultiplayer;
         newBullet.transform.rotation = transform.rotation;
-        //Instantiate(bullet, transform.position + transform.forward * distanceMultiplayer, transform.rotation);
  
         elapsedFireRateTime = fireRate;
+    }
+
+    public void Reload()
+    {
+        magazine.Reaload();
     }
 
     private void Update()

@@ -13,14 +13,19 @@ public class PlayerController : MonoBehaviour
         GetComponent<Renderer>().material.color = Color.green;
     }
 
-    public void OnShoot(InputValue value)
+    private void OnShoot(InputValue value)
     {
         shootComponent.Shoot();
     }
 
-    public void OnMove(InputValue value)
+    private void OnMove(InputValue value)
     {
         movementComponent.SetDirection(value.Get<Vector2>());
     }
     
+
+    private void OnReload(InputValue value)
+    {
+        shootComponent.Reload();
+    }
 }
