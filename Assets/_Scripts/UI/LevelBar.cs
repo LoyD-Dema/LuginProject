@@ -9,7 +9,7 @@ public class LevelBar : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] Slider slider;
-    [SerializeField] TMP_Text text;
+    [SerializeField] TMP_Text levelText;
 
     [Header("Parameters")]
     [SerializeField] float experienceRequiredMultiplayer;
@@ -24,12 +24,29 @@ public class LevelBar : MonoBehaviour
 
     public event Action OnLevelUp;
 
+    
+
 
 #if UNITY_EDITOR
     // Da vedere
     [Header("Debug")]
     [SerializeField] bool enableDebugMessages;
 #endif
+
+    private void OnEnable()
+    {
+        CombatEvents.OnEnemyKilled += CombatEvent_OnEnemyKilled;
+    }
+
+    private void OnDisable()
+    {
+        CombatEvents.OnEnemyKilled -= CombatEvent_OnEnemyKilled;
+    }
+
+    private void CombatEvent_OnEnemyKilled(int exp)
+    {
+        AddExp(exp);
+    }
 
     private void Start()
     {
@@ -40,6 +57,10 @@ public class LevelBar : MonoBehaviour
         }
 
         currentExperienceRequiredToLevelUp = experienceRequiredToLevelUp[0];
+        level = 0;
+        currentExperience = 0;
+        levelText.text = level.ToString();
+        UpdateSlider();
     }
 
 
@@ -49,7 +70,6 @@ public class LevelBar : MonoBehaviour
 
         // Update UI
         UpdateSlider();
-
 
 
 #if UNITY_EDITOR
@@ -77,7 +97,7 @@ public class LevelBar : MonoBehaviour
             }
 
             // Update UI
-            text.text = level.ToString();
+            levelText.text = level.ToString();
             UpdateSlider();
 
             OnLevelUp?.Invoke();
