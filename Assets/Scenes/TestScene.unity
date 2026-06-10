@@ -1016,6 +1016,8 @@ MonoBehaviour:
   capacity: 40
   maxSize: 100
   spawnRateS: 3
+  playerTransform: {fileID: 3421971689711045592}
+  spawnDistance: 25
 --- !u!1001 &1323033310
 PrefabInstance:
   m_ObjectHideFlags: 0
