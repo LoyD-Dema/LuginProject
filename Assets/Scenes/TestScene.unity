@@ -601,7 +601,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1942289980213182, guid: f42c73df0a8524e4f917ca02b7c301ba, type: 3}
   capacity: 40
   maxSize: 100
-  spawnRateS: 20
+  spawnRateS: 3
 --- !u!1001 &1323033310
 PrefabInstance:
   m_ObjectHideFlags: 0

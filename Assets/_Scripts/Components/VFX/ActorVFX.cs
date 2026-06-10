@@ -14,7 +14,7 @@ namespace Components.VFX
     /// </summary>
     public class ActorVFX : MonoBehaviour
     {
-        private Renderer renderer;
+        private Renderer targetRenderer;
         private Material originalMaterial;
         private Coroutine hitRoutine;
         
@@ -49,8 +49,8 @@ namespace Components.VFX
         
         private void Start()
         {
-            renderer = GetComponentInChildren<Renderer>();
-            originalMaterial = renderer.material;
+            targetRenderer = GetComponentInChildren<Renderer>();
+            originalMaterial = targetRenderer.material;
         }
         
         private void OnHeal()
@@ -73,9 +73,9 @@ namespace Components.VFX
 
         IEnumerator RunShaderEffect(Material shaderMaterial = null)
         {
-            renderer.material = shaderMaterial;
+            targetRenderer.material = shaderMaterial;
             yield return new WaitForSeconds(hitEffcetDuration);
-            renderer.material = originalMaterial;
+            targetRenderer.material = originalMaterial;
             hitRoutine = null;
         }
     }

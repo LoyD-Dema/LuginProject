@@ -51,7 +51,6 @@ public class BulletBehavior : MonoBehaviour
     {
         OnInstantiate?.Invoke(this,  EventArgs.Empty);
         isStartingTraveling = true;
-       
     }
 
     private void Start()
@@ -89,28 +88,12 @@ public class BulletBehavior : MonoBehaviour
      
     private void OnTriggerEnter(Collider other)
     {
-        
         //evaluate the damage
         HealthEffect healthEffect = new HealthEffect
             {
                 Amount = EvalBulletDamage(),
                 Type = HealthEffectType.Damage
             };
-        
-        if(currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
-        {
-            /* TODO - Put back to the pool
-             * delete Destroy()
-             */
-            Destroy(gameObject);
-        }
-        else
-            currentPirce -= 1;
-        
-        //notify anyone interested that a Hit has happened
-        //Try to invoke on the receiving object any type of damage
-        //if(other.gameObject.tag == "Enemy")
-            //Debug.Log($"Applying effect {healthEffect.Type} with value {healthEffect.Amount}");
         
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
         
@@ -119,6 +102,16 @@ public class BulletBehavior : MonoBehaviour
         {
             HitPoint = impactPoint,
         });
+        
+        if(currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            currentPirce -= 1;
+        }
     }
 
     public void IncreaseDamage(float amount)

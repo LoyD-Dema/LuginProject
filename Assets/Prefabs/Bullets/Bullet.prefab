@@ -289,8 +289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   useTestParameters: 1
   speed: 30
-  damage: 10
-  maxNumOfObjectToPirce: 1
+  damage: 100
+  maxNumOfObjectToPirce: 2
   bulletDataSO: {fileID: 11400000, guid: a4051e8749ac88841baacf46e04d9281, type: 2}
 --- !u!114 &5427883030957612818
 MonoBehaviour:
