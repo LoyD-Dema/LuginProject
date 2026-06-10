@@ -1119,6 +1119,8 @@ GameObject:
   - component: {fileID: 5081367976965349186}
   - component: {fileID: 9045238507261057124}
   - component: {fileID: 8387086207441139324}
+  - component: {fileID: 4242352125128279403}
+  - component: {fileID: 7049774884085379359}
   m_Layer: 6
   m_Name: Cowboy
   m_TagString: Player
@@ -1346,7 +1348,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ef0092ba74437f8bd73acf60cff4ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExperienceComponent
+  ExperienceForLevelProgression: 0
   expToNextLvl: 100
+--- !u!114 &4242352125128279403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbb636f56db8e44bb9f1eac91677a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
+  maxHealth: 100
+--- !u!114 &7049774884085379359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2051648e77e17e44db581c0143774886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseComponent
+  pauseMenuCanvas: {fileID: 0}
 --- !u!1 &6044714389505839466
 GameObject:
   m_ObjectHideFlags: 0
