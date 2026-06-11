@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(BulletBehavior))]
 public class IceModifier : MonoBehaviour
 {
+    [SerializeField] private float .
+
     BulletBehavior bullet;
 
     private void Awake()
@@ -23,7 +25,14 @@ public class IceModifier : MonoBehaviour
 
     private void Bullet_OnHit(object sender, OnHitEventArgs e)
     {
-        //e.Collider.AddComponent<>();
+        if (e.Collider.TryGetComponent<IceEffect>(out IceEffect iceEffect))
+        {
+            iceEffect.enabled = true;
+        }
+        else
+        {
+            e.Collider.AddComponent<IceEffect>();
+        }
     }
 
     private void Start()
