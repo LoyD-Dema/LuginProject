@@ -2,6 +2,12 @@ using System;
 using UnityEngine;
 using Utilities;
 
+public class OnHitEventArgs : EventArgs
+{
+    public HitInfo HitInfo;
+    public Collider Collider; 
+}
+
 [RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
 public class BulletBehavior : MonoBehaviour
 {
@@ -38,7 +44,7 @@ public class BulletBehavior : MonoBehaviour
     // Events
     public event EventHandler<EventArgs> OnInstantiate;
     public event EventHandler<EventArgs> OnTraveling;
-    public event EventHandler<HitInfo> OnHit;
+    public event EventHandler<OnHitEventArgs> OnHit;
 
     private bool isStartingTraveling;
 
@@ -96,11 +102,15 @@ public class BulletBehavior : MonoBehaviour
             };
         
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
-        
         impactPoint = other.ClosestPoint(impactPoint); //for the VFX position
-        OnHit?.Invoke(this, new HitInfo //spatial information about the collision
+
+        OnHit?.Invoke(this, new OnHitEventArgs //spatial information about the collision
         {
-            HitPoint = impactPoint,
+            HitInfo = new HitInfo
+            {
+                HitPoint = impactPoint,
+            },
+            Collider = other
         });
         
         if(currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
