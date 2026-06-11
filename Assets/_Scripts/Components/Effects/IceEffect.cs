@@ -16,12 +16,12 @@ public class IceEffect : MonoBehaviour
         {
             movement = GetComponent<MovementComponent>();
         }
-        //movement.SpeedMultiplayer -= speedReduction; // Get a speed multpliayer and decresed by the speedReduction
+        movement.SpeedMultiplayer -= speedReduction;
     }
 
     private void OnDisable()
     {
-        //movement.SpeedMultiplayer += speedReduction; // Get a speed multpliayer and decresed by the speedReduction
+        movement.SpeedMultiplayer += speedReduction; 
     }
 
     private void Update()
