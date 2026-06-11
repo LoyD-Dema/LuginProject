@@ -97,15 +97,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpriteSheet_3
+      name: HealthBarFill
       rect:
         serializedVersion: 2
         x: 516
         y: 2117
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -185,15 +185,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_7
+      name: ExperienceFill
       rect:
         serializedVersion: 2
         x: 516
         y: 2101
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -273,15 +273,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_11
+      name: HealthBarFillYellow
       rect:
         serializedVersion: 2
         x: 516
         y: 2085
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -361,15 +361,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_15
+      name: HealthBarFrame
       rect:
         serializedVersion: 2
         x: 516
         y: 2069
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -449,16 +449,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_19
+      name: ExperienceFrame
       rect:
         serializedVersion: 2
         x: 516
         y: 2053
         width: 55
         height: 6
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -854,7 +854,7 @@ TextureImporter:
         height: 22
       alignment: 6
       pivot: {x: 0, y: 0}
-      border: {x: 8, y: 10, z: 4, w: 8}
+      border: {x: 8, y: 10, z: 8, w: 8}
       customData: 
       outline: []
       physicsShape: []
@@ -910,6 +910,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Square
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 1782
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71afd6f214ea2034b859e772faa0beb0
+      internalID: 1323771002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LevelSquare
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1574
+        width: 33
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 7, y: 9, z: 7, w: 7}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c1b9853031dd274cad400ce8153fcfc
+      internalID: -5973755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -933,9 +977,14 @@ TextureImporter:
       Background-9Slice: 1287960471
       Button-9Slice: 1483989173
       ButtonPressed-9Slice: 1543979555
+      ExperienceFill: -254337241
+      ExperienceFrame: 1114976679
       Frame-9Slice: 2029253913
+      HealthBarFill: -1825815633
+      HealthBarFillYellow: -556696448
+      HealthBarFrame: 2013659694
+      LevelSquare: -5973755
       SpAriteSheet_3: -1825815633
-      SpriteSheet_0: -622682880
       SpriteSheet_1: -374134466
       SpriteSheet_10: 32086027
       SpriteSheet_100: 1153453878
@@ -948,7 +997,6 @@ TextureImporter:
       SpriteSheet_107: 893802190
       SpriteSheet_108: 1949927329
       SpriteSheet_109: -1567256783
-      SpriteSheet_11: -556696448
       SpriteSheet_110: -1785439878
       SpriteSheet_111: -810922536
       SpriteSheet_112: -1768624588
@@ -975,11 +1023,9 @@ TextureImporter:
       SpriteSheet_131: 907221861
       SpriteSheet_132: -356383682
       SpriteSheet_14: 1628671438
-      SpriteSheet_15: 2013659694
       SpriteSheet_16: -852267294
       SpriteSheet_17: 210622216
       SpriteSheet_18: 2108872887
-      SpriteSheet_19: 1114976679
       SpriteSheet_2: -776415236
       SpriteSheet_20: 532031180
       SpriteSheet_21: 690115889
@@ -991,7 +1037,6 @@ TextureImporter:
       SpriteSheet_27: -129196227
       SpriteSheet_28: -944368297
       SpriteSheet_29: -58478443
-      SpriteSheet_3: -1825815633
       SpriteSheet_30: -1208143971
       SpriteSheet_31: 241250667
       SpriteSheet_32: -729230561
@@ -1031,7 +1076,6 @@ TextureImporter:
       SpriteSheet_67: 722286625
       SpriteSheet_68: -1998453368
       SpriteSheet_69: -336493042
-      SpriteSheet_7: -254337241
       SpriteSheet_70: -190635135
       SpriteSheet_71: -1103418119
       SpriteSheet_72: 481186509
@@ -1060,6 +1104,8 @@ TextureImporter:
       SpriteSheet_97: -1384098732
       SpriteSheet_98: 596006819
       SpriteSheet_99: 1289680095
+      Square: -622682880
+      e: 1114976679
       r: -840375495
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

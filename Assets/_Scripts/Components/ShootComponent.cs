@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(MagazineSystem))]
 public class ShootComponent : MonoBehaviour
@@ -12,24 +13,17 @@ public class ShootComponent : MonoBehaviour
     [SerializeField]
     private MagazineSystem magazine;
 
-    // TODO - Change with the BulletBehavior Class
-    //[SerializeField] GameObject bullet;
-
-    private void Start()
-    {
-        elapsedFireRateTime = 0;
-    }
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform bulletSpawn;
 
     public void Shoot()
     {
         if (elapsedFireRateTime >= 0) return;
 
-        // TODO - Change it by taking the bullet from the pool
         GameObject newBullet = magazine.GetBullet();
         if (!newBullet) return;
-        newBullet.transform.position = transform.position + transform.forward * distanceMultiplayer;
+        newBullet.transform.position = bulletSpawn;
         newBullet.transform.rotation = transform.rotation;
- 
         elapsedFireRateTime = fireRate;
     }
 
