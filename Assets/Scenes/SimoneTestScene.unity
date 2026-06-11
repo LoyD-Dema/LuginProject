@@ -823,7 +823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1136281027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
   distanceMultiplayer: 1
-  magazine: {fileID: 0}
+  magazine: {fileID: 1136281036}
 --- !u!114 &1136281035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1836,7 +1836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d178ca4aba10ed4e9c6d90b2cc3b3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagazineVisualizer
-  chambers:
+  chamberSprites:
   - {fileID: 2136922510}
   - {fileID: 294783243}
   - {fileID: 1641529190}

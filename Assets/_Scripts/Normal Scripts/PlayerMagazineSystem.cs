@@ -67,10 +67,9 @@ public class PlayerMagazineSystem : MagazineSystem
         return bullet;
     }
 
-    public void Reaload()
+    public void Reload()
     {
         shotBulletCount = 0;
-        selectedChamber = 0;
         OnReload?.Invoke();
     }
 

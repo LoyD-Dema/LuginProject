@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     private MovementComponent movementComponent;
     private ShootComponent shootComponent;
 
-    private void Awake()
+    private void Start()
     {
         movementComponent = GetComponent<MovementComponent>();
         shootComponent = GetComponent<ShootComponent>();

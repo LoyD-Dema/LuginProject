@@ -10,7 +10,7 @@ public class ShootComponent : MonoBehaviour
     [SerializeField] float distanceMultiplayer;
     private float elapsedFireRateTime;
     [SerializeField]
-    private PlayerMagazineSystem magazine;
+    private MagazineSystem magazine;
 
     // TODO - Change with the BulletBehavior Class
     //[SerializeField] GameObject bullet;
@@ -35,7 +35,10 @@ public class ShootComponent : MonoBehaviour
 
     public void Reload()
     {
-        magazine.Reaload();
+        if (magazine.GetType() != typeof(PlayerMagazineSystem)) return; // Normal magazine system can't accidentally call this method
+
+        PlayerMagazineSystem pm = (PlayerMagazineSystem)magazine;
+        pm.Reload();
     }
 
     private void Update()

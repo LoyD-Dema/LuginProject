@@ -1,10 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+struct Chamber
+{
+    private BulletType type;
+    private bool isShot;
+    private int currentPosition;
+
+    public BulletType Type { get { return type; } set { type = value; } }
+    public bool IsShot { get { return isShot; } set { isShot = value; } }
+    public int CurrentPosition { get { return currentPosition; } set { currentPosition = value; } }
+
+    public Chamber(BulletType type = BulletType.Normal, bool isShot = false, int currentPosition = 0)
+    {
+        this.type = type;
+        this.isShot = isShot;
+        this.currentPosition = currentPosition;
+    }
+}
+
 public class MagazineVisualizer : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] chambers;
+    GameObject[] chamberSprites;
 
     [SerializeField]
     private Color fireColor = Color.orange;
@@ -13,74 +31,82 @@ public class MagazineVisualizer : MonoBehaviour
     [SerializeField]
     private Color shotColor = Color.gray;
 
-    private BulletType[] chamberTypes;
-    private BulletType[] currentChamberTypes;
+    private Chamber[] chambers;
     private int currentChamber;
 
     private void OnEnable()
     {
-        chamberTypes = new BulletType[chambers.Length];
-        currentChamberTypes = new BulletType[chambers.Length];
+        chambers = new Chamber[chamberSprites.Length];
+
+        for(int i = 0; i < chamberSprites.Length; i++)
+        {
+            chambers[i] = new Chamber(BulletType.Normal, false, i); // Init the chambers
+        }
 
         PlayerMagazineSystem.OnInfuseBullet += UpdateChamber;
         PlayerMagazineSystem.OnShoot += RotateChamber;
-        PlayerMagazineSystem.OnReload += InitChamber;
+        PlayerMagazineSystem.OnReload += Reload;
     }
 
     private void OnDisable()
     {
         PlayerMagazineSystem.OnInfuseBullet -= UpdateChamber;
         PlayerMagazineSystem.OnShoot -= RotateChamber;
-        PlayerMagazineSystem.OnReload -= InitChamber;
+        PlayerMagazineSystem.OnReload -= Reload;
     }
 
     private void Start()
     {
-        InitChamber();
-    }
-
-    private void InitChamber()
-    {
-        currentChamber = 0;
-
-        for (int i = 0; i < chamberTypes.Length; i++)
-        {
-            UpdateUI(i, chamberTypes[i]);
-        }
+        //UpdateUI();
     }
 
     private void UpdateChamber(int chamber, BulletType newChamberType)
     {
-        chamberTypes[chamber] = newChamberType;
+        chambers[chamber].Type = newChamberType;
+        UpdateUI();
     }
 
-    private void UpdateUI(int chamber, BulletType chamberType)
+    private void Reload()
     {
-        if (chamber < 0 || chamber >= chambers.Length) return;
+        for(int i = 0; i < chambers.Length; i++)
+        {
+            chambers[i].IsShot = false;
+        }
 
-        chambers[chamber].GetComponent<Image>().color = GetBulletColor(chamberType);
-        currentChamberTypes[chamber] = chamberType;
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        for(int i = 0; i < chambers.Length; i++)
+        {
+            if (chambers[i].IsShot)
+            {
+                chamberSprites[chambers[i].CurrentPosition].GetComponent<Image>().color = GetBulletColor(BulletType.Shot);
+                continue;
+            }
+
+            chamberSprites[chambers[i].CurrentPosition].GetComponent<Image>().color = GetBulletColor(chambers[i].Type);
+        }
     }
 
     private void RotateChamber(int shotChamber)
     {
         if (currentChamber >= chambers.Length) currentChamber = 0;
 
-        currentChamber = shotChamber + 1;
+        chambers[shotChamber].IsShot = true;
 
         for (int i = 0; i < chambers.Length; i++)
         {
-            int chamberIndex = (currentChamber + i) % chambers.Length;
+            --chambers[i].CurrentPosition;
 
-            if (chambers.Length - i <= currentChamber)
+            if (chambers[i].CurrentPosition < 0)
             {
-                UpdateUI(i, BulletType.Shot);
-            }
-            else
-            {
-                UpdateUI(i, chamberTypes[chamberIndex]);
+                chambers[i].CurrentPosition = chambers.Length - 1;
             }
         }
+
+        UpdateUI();
     }
 
     private Color GetBulletColor(BulletType chamberType)
