@@ -14,35 +14,47 @@ public class ShootComponent : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] Transform bulletSpawn;
 
-    [SerializeField] private Camera camera;
-    private Vector3 aimLocation;
+    private Camera camera = null;
+    private Vector3 aimGroundLocation;
 
     private void Start()
     {
         elapsedFireRateTime = 0;
+        if (gameObject.CompareTag("Player"))
+        {
+            camera = Camera.main;
+        }
     }
 
     public void Shoot()
     {
         if (elapsedFireRateTime >= 0) return;
 
-        // TODO - Change it by taking the bullet from the pool
-        Vector3 bulletSpawnDirectionNormalized = (aimLocation - bulletSpawn.position).normalized;
-        Quaternion rotation = Quaternion.LookRotation(aimLocation - bulletSpawn.position);
+        Vector3 bulletSpawnDirectionNormalized = bulletSpawn.forward;
+        Quaternion bulletSpawnRotation = bulletSpawn.rotation;
         
-        Instantiate(bullet, bulletSpawn.position + bulletSpawnDirectionNormalized, rotation);
+        // TODO - Change it by taking the bullet from the pool
+        if (gameObject.CompareTag("Player"))
+        {
+            bulletSpawnDirectionNormalized = (aimGroundLocation - bulletSpawn.position).normalized;
+            bulletSpawnRotation = Quaternion.LookRotation(aimGroundLocation - bulletSpawn.position);
+        }
+        
+        Instantiate(bullet, bulletSpawn.position + bulletSpawnDirectionNormalized, bulletSpawnRotation);
         elapsedFireRateTime = fireRate;
     }
 
     private void Update()
     {
-        //Evaluate shooting direction depending on cursor position
-        Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if(Physics.Raycast(ray, out RaycastHit hit))
+        //Evaluate shooting direction depending on cursor position if I am the player
+        if (gameObject.CompareTag("Player"))
         {
-            aimLocation = hit.point;
+            Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if(Physics.Raycast(ray, out RaycastHit hit))
+            {
+                aimGroundLocation = hit.point;
+            }
         }
-        
         elapsedFireRateTime -= Time.deltaTime;
     }
 }

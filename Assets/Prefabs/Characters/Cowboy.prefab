@@ -1116,11 +1116,11 @@ GameObject:
   - component: {fileID: 435109629801801133}
   - component: {fileID: 1875238970710689930}
   - component: {fileID: 5071183205946011245}
-  - component: {fileID: 5081367976965349186}
   - component: {fileID: 9045238507261057124}
   - component: {fileID: 8387086207441139324}
   - component: {fileID: 4242352125128279403}
   - component: {fileID: 7049774884085379359}
+  - component: {fileID: 4204745601715961273}
   m_Layer: 6
   m_Name: Cowboy
   m_TagString: Player
@@ -1306,22 +1306,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateToMouse
   rotationSpeed: 20
---- !u!114 &5081367976965349186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5990403518192266740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
-  fireRate: 0.5
-  distanceMultiplayer: 0
-  bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
-  bulletSpawn: {fileID: 0}
 --- !u!114 &9045238507261057124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,6 +1360,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseComponent
   pauseMenuCanvas: {fileID: 0}
+--- !u!114 &4204745601715961273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfcb6890f9511a24b999d849a1919de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
+  fireRate: 0.5
+  distanceMultiplayer: 5
+  bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  bulletSpawn: {fileID: 7084283425039638442}
 --- !u!1 &6044714389505839466
 GameObject:
   m_ObjectHideFlags: 0
