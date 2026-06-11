@@ -24,13 +24,13 @@ public class AIController : MonoBehaviour
     private States currentState = States.Moving;
 
     private MovementComponent movementComponent;
-    private ShootComponent shootComponent;
+    private ShootComponent _playerShootComponent;
     private Material material;
 
     private void Start()
     {
         movementComponent = GetComponent<MovementComponent>();
-        shootComponent = GetComponent<ShootComponent>();
+        _playerShootComponent = GetComponent<ShootComponent>();
         material = GetComponentInChildren<Renderer>().material;
 
         statesColors[States.Moving] = Color.blue;
@@ -70,7 +70,7 @@ public class AIController : MonoBehaviour
                 break;
             case States.Shooting:
                 
-                shootComponent.Shoot();
+                _playerShootComponent.Shoot();
                 
                 if (dst.sqrMagnitude > followRadius * followRadius)
                 {

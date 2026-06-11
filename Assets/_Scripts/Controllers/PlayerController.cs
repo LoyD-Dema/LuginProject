@@ -14,7 +14,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private MovementComponent movementComponent;
-    private ShootComponent shootComponent;
+    private ShootComponent _playerShootComponent;
     public event Action OnPausePressed;
 
     private bool isPaused;
@@ -27,14 +27,14 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         movementComponent = GetComponent<MovementComponent>();
-        shootComponent = GetComponent<ShootComponent>();
+        _playerShootComponent = GetComponent<ShootComponent>();
     }
 
     public void OnShoot(InputValue value)
     {
         if (isPaused) return;
 
-        shootComponent.Shoot();
+        _playerShootComponent.Shoot();
     }
 
     public void OnMove(InputValue value)
