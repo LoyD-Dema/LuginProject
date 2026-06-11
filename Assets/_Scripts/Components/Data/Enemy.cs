@@ -11,12 +11,12 @@ public class Enemy : MonoBehaviour
     
     private void OnEnable()
     {
-        gameObject.GetComponent<HealthComponent>().Death += OnDeath;
+        HealthComponent.Death += OnDeath;
     }
     
     private void OnDisable()
     {
-        gameObject.GetComponent<HealthComponent>().Death -= OnDeath;
+        HealthComponent.Death -= OnDeath;
     }
 
     private void OnDeath(GameObject obj)
