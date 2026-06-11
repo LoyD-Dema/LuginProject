@@ -569,6 +569,7 @@ MonoBehaviour:
   distanceMultiplayer: 1
   bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
   bulletSpawn: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!114 &331279646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1117841280
 Transform:
   m_ObjectHideFlags: 0
@@ -1367,6 +1368,12 @@ MonoBehaviour:
   distanceMultiplayer: 0
   bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
   bulletSpawn: {fileID: 0}
+  camera: {fileID: 0}
+--- !u!1 &1546987173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5990403518192266740, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+  m_PrefabInstance: {fileID: 5928991841920466372}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1753038856 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5500389744480881442, guid: 1afd5e308d281a94182be93087745654, type: 3}
@@ -1738,7 +1745,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4242352125128279403, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
   m_PrefabInstance: {fileID: 5928991841920466372}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1546987173}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdbb636f56db8e44bb9f1eac91677a41, type: 3}
@@ -1749,6 +1756,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8166924362150774812, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
   m_PrefabInstance: {fileID: 5928991841920466372}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3421971689711045605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546987173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f131972d6d8aeea4199af93779b79fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorSettings
+  cursorTexture: {fileID: 2800000, guid: 5b59573afb3ab8c41bbf31d5297b497d, type: 3}
+--- !u!114 &3421971689711045606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546987173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96b3e895a424823b83b532775327880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_TestDebug.CursorLine
+  camera: {fileID: 1773676457}
+  player: {fileID: 1463117155}
 --- !u!1001 &3842905071662857545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1951,6 +1985,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5081367976965349186, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1773676457}
+    - target: {fileID: 5081367976965349186, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: bulletSpawn
       value: 
       objectReference: {fileID: 1463117155}
@@ -2138,7 +2176,13 @@ PrefabInstance:
     - {fileID: 5102254137827743786, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5990403518192266740, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3421971689711045605}
+    - targetCorrespondingSourceObject: {fileID: 5990403518192266740, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3421971689711045606}
   m_SourcePrefab: {fileID: 100100000, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
