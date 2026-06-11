@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(BulletBehavior))]
 public class IceModifier : MonoBehaviour
 {
-    [SerializeField] private float .
+    [SerializeField] private float decreseSpeedMultiplayer;
 
     BulletBehavior bullet;
 
@@ -37,7 +37,7 @@ public class IceModifier : MonoBehaviour
 
     private void Start()
     {
-        bullet.SpeedMultiplayer -= 0.2f;
+        bullet.SpeedMultiplayer -= decreseSpeedMultiplayer;
     }
 
 
