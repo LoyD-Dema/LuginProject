@@ -41,7 +41,18 @@ public class PlayerController : MonoBehaviour
     {
         if (isPaused) return;
 
-        movementComponent.SetDirection(value.Get<Vector2>());
+        Vector2 input = value.Get<Vector2>();
+
+        if (input == Vector2.zero)
+        {
+            movementComponent.SetDirection(input);
+            return;
+        }
+        Vector3 cameraForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
+        Vector3 cameraRight = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
+
+        Vector3 direction = (cameraForward * input.y) + (cameraRight * input.x);
+        movementComponent.SetDirection(new Vector2(direction.x, direction.z));
     }
 
     public void OnPause(InputValue value)
