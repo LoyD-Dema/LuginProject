@@ -22,17 +22,9 @@ public class ShootComponent : MonoBehaviour
 
         GameObject newBullet = magazine.GetBullet();
         if (!newBullet) return;
-        newBullet.transform.position = bulletSpawn;
+        newBullet.transform.position = bulletSpawn.position;
         newBullet.transform.rotation = transform.rotation;
         elapsedFireRateTime = fireRate;
-    }
-
-    public void Reload()
-    {
-        if (magazine.GetType() != typeof(PlayerMagazineSystem)) return; // Normal magazine system can't accidentally call this method
-
-        PlayerMagazineSystem pm = (PlayerMagazineSystem)magazine;
-        pm.Reload();
     }
 
     private void Update()

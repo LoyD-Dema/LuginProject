@@ -17,9 +17,17 @@ public class PlayerMagazineSystem : MagazineSystem
 
     public static event Action<int, BulletType> OnInfuseBullet;
     public static event Action<int> OnShoot;
-    public static event Action OnReload;
 
     private int shotBulletCount;
+
+    private void OnEnable()
+    {
+        PlayerController.OnReloadEvent += Reload;
+    }
+    private void OnDisable()
+    {
+        PlayerController.OnReloadEvent -= Reload;
+    }
 
     private void Start()
     {
@@ -70,7 +78,6 @@ public class PlayerMagazineSystem : MagazineSystem
     public void Reload()
     {
         shotBulletCount = 0;
-        OnReload?.Invoke();
     }
 
     public void InfuseChamber(int chamberNum, BulletType type)

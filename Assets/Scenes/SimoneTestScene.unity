@@ -815,15 +815,15 @@ GameObject:
   - component: {fileID: 1136281028}
   - component: {fileID: 1136281027}
   - component: {fileID: 1136281035}
-  - component: {fileID: 1136281034}
   - component: {fileID: 1136281036}
+  - component: {fileID: 1136281037}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1136281027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,21 +973,6 @@ Transform:
   - {fileID: 906906892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1136281034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136281026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
-  fireRate: 0.5
-  distanceMultiplayer: 1
-  magazine: {fileID: 1136281036}
 --- !u!114 &1136281035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,6 +999,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
   bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+--- !u!114 &1136281037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136281026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfcb6890f9511a24b999d849a1919de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
+  fireRate: 0.5
+  distanceMultiplayer: 0
+  magazine: {fileID: 1136281036}
+  bullet: {fileID: 5363965849906640939, guid: 993c5b09579580d4fb3ca6933e8468d3, type: 3}
+  bulletSpawn: {fileID: 1136281033}
 --- !u!1 &1232913785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,9 +1386,9 @@ GameObject:
   - component: {fileID: 2035222196}
   - component: {fileID: 2035222195}
   - component: {fileID: 2035222194}
-  - component: {fileID: 2035222193}
   - component: {fileID: 2035222192}
   - component: {fileID: 2035222204}
+  - component: {fileID: 2035222205}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1407,21 +1409,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateToMouse
   rotationSpeed: 20
---- !u!114 &2035222193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035222190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
-  fireRate: 0.5
-  distanceMultiplayer: 1
-  magazine: {fileID: 2035222204}
 --- !u!114 &2035222194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1640,6 +1627,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMagazineSystem
   bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
   chamberTypes: 000000000000000000000000000000000000000000000000
+--- !u!114 &2035222205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035222190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfcb6890f9511a24b999d849a1919de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
+  fireRate: 0.5
+  distanceMultiplayer: 0
+  magazine: {fileID: 2035222204}
+  bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  bulletSpawn: {fileID: 2035222203}
 --- !u!1 &2035606567
 GameObject:
   m_ObjectHideFlags: 0

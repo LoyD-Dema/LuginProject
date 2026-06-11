@@ -45,19 +45,14 @@ public class MagazineVisualizer : MonoBehaviour
 
         PlayerMagazineSystem.OnInfuseBullet += UpdateChamber;
         PlayerMagazineSystem.OnShoot += RotateChamber;
-        PlayerMagazineSystem.OnReload += Reload;
+        PlayerController.OnReloadEvent += Reload;
     }
 
     private void OnDisable()
     {
         PlayerMagazineSystem.OnInfuseBullet -= UpdateChamber;
         PlayerMagazineSystem.OnShoot -= RotateChamber;
-        PlayerMagazineSystem.OnReload -= Reload;
-    }
-
-    private void Start()
-    {
-        //UpdateUI();
+        PlayerController.OnReloadEvent -= Reload;
     }
 
     private void UpdateChamber(int chamber, BulletType newChamberType)
