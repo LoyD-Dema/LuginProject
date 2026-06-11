@@ -4,10 +4,15 @@ public class IceEffect : MonoBehaviour
 {
     [SerializeField] private float duration;
     private float elapsedTime;
-
-    [SerializeField] private float speedReduction;
+    
+    private float speedReduction;
 
     private MovementComponent movement;
+
+    private void Awake()
+    {
+        speedReduction = EffectsManager.I.AmountToDecreseIceSpeedMutliplayer;
+    }
 
     private void OnEnable()
     {
@@ -33,4 +38,4 @@ public class IceEffect : MonoBehaviour
             enabled = false;
         }
     }
-}
+};
