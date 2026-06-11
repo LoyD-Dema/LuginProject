@@ -14,8 +14,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private MovementComponent movementComponent;
-    private ShootComponent _playerShootComponent;
+    private ShootComponent playerShootComponent;
     public event Action OnPausePressed;
+    public static event Action OnReloadEvent;
 
     private bool isPaused;
     public bool IsPaused
@@ -27,14 +28,14 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         movementComponent = GetComponent<MovementComponent>();
-        _playerShootComponent = GetComponent<ShootComponent>();
+        playerShootComponent = GetComponent<ShootComponent>();
     }
 
     public void OnShoot(InputValue value)
     {
         if (isPaused) return;
 
-        _playerShootComponent.Shoot();
+        playerShootComponent.Shoot();
     }
 
     public void OnMove(InputValue value)
@@ -63,4 +64,9 @@ public class PlayerController : MonoBehaviour
         }
     }
     //TODO: Mouse movement can be added here, as well as shooting and other actions that the player can do.
+
+    public void OnReload(InputValue value)
+    {
+        OnReloadEvent?.Invoke();
+    }
 }

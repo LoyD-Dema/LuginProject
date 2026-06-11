@@ -53,7 +53,8 @@ public class AIController : MonoBehaviour
         if (!target) return;
 
         Vector3 dst = target.position - transform.position;
-        transform.forward = dst.normalized;
+        Vector3 dstNormalized = dst.normalized;
+        transform.forward = new Vector3(dstNormalized.x, transform.forward.y, dstNormalized.z);
 
         switch (currentState)
         {
