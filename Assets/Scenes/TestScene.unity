@@ -798,9 +798,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
-  fireRate: 0.5
-  magazine: {fileID: 0}
-  bulletSpawn: {fileID: 0}
 --- !u!114 &331279646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,6 +943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cowboy
       objectReference: {fileID: 0}
+    - target: {fileID: 7049774884085379359, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: pauseMenuCanvas
+      value: 
+      objectReference: {fileID: 1314804171}
     - target: {fileID: 8166924362150774812, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1536,6 +1537,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7088781292148730737, guid: ed743862880dbfb42961b2e812b756b4, type: 3}
   m_PrefabInstance: {fileID: 1157036964}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &1314804171 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1189680560836188479, guid: c2bb657e9d66ebb43acfa15f3f70d035, type: 3}
+  m_PrefabInstance: {fileID: 959594946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1323033310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1881,9 +1887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
-  fireRate: 0.5
-  magazine: {fileID: 0}
-  bulletSpawn: {fileID: 0}
 --- !u!1001 &1616081190
 PrefabInstance:
   m_ObjectHideFlags: 0
