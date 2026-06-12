@@ -25,7 +25,6 @@ public class MovementComponent : MonoBehaviour
     private void FixedUpdate()
     {
         float actualSpeed = speed * SpeedMultiplayer;
-        Debug.Log(actualSpeed);
         rb.linearVelocity = direction * actualSpeed;
     }
 }
