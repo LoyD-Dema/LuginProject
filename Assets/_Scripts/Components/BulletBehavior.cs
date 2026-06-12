@@ -102,7 +102,7 @@ public class BulletBehavior : MonoBehaviour
             };
         
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
-        impactPoint = other.ClosestPoint(impactPoint); //for the VFX position
+        impactPoint = other.ClosestPoint(transform.position); //for the VFX position
 
         OnHit?.Invoke(this, new OnHitEventArgs //spatial information about the collision
         {
