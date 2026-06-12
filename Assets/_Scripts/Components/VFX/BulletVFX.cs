@@ -33,9 +33,9 @@ namespace Components.VFX
             bulletBehavior.OnHit -= OnHit;
         }
 
-        private void OnHit(object sender, HitInfo hitInfo)
+        private void OnHit(object sender, OnHitEventArgs e)
         {
-            GameObject vfx = Instantiate(hitVfxPrefab, hitInfo.HitPoint, Quaternion.identity);
+            GameObject vfx = Instantiate(hitVfxPrefab, e.HitInfo.HitPoint, Quaternion.identity);
             Destroy(vfx, 1f);
         }
         

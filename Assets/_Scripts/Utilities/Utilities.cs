@@ -24,6 +24,21 @@ namespace Utilities
             return false;
         }
 
+        public static bool GetWorldPositionByMouse(out Vector3 position, out Collider collider)
+        {
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(GetMousePositon()), out RaycastHit hit, Mathf.Infinity))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(GetMousePositon());
+                position = hit.point;
+                collider = hit.collider;
+                return true;
+            }
+
+            position = Vector3.zero;
+            collider = null;
+            return false;
+        }
+
         public static Vector3 GetWorldPositionByMouse(Camera camera, float distance)
         {
             Physics.Raycast(camera.ScreenPointToRay(GetMousePositon()), out RaycastHit hit, Mathf.Infinity);

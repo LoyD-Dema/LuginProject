@@ -46,11 +46,11 @@ public class TestBulletBehavior : MonoBehaviour
         b.enabled = true;
     }
 
-    private void Bullet_OnHit(object sender, HitInfo e)
+    private void Bullet_OnHit(object sender, OnHitEventArgs e)
     {
         if (sender is BulletBehavior bulletBehavior && enableDebugMessages)
         {
-            Debug.Log($"{bulletBehavior} hit {e.HitPoint}", bulletBehavior);
+            Debug.Log($"{bulletBehavior} hit {e.Collider.gameObject.name}", bulletBehavior);
         }
     }
 

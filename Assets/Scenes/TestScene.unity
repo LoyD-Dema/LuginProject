@@ -497,6 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementComponent
   speed: 10
+  speedMultiplayer: 1
 --- !u!114 &331279641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,8 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
-  distanceMultiplayer: 1
-  bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  magazine: {fileID: 0}
   bulletSpawn: {fileID: 0}
 --- !u!114 &331279646
 MonoBehaviour:
@@ -582,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateToMouse
   rotationSpeed: 20
+  shootPosition: {fileID: 0}
 --- !u!1818360608 &331279647
 PositionConstraint:
   m_ObjectHideFlags: 0
@@ -1056,20 +1057,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1613898872205710406, guid: 80744d576cc21b94db14f0860f3e843e, type: 3}
       propertyPath: m_TranslationOffset.x
-      value: -0.026129723
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1613898872205710406, guid: 80744d576cc21b94db14f0860f3e843e, type: 3}
       propertyPath: m_TranslationOffset.y
-      value: 1.0599996
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1613898872205710406, guid: 80744d576cc21b94db14f0860f3e843e, type: 3}
       propertyPath: m_TranslationOffset.z
-      value: 0.17878228
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1613898872205710406, guid: 80744d576cc21b94db14f0860f3e843e, type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
-      objectReference: {fileID: 3421971689711045592}
+      objectReference: {fileID: 0}
     - target: {fileID: 5336330524194890917, guid: 80744d576cc21b94db14f0860f3e843e, type: 3}
       propertyPath: healthComponent
       value: 
@@ -1324,6 +1325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementComponent
   speed: 5
+  speedMultiplayer: 1
 --- !u!54 &1477076593
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1364,8 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
-  distanceMultiplayer: 0
-  bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  magazine: {fileID: 0}
   bulletSpawn: {fileID: 0}
 --- !u!1 &1546987173 stripped
 GameObject:
@@ -1831,8 +1832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
-  distanceMultiplayer: 0
-  bullet: {fileID: 0}
+  magazine: {fileID: 0}
   bulletSpawn: {fileID: 0}
 --- !u!1001 &3842905071662857545
 PrefabInstance:
@@ -2035,6 +2035,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5071183205946011245, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: shootPosition
+      value: 
+      objectReference: {fileID: 1463117155}
     - target: {fileID: 5081367976965349186, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: bullet
       value: 
@@ -2094,6 +2098,10 @@ PrefabInstance:
     - target: {fileID: 5990403518192266740, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990403518192266740, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6044714389505839466, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_Layer
