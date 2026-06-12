@@ -11,7 +11,7 @@ public class IceModifier : MonoBehaviour
     private void Awake()
     {
         bullet = GetComponent<BulletBehavior>();
-        decreseDmgMultiplayer = EffectsManager.I.AmountToDecreseIceDmgMutliplayer;
+        decreseDmgMultiplayer = EffectsManager.I.BulletDmnMultiplayerToDecrese;
     }
 
     private void OnEnable()
@@ -45,13 +45,12 @@ public class IceModifier : MonoBehaviour
             IceEffect effect = e.Collider.AddComponent<IceEffect>();
             effect.enabled = true;
         }
-        
-        Debug.Break();
     }
 
     private void Start()
     {
         bullet.DamageMultiplayer -= decreseDmgMultiplayer;
+        bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce
     }
 
 

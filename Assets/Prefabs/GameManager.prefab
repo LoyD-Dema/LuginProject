@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 950851738969937403}
   - component: {fileID: 3478372837709230359}
+  - component: {fileID: 6381822784382712652}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,3 +46,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameOverCanvas: {fileID: 0}
+  timerText: {fileID: 0}
+--- !u!114 &6381822784382712652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6769288219605623156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfae0d52c376a043bedb40d1c8a2a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectsManager
+  characterSpeedMultiplayerToDecrese: 0.2
+  bulletSpeedMultiplayerToDecrese: 0.2
+  bulletDmnMultiplayerToDecrese: 0.2
+  iceEffectDurarion: 1

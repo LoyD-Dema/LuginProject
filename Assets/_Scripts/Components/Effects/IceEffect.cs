@@ -11,7 +11,7 @@ public class IceEffect : MonoBehaviour
 
     private void Awake()
     {
-        speedReduction = EffectsManager.I.AmountToDecreseIceSpeedMutliplayer;
+        speedReduction = EffectsManager.I.CharacterSpeedMultiplayerToDecrese;
         duration = EffectsManager.I.IceEffectDurarion;
     }
 

@@ -1,14 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum BulletType
-{
-    Normal,
-    Fire,
-    Ice,
-    Shot,
-    LAST
-}
+
 
 /// <summary>
 /// class to manage the player magazine.
@@ -16,13 +9,14 @@ public enum BulletType
 
 public class PlayerMagazineSystem : MagazineSystem
 {
-    [SerializeField] // Remove serialize field (just for test)
-    private BulletType[] chamberTypes = new BulletType[6];
-
     public static event Action<int, BulletType> OnInfuseBullet;
     public static event Action<int> OnShoot;
 
     private int shotBulletCount;
+
+    [Header("TEST")]
+    [SerializeField] bool test;
+    [SerializeField] private BulletType[] chamberTypes = new BulletType[6];
 
     private void OnEnable()
     {
@@ -35,28 +29,44 @@ public class PlayerMagazineSystem : MagazineSystem
 
     private void Start()
     {
-        // UNCOMMENT WHEN NOT TESTING
-        //for (int i = 0; i < chamberTypes.Length; i++)
-        //{
-        //    chamberTypes[i] = BulletType.Normal;
-        //}
-
-        // TEST ONLY
-        for(int i = 0; i < chamberTypes.Length; i++)
+        if(test)
         {
-            if (i % 4 == 0)
+            for (int i = 0; i < chamberTypes.Length; i++)
             {
-                InfuseChamber(i, BulletType.Fire);
+                InfuseChamber(i, chamberTypes[i]);
             }
-            else if(i % 2 == 0)
-            {
-                InfuseChamber(i, BulletType.Ice);
-            }
-            else
-            {
-                chamberTypes[i] = BulletType.Normal;
-            }
+
+            return;
         }
+
+        for (int i = 0; i < chamberTypes.Length; i++)
+        {
+            chamberTypes[i] = BulletType.Normal;
+            InfuseChamber(i, chamberTypes[i]);
+        }
+
+        //// UNCOMMENT WHEN NOT TESTING
+        ////for (int i = 0; i < chamberTypes.Length; i++)
+        ////{
+        ////    chamberTypes[i] = BulletType.Normal;
+        ////}
+
+        //// TEST ONLY
+        //for(int i = 0; i < chamberTypes.Length; i++)
+        //{
+        //    if (i % 4 == 0)
+        //    {
+        //        InfuseChamber(i, BulletType.Fire);
+        //    }
+        //    else if(i % 2 == 0)
+        //    {
+        //        InfuseChamber(i, BulletType.Ice);
+        //    }
+        //    else
+        //    {
+        //        chamberTypes[i] = BulletType.Normal;
+        //    }
+        //}
     }
 
     public override GameObject GetBullet()
@@ -76,9 +86,8 @@ public class PlayerMagazineSystem : MagazineSystem
                 bullet.AddComponent<IceModifier>();
                 Debug.Log("Shot Ice bullet");
                 break;
-            case BulletType.Normal:
-                break;
             default:
+            case BulletType.Normal:
                 break;
         }
         
@@ -101,7 +110,7 @@ public class PlayerMagazineSystem : MagazineSystem
 
     public void InfuseChamber(int chamberNum, BulletType type)
     {
-        if (chamberNum > chamberTypes.Length - 1 || chamberTypes[chamberNum] == type) return;
+        if (chamberNum > chamberTypes.Length - 1 /*|| chamberTypes[chamberNum] == type*/) return;
 
         // ADD COMPONENTS TO BULLET
 

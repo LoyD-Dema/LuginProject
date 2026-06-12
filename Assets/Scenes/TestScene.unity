@@ -798,6 +798,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
+  fireRate: 0.5
+  magazine: {fileID: 0}
+  bulletSpawn: {fileID: 0}
 --- !u!114 &331279646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,6 +905,14 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 1667039525}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: bulletDmnMultiplayerToDecrese
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: characterSpeedMultiplayerToDecrese
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6769288219605623156, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -977,6 +988,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8387086207441139324, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: test
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[1]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[2]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[3]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[5]'
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1846,6 +1881,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
+  fireRate: 0.5
+  magazine: {fileID: 0}
+  bulletSpawn: {fileID: 0}
 --- !u!1001 &1616081190
 PrefabInstance:
   m_ObjectHideFlags: 0

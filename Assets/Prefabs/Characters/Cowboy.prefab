@@ -1110,7 +1110,6 @@ GameObject:
   - component: {fileID: 8166924362150774812}
   - component: {fileID: 3105677593261763531}
   - component: {fileID: 4728930011794002698}
-  - component: {fileID: 1729086847414128084}
   - component: {fileID: 6361440559258159739}
   - component: {fileID: 1899492134812000634}
   - component: {fileID: 435109629801801133}
@@ -1120,7 +1119,6 @@ GameObject:
   - component: {fileID: 4242352125128279403}
   - component: {fileID: 7049774884085379359}
   - component: {fileID: 4204745601715961273}
-  - component: {fileID: 3037978889517324136}
   - component: {fileID: 8919947756050623743}
   m_Layer: 6
   m_Name: Cowboy
@@ -1199,26 +1197,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1818360608 &1729086847414128084
-PositionConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5990403518192266740}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_TranslationAtRest: {x: -3.7538702, y: 0.00000040016818, z: -0.9687823}
-  m_TranslationOffset: {x: 0, y: 0, z: 0}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_Active: 1
-  m_IsLocked: 0
-  m_Sources:
-  - sourceTransform: {fileID: 8166924362150774812}
-    weight: 1
 --- !u!136 &6361440559258159739
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1364,19 +1342,6 @@ MonoBehaviour:
   fireRate: 0.5
   magazine: {fileID: 8919947756050623743}
   bulletSpawn: {fileID: 7084283425039638442}
---- !u!114 &3037978889517324136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5990403518192266740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ba81a5270647b34780ab7684afde826, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
-  bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
 --- !u!114 &8919947756050623743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,6 +1355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMagazineSystem
   bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  test: 0
   chamberTypes: 000000000000000000000000000000000000000000000000
 --- !u!1 &6044714389505839466
 GameObject:
