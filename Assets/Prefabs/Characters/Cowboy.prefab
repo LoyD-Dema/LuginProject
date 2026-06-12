@@ -1122,6 +1122,7 @@ GameObject:
   - component: {fileID: 7049774884085379359}
   - component: {fileID: 4204745601715961273}
   - component: {fileID: 3037978889517324136}
+  - component: {fileID: 8919947756050623743}
   m_Layer: 6
   m_Name: Cowboy
   m_TagString: Player
@@ -1376,7 +1377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
-  magazine: {fileID: 3037978889517324136}
+  magazine: {fileID: 8919947756050623743}
   bulletSpawn: {fileID: 7084283425039638442}
 --- !u!114 &3037978889517324136
 MonoBehaviour:
@@ -1391,6 +1392,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
   bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+--- !u!114 &8919947756050623743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbbb846a96d946438599b03c15739bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMagazineSystem
+  bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  chamberTypes: 000000000000000000000000000000000000000000000000
 --- !u!1 &6044714389505839466
 GameObject:
   m_ObjectHideFlags: 0

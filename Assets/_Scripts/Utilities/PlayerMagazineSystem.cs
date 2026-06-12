@@ -10,6 +10,10 @@ public enum BulletType
     LAST
 }
 
+/// <summary>
+/// class to manage the player magazine.
+/// </summary>
+
 public class PlayerMagazineSystem : MagazineSystem
 {
     [SerializeField] // Remove serialize field (just for test)
