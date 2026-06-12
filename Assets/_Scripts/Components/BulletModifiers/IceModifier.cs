@@ -4,13 +4,14 @@ using UnityEngine;
 [RequireComponent(typeof(BulletBehavior))]
 public class IceModifier : MonoBehaviour
 {
-    private float decreseSpeedMultiplayer;
+    private float decreseDmgMultiplayer;
 
     BulletBehavior bullet;
 
     private void Awake()
     {
         bullet = GetComponent<BulletBehavior>();
+        decreseDmgMultiplayer = EffectsManager.I.BulletDmnMultiplayerToDecrese;
     }
 
     private void OnEnable()
@@ -48,7 +49,8 @@ public class IceModifier : MonoBehaviour
 
     private void Start()
     {
-        bullet.SpeedMultiplayer -= decreseSpeedMultiplayer;
+        bullet.DamageMultiplayer -= decreseDmgMultiplayer;
+        bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce
     }
 
 

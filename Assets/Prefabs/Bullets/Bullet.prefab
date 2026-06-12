@@ -287,11 +287,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93f500bf7cc3f64183a54c067c5d45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  useTestParameters: 1
+  useTestParameters: 0
   speed: 30
   damage: 100
   maxNumOfObjectToPirce: 2
-  bulletDataSO: {fileID: 11400000, guid: a4051e8749ac88841baacf46e04d9281, type: 2}
+  bulletDataSO: {fileID: 11400000, guid: 77518b760166dca4d9aa8b38877927db, type: 2}
 --- !u!114 &5427883030957612818
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Class to manage the enemy magazine
+/// </summary>
 public class MagazineSystem : MonoBehaviour
 {
     [SerializeField]

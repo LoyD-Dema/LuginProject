@@ -27,13 +27,13 @@ public class BulletBehavior : MonoBehaviour
     public float DamageMultiplayer
     {
         get { return damageMultiplayer; }
-        set { damageMultiplayer = Mathf.Max(1.0f, value); }
+        set { damageMultiplayer = value; }
     }
     private float speedMultiplayer = 1.0f;
     public float SpeedMultiplayer
     {
         get { return speedMultiplayer; }
-        set { speedMultiplayer = Mathf.Max(1.0f, value); }
+        set { speedMultiplayer = value; }
     }
     
     private Rigidbody rigidBody;
@@ -102,7 +102,7 @@ public class BulletBehavior : MonoBehaviour
             };
         
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
-        impactPoint = other.ClosestPoint(impactPoint); //for the VFX position
+        impactPoint = other.ClosestPoint(transform.position); //for the VFX position
 
         OnHit?.Invoke(this, new OnHitEventArgs //spatial information about the collision
         {
@@ -124,6 +124,12 @@ public class BulletBehavior : MonoBehaviour
         }
     }
 
+    public void IncreaseNumOfObjectToPirce(int amount)
+    {
+        maxNumOfObjectToPirce += amount;
+        currentPirce = maxNumOfObjectToPirce;
+    }
+
     public void IncreaseDamage(float amount)
     {
         if (amount <= 0)
@@ -140,6 +146,8 @@ public class BulletBehavior : MonoBehaviour
 
     private float EvalBulletDamage()
     { 
-        return damage * DamageMultiplayer; //moved it to a function if we want to make it more complex
+        float d = damage * DamageMultiplayer; //moved it to a function if we want to make it more complex
+        Debug.Log(d);
+        return d;
     }
 }
