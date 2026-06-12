@@ -1563,6 +1563,7 @@ GameObject:
   - component: {fileID: 776882310428386305}
   - component: {fileID: 221488337871078055}
   - component: {fileID: 2423267537470609566}
+  - component: {fileID: 2776848164275033699}
   m_Layer: 8
   m_Name: Outlaw
   m_TagString: Enemy
@@ -1688,6 +1689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementComponent
   speed: 5
+  speedMultiplayer: 1
 --- !u!114 &776882310428386305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1727,9 +1729,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
-  distanceMultiplayer: 5
-  bullet: {fileID: 5363965849906640939, guid: 993c5b09579580d4fb3ca6933e8468d3, type: 3}
+  bulletPrefab: {fileID: 4497254015212238946, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  magazine: {fileID: 2776848164275033699}
   bulletSpawn: {fileID: 2767282715961951774}
+--- !u!114 &2776848164275033699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942289980213182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba81a5270647b34780ab7684afde826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
+  bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
 --- !u!1 &1954743680365594
 GameObject:
   m_ObjectHideFlags: 0
