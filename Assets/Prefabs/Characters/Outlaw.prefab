@@ -1729,7 +1729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
-  bulletPrefab: {fileID: 4497254015212238946, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
   magazine: {fileID: 2776848164275033699}
   bulletSpawn: {fileID: 2767282715961951774}
 --- !u!114 &2776848164275033699
@@ -1744,7 +1743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba81a5270647b34780ab7684afde826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
-  bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  bulletPrefab: {fileID: 5363965849906640939, guid: 993c5b09579580d4fb3ca6933e8468d3, type: 3}
 --- !u!1 &1954743680365594
 GameObject:
   m_ObjectHideFlags: 0
