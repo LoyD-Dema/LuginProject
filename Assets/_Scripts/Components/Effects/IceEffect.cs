@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class IceEffect : MonoBehaviour
 {
-    [SerializeField] private float duration;
+    private float duration;
     private float elapsedTime;
     
     private float speedReduction;
@@ -12,11 +12,12 @@ public class IceEffect : MonoBehaviour
     private void Awake()
     {
         speedReduction = EffectsManager.I.AmountToDecreseIceSpeedMutliplayer;
+        duration = EffectsManager.I.IceEffectDurarion;
     }
 
     private void OnEnable()
     {
-        elapsedTime = duration;
+        Reset();
         if(movement == null)
         {
             movement = GetComponent<MovementComponent>();
@@ -37,5 +38,10 @@ public class IceEffect : MonoBehaviour
         {
             enabled = false;
         }
+    }
+
+    public void Reset()
+    {
+        elapsedTime = duration;
     }
 };

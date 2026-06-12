@@ -6,8 +6,8 @@ public class MovementComponent : MonoBehaviour
 {
 
     [SerializeField] private float speed = 10.0f;
-    private float speedMultiplayer;
-    public float SpeedMultiplayer { get { return speed; } set { value = SpeedMultiplayer; }}
+    [SerializeField] private float speedMultiplayer = 1;
+    public float SpeedMultiplayer { get { return speedMultiplayer; } set { speedMultiplayer = value; }}
 
     private Rigidbody rb;
     private Vector3 direction;
@@ -25,6 +25,7 @@ public class MovementComponent : MonoBehaviour
     private void FixedUpdate()
     {
         float actualSpeed = speed * SpeedMultiplayer;
-        rb.linearVelocity = direction * speed;
+        Debug.Log(actualSpeed);
+        rb.linearVelocity = direction * actualSpeed;
     }
 }

@@ -7,13 +7,11 @@ public class ShootComponent : MonoBehaviour
 {
     [Range(0.1f, 5.0f)]
     [SerializeField] float fireRate = 0.5f;
-    [Range(0f, 5.0f)]
-    [SerializeField] float distanceMultiplayer;
     private float elapsedFireRateTime;
+    
     [SerializeField]
     private MagazineSystem magazine;
 
-    [SerializeField] GameObject bullet;
     [SerializeField] Transform bulletSpawn;
 
     public void Shoot()

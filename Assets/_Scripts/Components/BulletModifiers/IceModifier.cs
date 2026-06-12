@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(BulletBehavior))]
 public class IceModifier : MonoBehaviour
 {
-    [SerializeField] private float decreseSpeedMultiplayer;
+    private float decreseSpeedMultiplayer;
 
     BulletBehavior bullet;
 
@@ -25,13 +25,24 @@ public class IceModifier : MonoBehaviour
 
     private void Bullet_OnHit(object sender, OnHitEventArgs e)
     {
+        if (!e.Collider.gameObject.CompareTag("Enemy"))
+            return;
+
         if (e.Collider.TryGetComponent<IceEffect>(out IceEffect iceEffect))
         {
-            iceEffect.enabled = true;
+            if(iceEffect.enabled)
+            {
+                iceEffect.Reset();
+            }
+            else
+            {
+                iceEffect.enabled = true;
+            }
         }
         else
         {
-            e.Collider.AddComponent<IceEffect>();
+            IceEffect effect = e.Collider.AddComponent<IceEffect>();
+            effect.enabled = true;
         }
     }
 
