@@ -61,14 +61,29 @@ public class PlayerMagazineSystem : MagazineSystem
 
     public override GameObject GetBullet()
     {
+        
         if (shotBulletCount >= maxChambers) return null;
 
         GameObject bullet = Instantiate(bulletPrefab); // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
 
-        if (chamberTypes[selectedChamber] != BulletType.Normal)
+        Debug.Log($"Chamber type: {chamberTypes[shotBulletCount]}");
+        
+        switch (chamberTypes[selectedChamber])
         {
-            Debug.Log($"Sto ritornando un proiettile magicoh: {chamberTypes[selectedChamber]}");
+            case BulletType.Fire:
+                break;
+            case BulletType.Ice:
+                bullet.AddComponent<IceModifier>();
+                Debug.Log("Shot Ice bullet");
+                break;
+            case BulletType.Normal:
+                break;
+            default:
+                break;
         }
+        
+        //if (chamberTypes[selectedChamber] != BulletType.Normal)
+        //    Debug.Log($"Sto ritornando un proiettile magicoh: {chamberTypes[selectedChamber]}");
 
         OnShoot?.Invoke(selectedChamber);
 

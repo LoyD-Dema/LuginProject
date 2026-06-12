@@ -4,13 +4,14 @@ using UnityEngine;
 [RequireComponent(typeof(BulletBehavior))]
 public class IceModifier : MonoBehaviour
 {
-    private float decreseSpeedMultiplayer;
+    private float decreseDmgMultiplayer;
 
     BulletBehavior bullet;
 
     private void Awake()
     {
         bullet = GetComponent<BulletBehavior>();
+        decreseDmgMultiplayer = EffectsManager.I.AmountToDecreseIceDmgMutliplayer;
     }
 
     private void OnEnable()
@@ -44,11 +45,13 @@ public class IceModifier : MonoBehaviour
             IceEffect effect = e.Collider.AddComponent<IceEffect>();
             effect.enabled = true;
         }
+        
+        Debug.Break();
     }
 
     private void Start()
     {
-        bullet.SpeedMultiplayer -= decreseSpeedMultiplayer;
+        bullet.DamageMultiplayer -= decreseDmgMultiplayer;
     }
 
 

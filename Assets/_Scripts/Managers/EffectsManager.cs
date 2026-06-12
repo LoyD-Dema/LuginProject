@@ -10,11 +10,13 @@ public class EffectsManager : MonoBehaviour
     [Range(0.0f, 1f)]
     [Header("Params/Ice")]
     [SerializeField] private float amountToDecreseIceSpeedMutliplayer = 0.2f;
+    [SerializeField] private float amountToDecreseIceDmgMutliplayer = 0.2f;
     [SerializeField] private float iceEffectDurarion = 1.0f;
 
 
     // Property
     public float AmountToDecreseIceSpeedMutliplayer => amountToDecreseIceSpeedMutliplayer;
+    public float AmountToDecreseIceDmgMutliplayer => amountToDecreseIceDmgMutliplayer;
     public float IceEffectDurarion => iceEffectDurarion;
 
     private void Awake()
