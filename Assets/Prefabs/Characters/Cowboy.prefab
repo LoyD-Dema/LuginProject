@@ -1209,7 +1209,7 @@ PositionConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 1
-  m_TranslationAtRest: {x: 53.64, y: 0.0000002508005, z: -44.62}
+  m_TranslationAtRest: {x: -3.7538702, y: 0.00000040016818, z: -0.9687823}
   m_TranslationOffset: {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
@@ -1294,6 +1294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementComponent
   speed: 10
+  speedMultiplayer: 1
 --- !u!114 &5071183205946011245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,7 +1308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateToMouse
   rotationSpeed: 20
-  zDistFrom0: 1.22
+  shootPosition: {fileID: 7084283425039638442}
 --- !u!114 &9045238507261057124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1361,7 +1362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2051648e77e17e44db581c0143774886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseComponent
-  pauseMenuCanvas: {fileID: 0}
+  pauseMenuCanvas: {fileID: 1189680560836188479, guid: c2bb657e9d66ebb43acfa15f3f70d035, type: 3}
 --- !u!114 &4204745601715961273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,9 +1376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
-  distanceMultiplayer: 5
   magazine: {fileID: 3037978889517324136}
-  bullet: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
   bulletSpawn: {fileID: 7084283425039638442}
 --- !u!114 &3037978889517324136
 MonoBehaviour:

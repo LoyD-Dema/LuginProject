@@ -6,14 +6,14 @@ public class RotateToMouse : MonoBehaviour
 {
     [Range(1.0f, 50.0f)]
     [SerializeField] float rotationSpeed = 20.0f;
-    [SerializeField] float zDistFromTransformPos;
-
+    [SerializeField] private Transform shootPosition;
+    
     private void Update()
     {
         if (MouseInput.GetWorldPositionByMouse(out Vector3 worldPos))
         {
             Ray ray = Camera.main.ScreenPointToRay(MouseInput.GetMousePositon());
-            Plane p = new Plane(Vector3.up, new Vector3(0, transform.position.y + zDistFromTransformPos, 0));
+            Plane p = new Plane(Vector3.up, new Vector3(0, transform.position.y + shootPosition.position.y, 0));
 
             Vector3 newPointOnPlane = worldPos;
             if (p.Raycast(ray, out float enter))
