@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SetCursor : MonoBehaviour
 {
-    private SetCursor I;
+    private static SetCursor I;
 
     [SerializeField] Texture2D cursorTexture;
     [Range(0.0f, 1.0f)]
