@@ -5,7 +5,8 @@ public enum StatType
 {
     Health,
     Damage,
-    MoveSpeed
+    MoveSpeed,
+    Bullet
 }
 [CreateAssetMenu(fileName = "New Power Up", menuName = "Power Up")]
 public class PowerUpData : ScriptableObject

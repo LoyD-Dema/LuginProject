@@ -18,6 +18,8 @@ public class PlayerMagazineSystem : MagazineSystem
     [SerializeField] bool test;
     [SerializeField] private BulletType[] chamberTypes = new BulletType[6];
 
+    private float currentDamageMultiplier = 1.0f;
+
     private void OnEnable()
     {
         PlayerController.OnReloadEvent += Reload;
@@ -25,6 +27,11 @@ public class PlayerMagazineSystem : MagazineSystem
     private void OnDisable()
     {
         PlayerController.OnReloadEvent -= Reload;
+    }
+
+    public void UpgradeDamageMultiplier(float percentage)
+    {
+        currentDamageMultiplier += percentage;
     }
 
     private void Start()
@@ -77,7 +84,9 @@ public class PlayerMagazineSystem : MagazineSystem
         GameObject bullet = Instantiate(bulletPrefab); // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
 
         Debug.Log($"Chamber type: {chamberTypes[shotBulletCount]}");
-        
+
+        BulletBehavior bulletBehavior = bullet.GetComponent<BulletBehavior>();
+        bulletBehavior.DamageMultiplayer = currentDamageMultiplier;
         switch (chamberTypes[selectedChamber])
         {
             case BulletType.Fire:
