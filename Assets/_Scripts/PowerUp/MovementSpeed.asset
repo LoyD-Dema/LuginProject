@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MovementSpeed
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
   powerUpName: Snake in my Boots
-  description: 'Increase the movement speed by '
+  description: 'Increase the movement speed by {0}% '
   icon: {fileID: -167982851, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
-  modifiers:
-  - statType: 2
+  modifier:
+    statType: 0
     minIncrease: 0.02
-    maxIncrease: 0.05
-    CapPercentage: 0.25
+    maxIncrease: 0.1
+    CapPercentage: 0.3
