@@ -165,18 +165,6 @@ public class PowerUpManager : MonoBehaviour
         }
     }
 
-    public void OnPowerUpSelected()
-    {
-        pendingLevelUp--;
-
-        if (pendingLevelUp > 0) OpenPowerUpMenu();
-        else
-        {
-            powerUpCanvas.SetActive(false);
-            Time.timeScale = 1.0f;
-        }
-    }
-
     private void CloseMenu()
     {
         powerUpCanvas.SetActive(false);
