@@ -16,7 +16,8 @@ MonoBehaviour:
   description: 'Increase the damage of the {0}% '
   icon: {fileID: -1374152744, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
   modifier:
-    statType: 0
+    statType: 1
     minIncrease: 0.02
     maxIncrease: 0.1
     CapPercentage: 0.3
+    bulletType: 0

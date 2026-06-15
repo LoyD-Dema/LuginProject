@@ -18,6 +18,8 @@ public class PlayerMagazineSystem : MagazineSystem
     [SerializeField] bool test;
     [SerializeField] private BulletType[] chamberTypes = new BulletType[6];
 
+    public BulletType[] ChamberTypes => chamberTypes;
+
     private float currentDamageMultiplier = 1.0f;
 
     private void OnEnable()
