@@ -1120,6 +1120,7 @@ GameObject:
   - component: {fileID: 7049774884085379359}
   - component: {fileID: 4204745601715961273}
   - component: {fileID: 8919947756050623743}
+  - component: {fileID: 8759711903054516486}
   m_Layer: 6
   m_Name: Cowboy
   m_TagString: Player
@@ -1355,8 +1356,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMagazineSystem
   bulletPrefab: {fileID: 5363965849906640939, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  bulletPool: {fileID: 8759711903054516486}
   test: 0
   chamberTypes: 000000000000000000000000000000000000000000000000
+--- !u!114 &8759711903054516486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e8754ae47b6ca4596d785cc81b6214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletPool
+  bulletPrefab: {fileID: 4497254015212238946, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  capacity: 12
+  maxSize: 24
 --- !u!1 &6044714389505839466
 GameObject:
   m_ObjectHideFlags: 0
