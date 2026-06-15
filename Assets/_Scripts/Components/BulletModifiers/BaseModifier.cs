@@ -44,5 +44,7 @@ public class BaseModifier : MonoBehaviour
     protected virtual void Bullet_OnHitTrigger(object sender, OnHitEventArgs e)
     {
         // Do the base logic of a modifer when the bullet hit a trigger
+
+        enabled = false;    
     }
 }

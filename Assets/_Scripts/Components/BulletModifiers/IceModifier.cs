@@ -4,10 +4,24 @@ using UnityEngine;
 [RequireComponent(typeof(BulletBehavior))]
 public class IceModifier : BaseModifier
 {
+    protected override void Awake()
+    {
+        base.Awake();
+        enabled = false;
+
+    }
+
     private void Start()
     {
         bullet.DamageMultiplayer -= amountDamageMultiplier;
         bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce, Usato solo x Test
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        Debug.Log("CIOAIOPIFJPOAJFOPIJPOFJFOPJFPOJPO");
     }
 
     protected override void Bullet_OnHitTrigger(object sender, OnHitEventArgs e)

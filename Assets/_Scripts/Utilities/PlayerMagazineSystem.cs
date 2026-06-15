@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -89,6 +88,7 @@ public class PlayerMagazineSystem : MagazineSystem
                 break;
             default:
             case BulletType.Normal:
+
                 break;
         }
         
@@ -117,8 +117,11 @@ public class PlayerMagazineSystem : MagazineSystem
         else
         {
             Debug.Log($"Added {modifierType}");
-            bullet.gameObject.AddComponent(modifierType);
-
+            Component component = bullet.gameObject.AddComponent(modifierType);
+            if (component is Behaviour behaviour)
+            {
+                behaviour.enabled = true;
+            }
         }
     }
 
