@@ -13,7 +13,7 @@ public class BulletPool : MonoBehaviour
     {
         pool = new ObjectPool<BulletBehavior>(
             createFunc: CreateItem,
-            actionOnGet: GetItem,
+            actionOnGet: OnGet,
             actionOnRelease: OnReleaseItem,
             actionOnDestroy: OnDestroyItem,
             collectionCheck: true,
@@ -24,7 +24,7 @@ public class BulletPool : MonoBehaviour
 
     private void Start()
     {
-        CreateItem();
+        pool.Release(CreateItem());
     }
 
     private BulletBehavior CreateItem()
@@ -32,15 +32,20 @@ public class BulletPool : MonoBehaviour
         BulletBehavior bullet = Instantiate(bulletPrefab);
         bullet.name = "Bullet";
         bullet.gameObject.SetActive(false);
+        bullet.Pool = this;
         return bullet;
     }
 
-    public BulletBehavior GetItem()
+    public BulletBehavior Get()
     {
-        return pool.Get();
+        return bullet = pool.Get();
+    }
+    public void Relese(BulletBehavior bullet)
+    {
+        pool.Release(bullet);
     }
 
-    private void GetItem(BulletBehavior bullet)
+    private void OnGet(BulletBehavior bullet)
     {
         bullet.gameObject.SetActive(true);
     }
@@ -52,6 +57,7 @@ public class BulletPool : MonoBehaviour
 
     private void OnDestroyItem(BulletBehavior bullet)
     {
+        Debug.Break();
         Destroy(bullet.gameObject);
     }
 }

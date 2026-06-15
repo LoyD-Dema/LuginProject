@@ -5,7 +5,7 @@ using Utilities;
 public class OnHitEventArgs : EventArgs
 {
     public HitInfo HitInfo;
-    public Collider Collider; 
+    public Collider Collider;
 }
 
 [RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
@@ -21,7 +21,10 @@ public class BulletBehavior : MonoBehaviour
     [Header("SO")]
     [SerializeField] private BulletDataSO bulletDataSO;
     private int currentPirce;
-    
+
+    [Header("Pool")]
+    public BulletPool Pool;
+
     // Multiplayer
     private float damageMultiplayer = 1.0f;
     public float DamageMultiplayer
@@ -35,12 +38,14 @@ public class BulletBehavior : MonoBehaviour
         get { return speedMultiplayer; }
         set { speedMultiplayer = value; }
     }
-    
-    private Rigidbody rigidBody;
 
-    private Vector3 previousPosition;
-    private Vector3 impactPoint;
-    
+    private Rigidbody rigidBody;
+    private CallOutOfRange outOfrange;
+
+    // Le ho commentate perche' una non viene usata e l'altra non serve averla globale - Lorenzo
+    //private Vector3 previousPosition;
+    //private Vector3 impactPoint;
+
     // Events
     public event EventHandler<EventArgs> OnInstantiate;
     public event EventHandler<EventArgs> OnTraveling;
@@ -51,12 +56,24 @@ public class BulletBehavior : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
+        outOfrange = GetComponent<CallOutOfRange>();
     }
 
     private void OnEnable()
     {
-        OnInstantiate?.Invoke(this,  EventArgs.Empty);
         isStartingTraveling = true;
+        outOfrange.OnOutOfRange += OutOfrange_OnOutOfRange; 
+    }
+
+    private void OnDisable()
+    {
+
+        outOfrange.OnOutOfRange -= OutOfrange_OnOutOfRange;
+    }
+
+    private void OutOfrange_OnOutOfRange()
+    {
+        Pool.Relese(this);
     }
 
     private void Start()
@@ -64,7 +81,7 @@ public class BulletBehavior : MonoBehaviour
         rigidBody.isKinematic = true;
         rigidBody.useGravity = false;
 
-        if(!useTestParameters)
+        if (!useTestParameters)
         {
             speed = bulletDataSO.BaseSpeed;
             damage = bulletDataSO.BaseDamage;
@@ -72,37 +89,38 @@ public class BulletBehavior : MonoBehaviour
         }
 
         currentPirce = maxNumOfObjectToPirce;
-        
-        previousPosition = transform.position;
+
+        //previousPosition = transform.position;
     }
 
     private void Update()
     {
-       
+
     }
-    
+
     private void FixedUpdate()
     {
         if (isStartingTraveling)
         {
-            OnTraveling?.Invoke(this, EventArgs.Empty);
+            OnInstantiate?.Invoke(this, EventArgs.Empty);
             isStartingTraveling = false;
         }
 
+        OnTraveling?.Invoke(this, EventArgs.Empty);
         rigidBody.MovePosition(rigidBody.transform.position + rigidBody.transform.forward * (speed * SpeedMultiplayer * Time.fixedDeltaTime));
     }
-     
+
     private void OnTriggerEnter(Collider other)
     {
         //evaluate the damage
         HealthEffect healthEffect = new HealthEffect
-            {
-                Amount = EvalBulletDamage(),
-                Type = HealthEffectType.Damage
-            };
-        
+        {
+            Amount = EvalBulletDamage(),
+            Type = HealthEffectType.Damage
+        };
+
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
-        impactPoint = other.ClosestPoint(transform.position); //for the VFX position
+        Vector3 impactPoint = other.ClosestPoint(transform.position); //for the VFX position
 
         OnHitTrigger?.Invoke(this, new OnHitEventArgs //spatial information about the collision
         {
@@ -112,10 +130,10 @@ public class BulletBehavior : MonoBehaviour
             },
             Collider = other
         });
-        
-        if(currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
+
+        if (currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
         {
-            Destroy(gameObject);
+            Pool.Relese(this);
             return;
         }
         else
@@ -135,7 +153,7 @@ public class BulletBehavior : MonoBehaviour
         if (amount <= 0)
             return;
 
-        damage += amount;   
+        damage += amount;
     }
     public void IncreaseSpeed(float amount)
     {
@@ -145,9 +163,7 @@ public class BulletBehavior : MonoBehaviour
     }
 
     private float EvalBulletDamage()
-    { 
-        float d = damage * DamageMultiplayer; //moved it to a function if we want to make it more complex
-        Debug.Log(d);
-        return d;
+    {
+        return damage * DamageMultiplayer; //moved it to a function if we want to make it more complex
     }
 }

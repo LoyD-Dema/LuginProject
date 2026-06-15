@@ -75,9 +75,9 @@ public class PlayerMagazineSystem : MagazineSystem
         
         if (shotBulletCount >= maxChambers) return null;
 
-        BulletBehavior bullet = bulletPool.GetItem();  // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
+        BulletBehavior bullet = bulletPool.Get();  // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
 
-        Debug.Log($"Chamber type: {chamberTypes[shotBulletCount]}");
+        //Debug.Log($"Chamber type: {chamberTypes[shotBulletCount]}");
         
         switch (chamberTypes[selectedChamber])
         {

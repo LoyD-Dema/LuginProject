@@ -15,7 +15,7 @@ public class MagazineSystem : MonoBehaviour
 
     public virtual BulletBehavior GetBullet()
     {
-        BulletBehavior bullet = bulletPool.GetItem(); 
+        BulletBehavior bullet = bulletPool.Get(); 
 
         ChangeChamber();
 

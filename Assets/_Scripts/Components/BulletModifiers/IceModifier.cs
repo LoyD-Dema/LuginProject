@@ -7,7 +7,7 @@ public class IceModifier : BaseModifier
     private void Start()
     {
         bullet.DamageMultiplayer -= amountDamageMultiplier;
-        bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce
+        bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce, Usato solo x Test
     }
 
     protected override void Bullet_OnHitTrigger(object sender, OnHitEventArgs e)
