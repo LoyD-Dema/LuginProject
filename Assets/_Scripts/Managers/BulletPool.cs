@@ -38,7 +38,7 @@ public class BulletPool : MonoBehaviour
 
     public BulletBehavior Get()
     {
-        return bullet = pool.Get();
+        return pool.Get();
     }
     public void Relese(BulletBehavior bullet)
     {
