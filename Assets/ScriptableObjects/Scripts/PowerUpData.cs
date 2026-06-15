@@ -46,4 +46,6 @@ public class StatModifier
     public float maxIncrease = 0.10f;
 
     public float CapPercentage = 0.30f;
+
+    public BulletType bulletType = BulletType.Normal;
 }

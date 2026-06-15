@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
   powerUpName: BEANS!
   description: 'Increase the health by {0}% '
-  icon: {fileID: -1606885588, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
+  icon: {fileID: 21300000, guid: cfe0ff81ddbe2374fa7f2071e8e8f0e2, type: 3}
   modifier:
     statType: 0
     minIncrease: 0.02

@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public event Action OnPausePressed;
     public static event Action OnReloadEvent;
 
+    [SerializeField] private ChooseChamber choseChamberUI;
+
     private bool isPaused;
     public bool IsPaused
     {
@@ -69,4 +71,22 @@ public class PlayerController : MonoBehaviour
     {
         OnReloadEvent?.Invoke();
     }
+
+    #region UI Input
+    public void OnNavigateLeft(InputValue value)
+    {
+        if (value.isPressed && choseChamberUI != null)
+        {
+            choseChamberUI.MoveLeft();
+        }
+    }
+
+    public void OnNavigateRight(InputValue value)
+    {
+        if (value.isPressed && choseChamberUI != null)
+        {
+            choseChamberUI.MoveRight();
+        }
+    }
+    #endregion
 }

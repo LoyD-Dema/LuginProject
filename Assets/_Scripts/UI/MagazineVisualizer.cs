@@ -120,4 +120,23 @@ public class MagazineVisualizer : MonoBehaviour
                 return Color.red;
         }
     }
+
+    public void ForceSyncForCanvas(PlayerMagazineSystem magazine)
+    {
+        chambers =new Chamber[chamberSprites.Length];
+        for (int i = 0;i < chambers.Length; i++)
+        {
+            chambers[i] = new Chamber(BulletType.Normal, false, i);
+        }
+
+        BulletType[] realBullets = magazine.ChamberTypes;
+
+        for (int i = 0; i < realBullets.Length; i++)
+        {
+            chambers[i].Type = realBullets[i];
+            chambers[i].IsShot = false;
+        }
+
+        UpdateUI();
+    }
 }

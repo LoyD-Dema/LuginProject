@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d736c2eccbaa5ea4182669c6bbd1b7e4, type: 3}
-  m_Name: MovementSpeed
+  m_Name: IceBullet
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
-  powerUpName: Snake in my Boots
-  description: 'Increase the movement speed by {0}% '
-  icon: {fileID: -167982851, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
+  powerUpName: Ice Bullet
+  description: Infuse a chamber of the revolver with an Ice Bullet
+  icon: {fileID: 21300000, guid: 67a319632e987ca4d8fac245d0ac9446, type: 3}
   modifier:
-    statType: 0
-    minIncrease: 0.02
-    maxIncrease: 0.1
-    CapPercentage: 0.3
+    statType: 3
+    minIncrease: 0
+    maxIncrease: 0
+    CapPercentage: 1
+    bulletType: 2

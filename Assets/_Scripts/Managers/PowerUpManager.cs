@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour
 {
@@ -7,6 +9,13 @@ public class PowerUpManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject powerUpCanvas;
     [SerializeField] private PowerUpCard[] cardUIList;
+
+    [Header("UI Panels")]
+    [SerializeField] private GameObject powerUpCardsPanel;
+    [SerializeField] private GameObject chooseChamberPanel;
+    [SerializeField] private Image chosenBulletImage;
+    [SerializeField] private MagazineVisualizer magazineVisualizer;
+    [SerializeField] private ChooseChamber chooseChamberScript;
 
     [Header("PowerUps")]
     [SerializeField] private List<PowerUpData> allPowerUp;
@@ -17,12 +26,17 @@ public class PowerUpManager : MonoBehaviour
     private HealthComponent playerHealth;
     private MovementComponent playerMovement;
     private PlayerMagazineSystem playerMagazine;
+    private PlayerInput playerInput;
+    private PlayerController playerController;
 
     private List<StatType> passivesUnlocked = new List<StatType>();
     private int bulletsObtained = 0;
 
     private Dictionary<StatType, float> currentModifiers = new Dictionary<StatType, float>();
     private int pendingLevelUp = 0;
+
+    //Per la gestione dei bullet
+    private PowerUpData bulletData;
 
     private void Awake()
     {
@@ -34,6 +48,8 @@ public class PowerUpManager : MonoBehaviour
         playerHealth = player.GetComponent<HealthComponent>();
         playerMovement = player.GetComponent<MovementComponent>();
         playerMagazine = player.GetComponent<PlayerMagazineSystem>();
+        playerInput = player.GetComponent<PlayerInput>();
+        playerController = player.GetComponent<PlayerController>();
     }
 
     private void OnEnable()
@@ -55,8 +71,9 @@ public class PowerUpManager : MonoBehaviour
 
     private void OpenPowerUpMenu()
     {
-        Time.timeScale = 0.0f;
-        powerUpCanvas.SetActive(true);
+        playerInput.SwitchCurrentActionMap("UI");
+        powerUpCardsPanel.SetActive(true);
+        chooseChamberPanel.SetActive(false);
 
         List<PowerUpData> availablePowerUp = new List<PowerUpData>();
 
@@ -67,8 +84,7 @@ public class PowerUpManager : MonoBehaviour
             float currentProgress = currentModifiers[stat];
             float levelCap = powerUp.Modifier.CapPercentage;
 
-
-            //Level cap
+            //Level cap -> continuo subito se il powerUp ha raggiunto il massimo livello
             if (currentProgress >= levelCap) continue;
 
             //Bullets
@@ -93,20 +109,30 @@ public class PowerUpManager : MonoBehaviour
 
         if (availablePowerUp.Count == 0)
         {
+            pendingLevelUp = 0;
             CloseMenu();
             return;
         }
 
+        Time.timeScale = 0.0f;
+        powerUpCanvas.SetActive(true);
+
         foreach (PowerUpCard card in cardUIList)
         {
-            if (availablePowerUp.Count == 0) break;
+            if (availablePowerUp.Count > 0)
+            {
+                card.gameObject.SetActive(true);
 
-            int selection = Random.Range(0, availablePowerUp.Count);
-            PowerUpData data = availablePowerUp[selection];
-            card.SetupCard(data);
-            availablePowerUp.RemoveAt(selection);
+                int selection = Random.Range(0, availablePowerUp.Count);
+                PowerUpData data = availablePowerUp[selection];
+                card.SetupCard(data);
+                availablePowerUp.RemoveAt(selection);
+            }
+            else
+            {
+                card.gameObject.SetActive(false);
+            }
         }
-
     }
 
     public void ApplyPowerUp(PowerUpData data, float value)
@@ -114,8 +140,19 @@ public class PowerUpManager : MonoBehaviour
         StatType stat = data.Modifier.statType;
         if (stat == StatType.Bullet)
         {
-            bulletsObtained++;
-            //Gestire il menu del bullet
+            //bulletsObtained++; da mettere dopo che ha premuto Select
+            bulletData = data;
+
+            chosenBulletImage.sprite = data.Icon;
+
+            powerUpCardsPanel.SetActive(false);
+            chooseChamberPanel.SetActive(true);
+
+            magazineVisualizer.ForceSyncForCanvas(playerMagazine);
+
+            UpgradePlayer(stat, value);
+
+            return;
         }
         else
         {
@@ -138,8 +175,18 @@ public class PowerUpManager : MonoBehaviour
             UpgradePlayer(stat, value);
         }
 
+        CheckPendingLevels();
+    }
+
+    private void CheckPendingLevels()
+    {
         pendingLevelUp--;
-        if (pendingLevelUp > 0) OpenPowerUpMenu();
+        if (pendingLevelUp > 0)
+        {
+            powerUpCardsPanel.SetActive(true);
+            chooseChamberPanel.SetActive(false);
+            OpenPowerUpMenu();
+        }
         else CloseMenu();
     }
 
@@ -148,7 +195,8 @@ public class PowerUpManager : MonoBehaviour
         switch (stat)
         {
             case StatType.Bullet:
-                // logica del bullet
+                powerUpCardsPanel.SetActive(false);
+                chooseChamberPanel.SetActive(true);
                 break;
             case StatType.Health:
                 float bonusHealth = playerHealth.MaxHealth * value;
@@ -165,8 +213,16 @@ public class PowerUpManager : MonoBehaviour
         }
     }
 
+    public void OnChamberSelectionConfirmed()
+    {
+        bulletsObtained++;
+        bulletData = null;
+        CheckPendingLevels();
+    }
+
     private void CloseMenu()
     {
+        playerInput.SwitchCurrentActionMap("Player");
         powerUpCanvas.SetActive(false);
         Time.timeScale = 1.0f;
     }
