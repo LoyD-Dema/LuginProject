@@ -54,6 +54,7 @@ public class XPPickUp : PickUp
     
     public override void OnTriggerEnter(Collider other)
     {
+        Debug.Log("getting picked up");
         if (!other.gameObject.CompareTag("Player")) return;
         Interact();
         //Do something else?

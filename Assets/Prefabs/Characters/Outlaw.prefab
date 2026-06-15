@@ -1969,7 +1969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310ec3820d444ba5a2ca27f2112d9f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XPDrop
-  XpPickupPrefab: {fileID: 5410188585138696764, guid: 76c8acee378c971468f59d79b44fb575, type: 3}
+  XpPickupPrefab: {fileID: 150897795104268385, guid: d28bb6e3fb064c24891ccbc6f973b56d, type: 3}
+  numInstances: 5
 --- !u!1 &9086399268916818856
 GameObject:
   m_ObjectHideFlags: 0

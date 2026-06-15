@@ -35,8 +35,7 @@ public class XPDrop : MonoBehaviour
             pickup.Value = totXpDropped/numInstances;
             
             //Animation
-            Vector3 velocity = Random.insideUnitSphere * 10f;
-            velocity.y = Mathf.Abs(velocity.y);
+            Vector3 velocity = Vector3.up * 10f + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
             pickup.Launch(this,velocity);
         }
     }
