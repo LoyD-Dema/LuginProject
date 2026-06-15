@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
+using Utilities;
 
 public class EnemyPool : MonoBehaviour
 {
@@ -18,14 +19,15 @@ public class EnemyPool : MonoBehaviour
 
     private void Awake()
     {
-        pool = new ObjectPool<GameObject>(
+        pool = Pools.CreatePool(
+            "outlawPool",
+            enemyPrefab,
             createFunc: CreateItem,
-            actionOnGet: OnGetItem,
-            actionOnRelease: OnReleaseItem,
-            actionOnDestroy: OnDestroyItem,
-            collectionCheck: true,
-            defaultCapacity: 10,
-            maxSize: 100
+            onGet: OnGetItem,
+            onRelease: OnReleaseItem,
+            onDestroy: OnDestroyItem,
+            capacity,
+            maxSize
         );
     }
 
