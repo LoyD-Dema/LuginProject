@@ -10,11 +10,10 @@ public class EnemyPool : MonoBehaviour
     [SerializeField][Range(1, 100)] private int maxSize = 50;
     [SerializeField][Range(1, 100)] private int spawnRateS = 5;
 
-    [Header("SpanwDistances")]
+    [Header("SpaenDistances")]
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float spawnDistance = 25;
-
-
+    
     private ObjectPool<GameObject> pool;
 
     private void Awake()
@@ -23,9 +22,9 @@ public class EnemyPool : MonoBehaviour
             "outlawPool",
             enemyPrefab,
             createFunc: CreateItem,
-            onGet: OnGetItem,
-            onRelease: OnReleaseItem,
-            onDestroy: OnDestroyItem,
+            onGet: e => e.SetActive(true),
+            onRelease: e => e.SetActive(false),
+            onDestroy: e=> Destroy(e),
             capacity,
             maxSize
         );
@@ -75,18 +74,7 @@ public class EnemyPool : MonoBehaviour
         enemy.SetActive(false);
         return enemy;
     }
-
-    //Get an enemy from the pool
-    public void OnGetItem(GameObject enemy)
-    {
-        enemy.SetActive(true);
-    }
-
-    private void OnReleaseItem(GameObject enemy)
-    {
-        enemy.SetActive(false);
-    }
-
+    
     private void OnEnemyDead(GameObject enemy)
     {
         Debug.Log($"Morto {enemy}", enemy);
@@ -94,9 +82,4 @@ public class EnemyPool : MonoBehaviour
         //Other stuff to do on death?
     }
 
-    private void OnDestroyItem(GameObject enemy)
-    {
-        //HealthComponent.Death -= OnEnemyDead;
-        Destroy(enemy);
-    }
 }
