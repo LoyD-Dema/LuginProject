@@ -21,8 +21,8 @@ public class XPDrop : MonoBehaviour
             onGet: e=> e.gameObject.SetActive(true),
             onRelease: e=> e.gameObject.SetActive(false),
             onDestroy: e => UnityEngine.Object.Destroy(e.gameObject),
-            50,
-            200
+            200,
+            500
         );
     }
     

@@ -14,7 +14,7 @@ public class XPPickUp : PickUp
     private bool bIsReleased = true;
     
     [SerializeField][Range(1,50)] private float attractionForce = 10f;
-    [SerializeField][Range(1,60)] private float secondsToDespawn = 3;
+    [SerializeField][Range(1,60*2)] private float secondsToDespawn = 3;
     private XPDrop originObj;
 
     private Coroutine despawnRoutine;
