@@ -14,7 +14,16 @@ public class XPDrop : MonoBehaviour
 
     private void Start()
     {
-        xpDroppablesPool = Pools.CreatePool("xpDroppables", XpPickupPrefab, 50, 100);
+        xpDroppablesPool = Pools.CreatePool(
+            "droppables",
+            XpPickupPrefab, 
+            createFunc: () => Object.Instantiate(XpPickupPrefab),
+            onGet: e=> e.gameObject.SetActive(true),
+            onRelease: e=> e.gameObject.SetActive(false),
+            onDestroy: e => UnityEngine.Object.Destroy(e.gameObject),
+            50,
+            200
+        );
     }
     
     internal void Drop(int totXpDropped, Vector3 position)
