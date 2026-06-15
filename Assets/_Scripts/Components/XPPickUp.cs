@@ -7,6 +7,13 @@ public class XPPickUp : PickUp
 {
     private int value;
     internal int Value { get; set; }
+    private XPDrop originObj;
+    
+    public void Launch(XPDrop originObj, Vector3 launchVelocity)
+    {
+        this.originObj = originObj;
+        rb.linearVelocity = launchVelocity;
+    }
     
     public override void OnTriggerEnter(Collider other)
     {
@@ -14,16 +21,11 @@ public class XPPickUp : PickUp
         Interact();
         //Do something else?
     }
-
+    
     public override void Interact()
     {
         CombatEvents.OnExperiencePickUp(this);
         //Debug.Log("Picking up XP.");
-        Destroy(gameObject);
-    }
-
-    public void Launch(Vector3 launchVelocity)
-    {
-        rb.linearVelocity = launchVelocity;
+        originObj.xpDroppablesPool.Release(this);
     }
 }
