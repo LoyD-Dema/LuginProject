@@ -1180,10 +1180,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: test
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: bulletPool
+      value: 
+      objectReference: {fileID: 1831832578}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[4]'
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5990403518192266740, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1831832578}
   m_SourcePrefab: {fileID: 100100000, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
 --- !u!1 &655323453
 GameObject:
@@ -1237,8 +1252,9 @@ GameObject:
   - component: {fileID: 673284868}
   - component: {fileID: 673284867}
   - component: {fileID: 673284869}
+  - component: {fileID: 673284871}
   m_Layer: 0
-  m_Name: CursorSet
+  m_Name: customManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1286,8 +1302,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfae0d52c376a043bedb40d1c8a2a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsManager
-  amountToDecreseIceSpeedMutliplayer: 0.8
+  characterSpeedMultiplayerToDecrese: 0.2
+  bulletSpeedMultiplayerToDecrese: 0.2
+  bulletDmnMultiplayerToDecrese: 0.2
   iceEffectDurarion: 1
+--- !u!114 &673284871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673284866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e8754ae47b6ca4596d785cc81b6214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletPool
+  bulletPrefab: {fileID: 4497254015212238946, guid: 993c5b09579580d4fb3ca6933e8468d3, type: 3}
+  capacity: 40
+  maxSize: 100
 --- !u!1 &696796550
 GameObject:
   m_ObjectHideFlags: 0
@@ -2784,6 +2817,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 2776848164275033699, guid: f42c73df0a8524e4f917ca02b7c301ba, type: 3}
+      propertyPath: bulletPool
+      value: 
+      objectReference: {fileID: 673284871}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2938,6 +2975,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 655323454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1831832564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5990403518192266740, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+  m_PrefabInstance: {fileID: 487275849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1831832578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831832564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e8754ae47b6ca4596d785cc81b6214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletPool
+  bulletPrefab: {fileID: 4497254015212238946, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
+  capacity: 12
+  maxSize: 24
 --- !u!1 &1997473174
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class ShootComponent : MonoBehaviour
     {
         if (elapsedFireRateTime >= 0) return;
 
-        GameObject newBullet = magazine.GetBullet();
+        BulletBehavior newBullet = magazine.GetBullet();
         if (!newBullet) return;
         newBullet.transform.position = bulletSpawn.position;
         newBullet.transform.rotation = transform.rotation;

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -69,22 +70,22 @@ public class PlayerMagazineSystem : MagazineSystem
         //}
     }
 
-    public override GameObject GetBullet()
+    public override BulletBehavior GetBullet()
     {
         
         if (shotBulletCount >= maxChambers) return null;
 
-        GameObject bullet = Instantiate(bulletPrefab); // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
+        BulletBehavior bullet = bulletPool.GetItem();  // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
 
         Debug.Log($"Chamber type: {chamberTypes[shotBulletCount]}");
         
         switch (chamberTypes[selectedChamber])
         {
             case BulletType.Fire:
+                //CheckOrAddModifier(bullet, typeof(FireModifier));
                 break;
             case BulletType.Ice:
-                bullet.AddComponent<IceModifier>();
-                Debug.Log("Shot Ice bullet");
+                CheckOrAddModifier(bullet, typeof(IceModifier));
                 break;
             default:
             case BulletType.Normal:
@@ -101,6 +102,24 @@ public class PlayerMagazineSystem : MagazineSystem
         ++shotBulletCount;
 
         return bullet;
+    }
+
+    private void CheckOrAddModifier(BulletBehavior bullet, Type modifierType)
+    {
+        if (bullet.TryGetComponent(modifierType, out Component modifier))
+        {
+            if(modifier is Behaviour behaviour)
+            {
+                Debug.Log($"Enabled {modifierType}");
+                behaviour.enabled = true;
+            }
+        }
+        else
+        {
+            Debug.Log($"Added {modifierType}");
+            bullet.gameObject.AddComponent(modifierType);
+
+        }
     }
 
     public void Reload()
