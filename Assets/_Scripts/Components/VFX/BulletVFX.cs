@@ -25,12 +25,12 @@ namespace Components.VFX
         private void OnEnable()
         {
             bulletBehavior = GetComponent<BulletBehavior>();
-            bulletBehavior.OnHit += OnHit;
+            bulletBehavior.OnHitTrigger += OnHit;
         }
 
         private void OnDisable()
         {
-            bulletBehavior.OnHit -= OnHit;
+            bulletBehavior.OnHitTrigger -= OnHit;
         }
 
         private void OnHit(object sender, OnHitEventArgs e)

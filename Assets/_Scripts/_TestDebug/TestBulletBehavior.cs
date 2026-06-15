@@ -40,7 +40,7 @@ public class TestBulletBehavior : MonoBehaviour
         BulletBehavior b = Instantiate(bulletBehavior, spawnPos, rotation);
         b.OnInstantiate += Bullet_OnInstantiate;
         b.OnTraveling += Bullet_OnTraveling;
-        b.OnHit += Bullet_OnHit;
+        b.OnHitTrigger += Bullet_OnHit;
 
         b.enabled = false;
         b.enabled = true;

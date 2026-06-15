@@ -44,7 +44,7 @@ public class BulletBehavior : MonoBehaviour
     // Events
     public event EventHandler<EventArgs> OnInstantiate;
     public event EventHandler<EventArgs> OnTraveling;
-    public event EventHandler<OnHitEventArgs> OnHit;
+    public event EventHandler<OnHitEventArgs> OnHitTrigger;
 
     private bool isStartingTraveling;
 
@@ -104,7 +104,7 @@ public class BulletBehavior : MonoBehaviour
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
         impactPoint = other.ClosestPoint(transform.position); //for the VFX position
 
-        OnHit?.Invoke(this, new OnHitEventArgs //spatial information about the collision
+        OnHitTrigger?.Invoke(this, new OnHitEventArgs //spatial information about the collision
         {
             HitInfo = new HitInfo
             {
