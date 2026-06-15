@@ -1272,6 +1272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e996ee84896a29b4ba392d8ebc69b1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  choseChamberUI: {fileID: 0}
 --- !u!114 &331279640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1741,6 +1742,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 435109629801801133, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: choseChamberUI
+      value: 
+      objectReference: {fileID: 1100810542}
     - target: {fileID: 1729086847414128084, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_TranslationAtRest.x
       value: 0
@@ -1752,6 +1757,10 @@ PrefabInstance:
     - target: {fileID: 1729086847414128084, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_TranslationAtRest.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728930011794002698, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: df70fa95-8a34-4494-b137-73ab6b9c7d37
       objectReference: {fileID: 0}
     - target: {fileID: 5990403518192266740, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_Name
@@ -2596,6 +2605,8 @@ GameObject:
   - component: {fileID: 1100810538}
   - component: {fileID: 1100810540}
   - component: {fileID: 1100810539}
+  - component: {fileID: 1100810541}
+  - component: {fileID: 1100810542}
   m_Layer: 5
   m_Name: IMG_Drum
   m_TagString: Untagged
@@ -2666,6 +2677,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100810537}
   m_CullTransparentMesh: 1
+--- !u!114 &1100810541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100810537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d178ca4aba10ed4e9c6d90b2cc3b3c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagazineVisualizer
+  chamberSprites:
+  - {fileID: 954311236}
+  - {fileID: 138858730}
+  - {fileID: 637788490}
+  - {fileID: 38762824}
+  - {fileID: 1001485506}
+  - {fileID: 2065346110}
+  fireColor: {r: 1, g: 0.6470588, b: 0, a: 1}
+  iceColor: {r: 0.2, g: 0.64, b: 1, a: 1}
+  shotColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &1100810542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100810537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7b84a0a7fb378449ecde325f1fecab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChooseChamber
+  magazineRect: {fileID: 1100810538}
+  bulletImage: {fileID: 1614711552}
+  magazineVisualizer: {fileID: 1100810541}
+  rotationSpeed: 10
 --- !u!1 &1117841279
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,6 +2892,8 @@ MonoBehaviour:
   powerUpCardsPanel: {fileID: 6576532319649670852}
   chooseChamberPanel: {fileID: 2024651233}
   chosenBulletImage: {fileID: 1614711552}
+  magazineVisualizer: {fileID: 1100810541}
+  chooseChamberScript: {fileID: 1100810542}
   allPowerUp:
   - {fileID: 11400000, guid: 52a4d17c0fd68f644a976be7f6634472, type: 2}
   - {fileID: 11400000, guid: 99171e3becdb1c94f8175be5c29986a9, type: 2}
@@ -3381,6 +3432,14 @@ PrefabInstance:
     - target: {fileID: 4496109636769460206, guid: 13264a7dcef2dae40a97ddc98420abc0, type: 3}
       propertyPath: m_Name
       value: Center
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188681956569001240, guid: 13264a7dcef2dae40a97ddc98420abc0, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188681956569001240, guid: 13264a7dcef2dae40a97ddc98420abc0, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6263,7 +6322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &6576532319649670852
 GameObject:
   m_ObjectHideFlags: 0
