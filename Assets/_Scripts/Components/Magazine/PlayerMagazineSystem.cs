@@ -53,29 +53,6 @@ public class PlayerMagazineSystem : MagazineSystem
             chamberTypes[i] = BulletType.Normal;
             InfuseChamber(i, chamberTypes[i]);
         }
-
-        //// UNCOMMENT WHEN NOT TESTING
-        ////for (int i = 0; i < chamberTypes.Length; i++)
-        ////{
-        ////    chamberTypes[i] = BulletType.Normal;
-        ////}
-
-        //// TEST ONLY
-        //for(int i = 0; i < chamberTypes.Length; i++)
-        //{
-        //    if (i % 4 == 0)
-        //    {
-        //        InfuseChamber(i, BulletType.Fire);
-        //    }
-        //    else if(i % 2 == 0)
-        //    {
-        //        InfuseChamber(i, BulletType.Ice);
-        //    }
-        //    else
-        //    {
-        //        chamberTypes[i] = BulletType.Normal;
-        //    }
-        //}
     }
 
     public override BulletBehavior GetBullet()
