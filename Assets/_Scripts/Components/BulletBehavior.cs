@@ -42,6 +42,8 @@ public class BulletBehavior : MonoBehaviour
     private Rigidbody rigidBody;
     private CallOutOfRange outOfrange;
 
+    internal bool bIsReleased = true;
+
     // Le ho commentate perche' una non viene usata e l'altra non serve averla globale - Lorenzo
     //private Vector3 previousPosition;
     //private Vector3 impactPoint;
@@ -62,18 +64,20 @@ public class BulletBehavior : MonoBehaviour
     private void OnEnable()
     {
         isStartingTraveling = true;
-        outOfrange.OnOutOfRange += OutOfrange_OnOutOfRange; 
+        outOfrange.OnOutOfRange += OutOfrange_OnOutOfRange;
+        bIsReleased = false;
     }
 
     private void OnDisable()
     {
-
+        bIsReleased = true;
         outOfrange.OnOutOfRange -= OutOfrange_OnOutOfRange;
     }
 
     private void OutOfrange_OnOutOfRange()
     {
-        Pool.Relese(this);
+        if(!bIsReleased)
+            Pool.Relese(this);
     }
 
     private void Start()

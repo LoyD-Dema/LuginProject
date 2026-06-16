@@ -42,7 +42,8 @@ public class BulletPool : MonoBehaviour
     }
     public void Relese(BulletBehavior bullet)
     {
-        pool.Release(bullet);
+        if(!bullet.bIsReleased)
+            pool.Release(bullet);
     }
 
     private void OnGet(BulletBehavior bullet)
