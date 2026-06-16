@@ -2,36 +2,38 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(BulletBehavior))]
-public class IceModifier : MonoBehaviour
+public class IceModifier : BaseModifier
 {
-    private float decreseDmgMultiplayer;
-
-    BulletBehavior bullet;
-
-    private void Awake()
+    protected override void Awake()
     {
-        bullet = GetComponent<BulletBehavior>();
-        decreseDmgMultiplayer = EffectsManager.I.BulletDmnMultiplayerToDecrese;
+        base.Awake();
+        enabled = false;
+
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        bullet.OnHit += Bullet_OnHit;
+        bullet.DamageMultiplayer -= amountDamageMultiplier;
+        bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce, Usato solo x Test
     }
 
-    private void OnDisable()
+    protected override void OnEnable()
     {
-        bullet.OnHit -= Bullet_OnHit;
+        base.OnEnable();
+
+        Debug.Log("CIOAIOPIFJPOAJFOPIJPOFJFOPJFPOJPO");
     }
 
-    private void Bullet_OnHit(object sender, OnHitEventArgs e)
+    protected override void Bullet_OnHitTrigger(object sender, OnHitEventArgs e)
     {
+        base.Bullet_OnHitTrigger(sender, e);
+
         if (!e.Collider.gameObject.CompareTag("Enemy"))
             return;
 
         if (e.Collider.TryGetComponent<IceEffect>(out IceEffect iceEffect))
         {
-            if(iceEffect.enabled)
+            if (iceEffect.enabled)
             {
                 iceEffect.Reset();
             }
@@ -46,12 +48,4 @@ public class IceModifier : MonoBehaviour
             effect.enabled = true;
         }
     }
-
-    private void Start()
-    {
-        bullet.DamageMultiplayer -= decreseDmgMultiplayer;
-        bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce
-    }
-
-
 }

@@ -9,12 +9,13 @@ public class MagazineSystem : MonoBehaviour
     protected GameObject bulletPrefab;
     [SerializeField]
     protected const int maxChambers = 6;
+    [SerializeField] protected BulletPool bulletPool;
 
     protected int selectedChamber = 0;
 
-    public virtual GameObject GetBullet()
+    public virtual BulletBehavior GetBullet()
     {
-        GameObject bullet = Instantiate(bulletPrefab); // CHANGE WITH BULLET POOL
+        BulletBehavior bullet = bulletPool.Get(); 
 
         ChangeChamber();
 

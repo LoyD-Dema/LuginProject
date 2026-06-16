@@ -1564,6 +1564,7 @@ GameObject:
   - component: {fileID: 221488337871078055}
   - component: {fileID: 2423267537470609566}
   - component: {fileID: 2776848164275033699}
+  - component: {fileID: 8912014974712471478}
   m_Layer: 8
   m_Name: Outlaw
   m_TagString: Enemy
@@ -1744,6 +1745,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagazineSystem
   bulletPrefab: {fileID: 5363965849906640939, guid: 993c5b09579580d4fb3ca6933e8468d3, type: 3}
+  bulletPool: {fileID: 8912014974712471478}
+--- !u!114 &8912014974712471478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942289980213182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e8754ae47b6ca4596d785cc81b6214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletPool
+  bulletPrefab: {fileID: 4497254015212238946, guid: 993c5b09579580d4fb3ca6933e8468d3, type: 3}
+  capacity: 12
+  maxSize: 24
 --- !u!1 &1954743680365594
 GameObject:
   m_ObjectHideFlags: 0
