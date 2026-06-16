@@ -52,7 +52,10 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         if (IsDead) return;
         
         CurrentHealth -= damage;
+        
         Damage?.Invoke();
+
+        if (gameObject.tag == "Player") AudioManager.PlaySound3D(SoundType.CowboyHurt, gameObject.transform.position);
 
         if (gameObject.tag == "Enemy")
         {
@@ -80,7 +83,9 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         IsDead = true;
         
         Debug.Log("I am dead");
-        
+
+        AudioManager.PlaySound3D(SoundType.CowboyDead, gameObject.transform.position);
+
         Death?.Invoke(gameObject);
     }
 
