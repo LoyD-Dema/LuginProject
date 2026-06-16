@@ -18,7 +18,19 @@ public class ChooseChamber : MonoBehaviour
     private int currentChamberIndex = 0;
     private float targetRotation = 0;
 
-    public void SetupMagazineMenu(PowerUpData data,  PlayerMagazineSystem magazine, PowerUpManager manager)
+    private void OnEnable()
+    {
+        ResetDrumToZero();
+    }
+
+    private void ResetDrumToZero()
+    {
+        currentChamberIndex = 0;
+        targetRotation = 0;
+        magazineRect.localRotation = Quaternion.identity;
+    }
+
+    public void SetupMagazineMenu(PowerUpData data, PlayerMagazineSystem magazine, PowerUpManager manager)
     {
         currentBulletData = data;
         playerMagazine = magazine;
@@ -27,7 +39,7 @@ public class ChooseChamber : MonoBehaviour
         bulletImage.sprite = data.Icon;
 
         currentChamberIndex = 0;
-        targetRotation = 0;
+        targetRotation = 0f;
 
         magazineRect.localRotation = Quaternion.identity;
 
@@ -43,8 +55,11 @@ public class ChooseChamber : MonoBehaviour
     private void RotateDrum(int direction)
     {
         targetRotation += direction * 60f;
-        currentChamberIndex -= direction;
-        currentChamberIndex = currentChamberIndex % 5;
+
+        currentChamberIndex += direction;
+
+        currentChamberIndex = (currentChamberIndex % 6 + 6) % 6;
+
     }
 
     public void SelectChamber()
@@ -64,12 +79,12 @@ public class ChooseChamber : MonoBehaviour
     #region PlayerInput Helper
     public void MoveLeft()
     {
-            RotateDrum(1);
+        RotateDrum(-1);
     }
 
     public void MoveRight()
     {
-            RotateDrum(-1);
+        RotateDrum(1);
     }
     #endregion
 }
