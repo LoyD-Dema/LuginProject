@@ -66,6 +66,8 @@ public class ChooseChamber : MonoBehaviour
     {
         if (playerMagazine == null || currentBulletData == null) return;
 
+        if (playerMagazine.ChamberTypes[currentChamberIndex] != BulletType.Normal) return; //magari aggiungere un sfx di errore
+
         playerMagazine.InfuseChamber(currentChamberIndex, currentBulletData.Modifier.bulletType);
 
         Debug.Log($"Proiettile {currentBulletData.Modifier.bulletType} inserito nella camera {currentChamberIndex}!");

@@ -832,9 +832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
-  fireRate: 0.5
-  magazine: {fileID: 0}
-  bulletSpawn: {fileID: 0}
 --- !u!114 &331279646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2001,9 +1998,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4387152cbf8c984080cf035fd28e8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
-  fireRate: 0.5
-  magazine: {fileID: 0}
-  bulletSpawn: {fileID: 0}
 --- !u!1001 &1616081190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2729,13 +2723,89 @@ PrefabInstance:
       propertyPath: powerUpManager
       value: 
       objectReference: {fileID: 1226616155}
+    - target: {fileID: 1910986715710853602, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910986715710853602, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910986715710853602, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910986715710853602, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910986715710853602, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910986715710853602, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098469914092075425, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098469914092075425, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098469914092075425, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098469914092075425, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098469914092075425, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098469914092075425, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6289831837345130639, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
       propertyPath: powerUpManager
       value: 
       objectReference: {fileID: 1226616155}
+    - target: {fileID: 6457860057319804431, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457860057319804431, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457860057319804431, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457860057319804431, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457860057319804431, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457860057319804431, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8765579902082596072, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
       propertyPath: m_Name
       value: PowerUpCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964325266264223778, guid: 0df2e14536b4c034197349a02c512c6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
