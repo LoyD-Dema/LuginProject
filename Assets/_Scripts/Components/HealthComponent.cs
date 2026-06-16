@@ -84,7 +84,8 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         
         Debug.Log("I am dead");
 
-        AudioManager.PlaySound3D(SoundType.CowboyDead, gameObject.transform.position);
+        if(gameObject.tag == "Player") AudioManager.PlaySound2D(SoundType.CowboyDead, 1);
+        else AudioManager.PlaySound3D(SoundType.OutlawDead, gameObject.transform.position);
 
         Death?.Invoke(gameObject);
     }
