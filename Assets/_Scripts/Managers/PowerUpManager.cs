@@ -13,8 +13,6 @@ public class PowerUpManager : MonoBehaviour
     [Header("UI Panels")]
     [SerializeField] private GameObject powerUpCardsPanel;
     [SerializeField] private GameObject chooseChamberPanel;
-    [SerializeField] private Image chosenBulletImage;
-    [SerializeField] private MagazineVisualizer magazineVisualizer;
     [SerializeField] private ChooseChamber chooseChamberScript;
 
     [Header("PowerUps")]
@@ -27,16 +25,12 @@ public class PowerUpManager : MonoBehaviour
     private MovementComponent playerMovement;
     private PlayerMagazineSystem playerMagazine;
     private PlayerInput playerInput;
-    private PlayerController playerController;
 
     private List<StatType> passivesUnlocked = new List<StatType>();
     private int bulletsObtained = 0;
 
     private Dictionary<StatType, float> currentModifiers = new Dictionary<StatType, float>();
     private int pendingLevelUp = 0;
-
-    //Per la gestione dei bullet
-    private PowerUpData bulletData;
 
     private void Awake()
     {
@@ -49,7 +43,6 @@ public class PowerUpManager : MonoBehaviour
         playerMovement = player.GetComponent<MovementComponent>();
         playerMagazine = player.GetComponent<PlayerMagazineSystem>();
         playerInput = player.GetComponent<PlayerInput>();
-        playerController = player.GetComponent<PlayerController>();
     }
 
     private void OnEnable()
@@ -140,16 +133,10 @@ public class PowerUpManager : MonoBehaviour
         StatType stat = data.Modifier.statType;
         if (stat == StatType.Bullet)
         {
-            //bulletsObtained++; da mettere dopo che ha premuto Select
-            bulletData = data;
-
-            chosenBulletImage.sprite = data.Icon;
-
             powerUpCardsPanel.SetActive(false);
             chooseChamberPanel.SetActive(true);
 
-            magazineVisualizer.ForceSyncForCanvas(playerMagazine);
-
+            chooseChamberScript.SetupMagazineMenu(data, playerMagazine, this);
             UpgradePlayer(stat, value);
 
             return;
@@ -195,8 +182,7 @@ public class PowerUpManager : MonoBehaviour
         switch (stat)
         {
             case StatType.Bullet:
-                powerUpCardsPanel.SetActive(false);
-                chooseChamberPanel.SetActive(true);
+
                 break;
             case StatType.Health:
                 float bonusHealth = playerHealth.MaxHealth * value;
@@ -216,7 +202,6 @@ public class PowerUpManager : MonoBehaviour
     public void OnChamberSelectionConfirmed()
     {
         bulletsObtained++;
-        bulletData = null;
         CheckPendingLevels();
     }
 

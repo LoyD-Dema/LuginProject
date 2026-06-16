@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         get => isPaused;
         set => isPaused = value;
-    } 
+    }
 
     private void Awake()
     {
@@ -73,20 +73,30 @@ public class PlayerController : MonoBehaviour
     }
 
     #region UI Input
-    public void OnNavigateLeft(InputValue value)
+    public void OnNavigate(InputValue value)
     {
-        if (value.isPressed && choseChamberUI != null)
+        if (!choseChamberUI.gameObject.activeInHierarchy) return;
+
+        Vector2 navValue = value.Get<Vector2>();
+        if (navValue.x < -0.5f)
         {
             choseChamberUI.MoveLeft();
         }
-    }
-
-    public void OnNavigateRight(InputValue value)
-    {
-        if (value.isPressed && choseChamberUI != null)
+        else if (navValue.x > 0.5f)
         {
             choseChamberUI.MoveRight();
         }
     }
+
+    public void OnSubmit(InputValue value)
+    {
+        if (choseChamberUI.gameObject.activeInHierarchy)
+        {
+            choseChamberUI.SelectChamber();
+        }
+    }
+
+
+
     #endregion
 }
