@@ -11,7 +11,7 @@ public class RotateToMouse : MonoBehaviour
     // Debug
     [Header("Debug")]
     [SerializeField] private bool enableDebug;
-    [SerializeField] private Vector3 size;
+    [SerializeField] private Vector3 size = new Vector3(150.0f, 0.1f, 150.0f);
     private Vector3 center;
 
 
