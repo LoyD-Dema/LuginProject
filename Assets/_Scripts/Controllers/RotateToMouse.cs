@@ -20,7 +20,8 @@ public class RotateToMouse : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(MouseInput.GetMousePositon());
         Plane p = new Plane(Vector3.up, new Vector3(transform.position.x, transform.position.y + shootPosition.localPosition.y, transform.position.z));
         
-        Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green);
+        if (enableDebug)
+            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green);
 
         Vector3 newPointOnPlane = Vector3.zero;
 
@@ -34,7 +35,7 @@ public class RotateToMouse : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(dir);
         Debug.Log($"from {transform.rotation} to {rot}");
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotationSpeed * Time.deltaTime);
-        
+
 
     }
 
