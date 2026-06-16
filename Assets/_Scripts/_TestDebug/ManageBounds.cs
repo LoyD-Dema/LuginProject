@@ -13,6 +13,11 @@ public class ManageBounds : MonoBehaviour
 
     private void OnEnable()
     {
+        // NON FUNGE OnEnable
+         
+        Debug.Log("Script riattivato");
+
+
         prevDisableCollides = disableColliders;
         prevDisableMeshes = disableMeshes;
 
@@ -23,11 +28,11 @@ public class ManageBounds : MonoBehaviour
     {
         if(meshes == null || colliders == null || meshes.Length <= 0 ||  colliders.Length <= 0)
         {
-            Debug.Log("CIoa");
             PopulateArrayis();
         }
 
-        Debug.Log(meshes);
+        // Da rimuovere in caso di fix alla chiamata OnEnable
+        PopulateArrayis();
 
         if(prevDisableCollides != disableColliders)
         {
