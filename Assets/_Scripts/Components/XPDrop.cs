@@ -31,11 +31,13 @@ public class XPDrop : MonoBehaviour
         for (int i = 0; i < numInstances; i++)
         {
             var pickup = xpDroppablesPool.Get();
-            pickup.transform.position = position;
+            //Randomize a bit the spawn position
+            Vector2 offset = Random.insideUnitCircle * .5f;
+            pickup.transform.position = position + new Vector3(offset.x, 0f, offset.y);
             pickup.Value = totXpDropped/numInstances;
             
             //Animation
-            Vector3 velocity = Vector3.up * 10f + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
+            Vector3 velocity = Vector3.up * 10f + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)) * Random.Range(2f, 5f);
             pickup.Launch(this,velocity);
         }
     }

@@ -64,6 +64,7 @@ public class XPPickUp : PickUp
     {
         CombatEvents.OnExperiencePickUp(this);
         //Debug.Log("Picking up XP.");
+        this.rb.linearVelocity = Vector3.zero; //reset the velocity
         originObj.xpDroppablesPool.Release(this);
     }
 
@@ -71,6 +72,7 @@ public class XPPickUp : PickUp
     {
         yield return new WaitForSeconds(secondsToDespawn);
 
+        bIsBeingAttracted = false;
         if (!bIsReleased)
             originObj.xpDroppablesPool.Release(this);
     }

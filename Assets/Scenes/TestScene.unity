@@ -667,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6669462377766634422, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: radius
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7049774884085379359, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: pauseMenuCanvas
