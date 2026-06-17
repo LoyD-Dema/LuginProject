@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d736c2eccbaa5ea4182669c6bbd1b7e4, type: 3}
+  m_Name: Damage
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
+  powerUpName: Silver Bullet
+  description: 'Increase the damage of the {0}% '
+  icon: {fileID: -1374152744, guid: 0e3bc65afe2502e48a4328069855c71e, type: 3}
+  modifier:
+    statType: 1
+    minIncrease: 0.02
+    maxIncrease: 0.1
+    CapPercentage: 0.3
+    bulletType: 0

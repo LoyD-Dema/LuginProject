@@ -94,6 +94,8 @@ public class LevelBar : MonoBehaviour
             currentExperience = experienceLeftOver;
             level++;
 
+            OnLevelUp?.Invoke();
+
             if (level < experienceRequiredToLevelUp.Length)
             {
                 currentExperienceRequiredToLevelUp = experienceRequiredToLevelUp[level];
@@ -107,7 +109,6 @@ public class LevelBar : MonoBehaviour
             levelText.text = level.ToString();
             UpdateSlider();
 
-            OnLevelUp?.Invoke();
         }
     }
 

@@ -18,12 +18,14 @@ public class PlayerController : MonoBehaviour
     public event Action OnPausePressed;
     public static event Action OnReloadEvent;
 
+    [SerializeField] private ChooseChamber choseChamberUI;
+
     private bool isPaused;
     public bool IsPaused
     {
         get => isPaused;
         set => isPaused = value;
-    } 
+    }
 
     private void Awake()
     {
@@ -69,4 +71,32 @@ public class PlayerController : MonoBehaviour
     {
         OnReloadEvent?.Invoke();
     }
+
+    #region UI Input
+    public void OnNavigate(InputValue value)
+    {
+        if (!choseChamberUI.gameObject.activeInHierarchy) return;
+
+        Vector2 navValue = value.Get<Vector2>();
+        if (navValue.x < -0.5f)
+        {
+            choseChamberUI.MoveLeft();
+        }
+        else if (navValue.x > 0.5f)
+        {
+            choseChamberUI.MoveRight();
+        }
+    }
+
+    public void OnSubmit(InputValue value)
+    {
+        if (choseChamberUI.gameObject.activeInHierarchy)
+        {
+            choseChamberUI.SelectChamber();
+        }
+    }
+
+
+
+    #endregion
 }

@@ -515,94 +515,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_40
-      rect:
-        serializedVersion: 2
-        x: 627
-        y: 1917
-        width: 5
-        height: 32
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e7e962971ab8164ba0141318da1dbe2
-      internalID: -632908441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheet_41
-      rect:
-        serializedVersion: 2
-        x: 635
-        y: 1917
-        width: 32
-        height: 32
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f3b619a12d81c64881efdcc8747f1f3
-      internalID: -1701786393
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheet_42
-      rect:
-        serializedVersion: 2
-        x: 627
-        y: 1906
-        width: 5
-        height: 5
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7fabd6f020e063419975757def34c27
-      internalID: -1614493870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheet_43
-      rect:
-        serializedVersion: 2
-        x: 635
-        y: 1906
-        width: 32
-        height: 5
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d846a20a5dea63409bc4938cbcd7e3d
-      internalID: 2084698012
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: SpriteSheet_44
       rect:
         serializedVersion: 2
@@ -954,6 +866,116 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ImageFrame
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 1906
+        width: 40
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a9d94fd774a4ab44aa8a8b2edede166
+      internalID: 97212765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spinach
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 1968
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29f7c154996fc9d4faf024685e2671a7
+      internalID: -167982851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meat
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 1968
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2c91863977873043a1bd2860a6f7d65
+      internalID: -1606885588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Feather
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 1969
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c66aa5735090dc4fb790d91b1b0618f
+      internalID: 1107731396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Book
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 2000
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab4b042cd0024742bcec91e1da3475e
+      internalID: -1374152744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -975,16 +997,21 @@ TextureImporter:
       ArrowRight: -840375495
       ArrowRightPressed: 260803220
       Background-9Slice: 1287960471
+      Book: -1374152744
       Button-9Slice: 1483989173
       ButtonPressed-9Slice: 1543979555
       ExperienceFill: -254337241
       ExperienceFrame: 1114976679
+      Feather: 1107731396
       Frame-9Slice: 2029253913
       HealthBarFill: -1825815633
       HealthBarFillYellow: -556696448
       HealthBarFrame: 2013659694
+      ImageFrame: 97212765
       LevelSquare: -5973755
+      Meat: -1606885588
       SpAriteSheet_3: -1825815633
+      Spinach: -167982851
       SpriteSheet_1: -374134466
       SpriteSheet_10: 32086027
       SpriteSheet_100: 1153453878
