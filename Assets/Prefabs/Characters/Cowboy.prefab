@@ -1109,6 +1109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8166924362150774812}
   - component: {fileID: 3105677593261763531}
+  - component: {fileID: 3585078898148725727}
   - component: {fileID: 4728930011794002698}
   - component: {fileID: 6361440559258159739}
   - component: {fileID: 1899492134812000634}
@@ -1169,6 +1170,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3585078898148725727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931c6d29f1714bd1870ee3d251b9b548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Controllers.AnimController
 --- !u!114 &4728930011794002698
 MonoBehaviour:
   m_ObjectHideFlags: 0

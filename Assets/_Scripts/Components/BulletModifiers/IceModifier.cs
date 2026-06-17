@@ -20,8 +20,6 @@ public class IceModifier : BaseModifier
     protected override void OnEnable()
     {
         base.OnEnable();
-
-        Debug.Log("CIOAIOPIFJPOAJFOPIJPOFJFOPJFPOJPO");
     }
 
     protected override void Bullet_OnHitTrigger(object sender, OnHitEventArgs e)
