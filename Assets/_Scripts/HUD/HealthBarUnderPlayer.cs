@@ -55,7 +55,9 @@ public class HealthBarUnderPlayer : MonoBehaviour
         {
             if (Mathf.Abs(healthFillImage.fillAmount - targetFillAmt) < 0.005f) //Ho provato con Mathf.Approximately ma ci mette troppo a sparire
             {
-                visualFillImage.fillAmount = targetFillAmt; 
+                //visualFillImage.fillAmount = targetFillAmt;
+
+                visualFillImage.fillAmount = Mathf.Lerp(visualFillImage.fillAmount, targetFillAmt, lerpSpeed * Time.deltaTime * 1.5f);
             }
         }
         else
