@@ -1158,7 +1158,7 @@ Animator:
   m_GameObject: {fileID: 5990403518192266740}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4837235d67e136e4b883adb2bafc73e8, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9799a0c9e3b73bb478f0894e6f48c0f5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 95fe4626e737cc842ab5aab00fe702b0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1260,7 +1260,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &435109629801801133
 MonoBehaviour:

@@ -33,7 +33,7 @@ public class RotateToMouse : MonoBehaviour
 
         Vector3 dir = (newPointOnPlane - new Vector3(transform.position.x, newPointOnPlane.y, transform.position.z)).normalized;
         Quaternion rot = Quaternion.LookRotation(dir);
-        Debug.Log($"from {transform.rotation} to {rot}");
+        //Debug.Log($"from {transform.rotation} to {rot}");
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotationSpeed * Time.deltaTime);
 
 

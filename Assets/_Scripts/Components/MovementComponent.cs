@@ -21,7 +21,7 @@ public class MovementComponent : MonoBehaviour
     {
         this.direction = new Vector3(direction.x, 0f, direction.y);
     }
-
+    
     private void FixedUpdate()
     {
         float actualSpeed = speed * SpeedMultiplayer;
