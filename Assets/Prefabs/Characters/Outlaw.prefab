@@ -1588,6 +1588,7 @@ Transform:
   - {fileID: 4557547889996496}
   - {fileID: 4908466145134886}
   - {fileID: 2767282715961951774}
+  - {fileID: 155431184200379756}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95918252503098470
@@ -1717,6 +1718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyData: {fileID: 11400000, guid: cca724aea99b4124fbbb791259e20311, type: 2}
+  XpDrop: {fileID: 0}
 --- !u!114 &2423267537470609566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1923,6 +1925,52 @@ Transform:
   - {fileID: 4090430952706094}
   m_Father: {fileID: 4908466145134886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2039809400214080172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 155431184200379756}
+  - component: {fileID: 2353423514909146426}
+  m_Layer: 8
+  m_Name: Loot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &155431184200379756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039809400214080172}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4517892917420314}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2353423514909146426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039809400214080172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310ec3820d444ba5a2ca27f2112d9f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XPDrop
+  XpPickupPrefab: {fileID: 150897795104268385, guid: d28bb6e3fb064c24891ccbc6f973b56d, type: 3}
+  numInstances: 5
 --- !u!1 &9086399268916818856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,7 +1983,7 @@ GameObject:
   m_Layer: 8
   m_Name: BulletSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

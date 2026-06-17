@@ -1,8 +1,12 @@
-
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
+
+/// <summary>
+/// Handles the player level and the UI of the level bar
+/// </summary>
 
 public class LevelBar : MonoBehaviour
 {
@@ -23,10 +27,7 @@ public class LevelBar : MonoBehaviour
     private float currentExperienceRequiredToLevelUp;
 
     public event Action OnLevelUp;
-
     
-
-
 #if UNITY_EDITOR
     // Da vedere
     [Header("Debug")]
@@ -35,17 +36,25 @@ public class LevelBar : MonoBehaviour
 
     private void OnEnable()
     {
+        CombatEvents.OnExperiencePickUp += CombatEvents_OnXpPickUp; 
         CombatEvents.OnEnemyKilled += CombatEvent_OnEnemyKilled;
     }
-
+    
     private void OnDisable()
     {
+        CombatEvents.OnExperiencePickUp -= CombatEvents_OnXpPickUp; 
         CombatEvents.OnEnemyKilled -= CombatEvent_OnEnemyKilled;
     }
 
+    private void CombatEvents_OnXpPickUp(XPPickUp obj)
+    {
+        AddExp(obj.Value);
+    }
+    
     private void CombatEvent_OnEnemyKilled(int exp)
     {
-        AddExp(exp);
+        //AddExp(exp);
+        Debug.Log("An enemy has been killed");
     }
 
     private void Start()
@@ -79,8 +88,6 @@ public class LevelBar : MonoBehaviour
             Debug.Log(currentExperience + " / " + currentExperienceRequiredToLevelUp);
         }
 #endif
-
-
         if (currentExperience >= currentExperienceRequiredToLevelUp)
         {
             experienceLeftOver = currentExperience - currentExperienceRequiredToLevelUp;
