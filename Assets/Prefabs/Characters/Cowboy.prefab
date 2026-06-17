@@ -1121,6 +1121,7 @@ GameObject:
   - component: {fileID: 4204745601715961273}
   - component: {fileID: 8919947756050623743}
   - component: {fileID: 8759711903054516486}
+  - component: {fileID: 6669462377766634422}
   m_Layer: 6
   m_Name: Cowboy
   m_TagString: Player
@@ -1374,6 +1375,19 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4497254015212238946, guid: d8bafe17532b26f4387d30d0bfd258fd, type: 3}
   capacity: 12
   maxSize: 24
+--- !u!114 &6669462377766634422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847fc75d1e1f46cb8e6f75b3cd7cc849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XPMagnet
+  radius: 1
 --- !u!1 &6044714389505839466
 GameObject:
   m_ObjectHideFlags: 0
