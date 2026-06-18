@@ -30,6 +30,7 @@ public class ShootComponent : MonoBehaviour
         
         if (bCanFire)
         {
+            AudioManager.PlaySound3D(SoundType.CowboyShoot, transform.position,2);
             newBullet.transform.position = bulletSpawn.position;
             newBullet.transform.rotation = transform.rotation;
             elapsedFireRateTime = fireRate;
