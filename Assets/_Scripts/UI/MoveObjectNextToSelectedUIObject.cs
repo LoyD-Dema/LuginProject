@@ -72,6 +72,8 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
         }
         GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
 
+        AudioManager.PlaySound2D(SoundType.HoverButton);
+
         RectTransform sObjectRectTransform = selectedObject.GetComponent<RectTransform>();
         if (!sObjectRectTransform) return;
 
@@ -135,6 +137,8 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
 
     public void UpdateArrow()
     {
+        //AudioManager.PlaySound2D(SoundType.SelectionButton);
+
         //Per evitare che si blocchi la freccia nello stato di pressed
         StopAllCoroutines();
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,14 +8,23 @@ using UnityEngine.SceneManagement;
 public class MainMenuActions : MonoBehaviour
 {
 
-    public void LoadScene(string sceneName)
+    public void LoadNextLevel(string sceneName)
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        StartCoroutine(PlaySoundAndLoadScene(sceneName));
     }
 
     public void QuitGame()
     {
         Application.Quit();
         Debug.Log("Chiudo il gioco");
+    }
+
+    private IEnumerator PlaySoundAndLoadScene(string sceneName)
+    {
+        AudioManager.PlaySound2D(SoundType.SelectionButton);
+
+        yield return new WaitForSecondsRealtime(0.2f);
+
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }

@@ -40,6 +40,8 @@ public class AudioManager : MonoBehaviour
             InitializeDictionary();
             Setup2DAudioSource();
             SetupMusicAudioSource();
+
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

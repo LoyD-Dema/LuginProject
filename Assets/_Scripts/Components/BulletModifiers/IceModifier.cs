@@ -31,6 +31,8 @@ public class IceModifier : BaseModifier
         if (!e.Collider.gameObject.CompareTag("Enemy"))
             return;
 
+        AudioManager.PlaySound3D(SoundType.IceBulletImpact, e.Collider.transform.position);
+
         if (e.Collider.TryGetComponent<IceEffect>(out IceEffect iceEffect))
         {
             if (iceEffect.enabled)

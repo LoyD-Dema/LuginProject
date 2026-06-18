@@ -55,7 +55,8 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         
         Damage?.Invoke();
 
-        if (gameObject.tag == "Player") AudioManager.PlaySound3D(SoundType.CowboyHurt, gameObject.transform.position);
+        if (gameObject.tag == "Enemy") AudioManager.PlaySound3D(SoundType.CowboyHurt, gameObject.transform.position);
+        else if (gameObject.tag == "Player") AudioManager.PlaySound3D(SoundType.BaseBulletImpact, gameObject.transform.position);
 
         if (gameObject.tag == "Enemy")
         {
