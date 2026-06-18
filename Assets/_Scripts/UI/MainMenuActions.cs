@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuActions : MonoBehaviour
 {
 
-    public void LoadNextLevel(string sceneName)
+    public void LoadScene(string sceneName)
     {
         StartCoroutine(PlaySoundAndLoadScene(sceneName));
     }
