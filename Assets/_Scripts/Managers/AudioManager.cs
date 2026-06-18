@@ -7,18 +7,19 @@ public enum SoundType
 {
     CowboyFootstep,
     CowboyShoot,
-    CowboyHurt,
     CowboyDead,
-    OutlawFootstep,
-    OutlawShoot,
+    NoAmmo,
+    Reload,
     OutlawHurt,
     OutlawDead,
     HoverButton,
     SelectionButton,
     MenuOpen,
-    MenuClose,
+    LevelUpSound,
     BaseBulletImpact,
-    IceBulletImpact
+    IceBulletImpact,
+    RotateDrum,
+    ErrorDrum
 }
 public class AudioManager : MonoBehaviour
 {

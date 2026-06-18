@@ -115,6 +115,7 @@ public class PlayerMagazineSystem : MagazineSystem
 
     public void Reload()
     {
+        AudioManager.PlaySound3D(SoundType.Reload, gameObject.transform.position);
         shotBulletCount = 0;
     }
 
