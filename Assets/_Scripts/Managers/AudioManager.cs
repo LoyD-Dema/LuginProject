@@ -19,7 +19,8 @@ public enum SoundType
     BaseBulletImpact,
     IceBulletImpact,
     RotateDrum,
-    ErrorDrum
+    ErrorDrum,
+    ColletExp,
 }
 public class AudioManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private SoundElement[] soundElements;
     [SerializeField] private GameObject spawnAudioPrefab;
 
-    private Dictionary<SoundType, (AudioClip[] clips, AudioMixerGroup group)> soundDictionary;
+    private Dictionary<SoundType, (AudioClip[] clips, AudioMixerGroup group, float volume)> soundDictionary;
 
     private AudioSource audioSource2D;
     private AudioSource musicAudioSource;
@@ -52,12 +53,12 @@ public class AudioManager : MonoBehaviour
 
     private void InitializeDictionary()
     {
-        soundDictionary = new Dictionary<SoundType, (AudioClip[] clips, AudioMixerGroup group)>();
+        soundDictionary = new Dictionary<SoundType, (AudioClip[] clips, AudioMixerGroup group, float volume)>();
         foreach (SoundElement element in soundElements)
         {
             if (!soundDictionary.ContainsKey(element.type))
             {
-                soundDictionary.Add(element.type, (element.clips, element.mixerGroup));
+                soundDictionary.Add(element.type, (element.clips, element.mixerGroup, element.Volume));
             }
         }
     }
@@ -77,7 +78,7 @@ public class AudioManager : MonoBehaviour
         musicAudioSource.loop = true;
     }
 
-    public static void PlaySound3D(SoundType type, Vector3 position, float volume = 1)
+    public static void PlaySound3D(SoundType type, Vector3 position, float volume = 1) // Da togliere il volume come parametro di ingresso perche' lo prende dalla structe
     {
         if (!instance.soundDictionary.TryGetValue(type, out var soundData)) return;
         AudioClip randomClip = soundData.clips[Random.Range(0, soundData.clips.Length)];
@@ -86,7 +87,7 @@ public class AudioManager : MonoBehaviour
         AudioSource source = audioObj.GetComponent<AudioSource>();
 
         source.clip = randomClip;
-        source.volume = volume;
+        source.volume = soundData.volume;
 
         if (soundData.group != null)
         {
@@ -97,7 +98,7 @@ public class AudioManager : MonoBehaviour
         Destroy(audioObj, randomClip.length);
     }
 
-    public static void PlaySound2D(SoundType type, float volume = 1)
+    public static void PlaySound2D(SoundType type, float volume = 1)        // Da togliere il volume come parametro di ingresso perche' lo prende dalla structe
     {
         if (!instance.soundDictionary.TryGetValue(type, out var soundData)) return;
 
@@ -108,10 +109,10 @@ public class AudioManager : MonoBehaviour
             instance.audioSource2D.outputAudioMixerGroup = soundData.group;
         }
 
-        instance.audioSource2D.PlayOneShot(randomClip, volume);
+        instance.audioSource2D.PlayOneShot(randomClip, soundData.volume);
     }
 
-    public static void PlayMusic(SoundType type, bool loop = true, float volume = 1)
+    public static void PlayMusic(SoundType type, bool loop = true, float volume = 1)  // Da togliere il volume come parametro di ingresso perche' lo prende dalla structe
     {
         if (!instance.soundDictionary.TryGetValue(type, out var soundData)) return;
 
@@ -123,7 +124,7 @@ public class AudioManager : MonoBehaviour
         }
 
         instance.musicAudioSource.clip = randomClip;
-        instance.musicAudioSource.volume = volume;
+        instance.musicAudioSource.volume = soundData.volume;
         instance.musicAudioSource.loop = loop;
         instance.musicAudioSource.Play();
     }
@@ -144,4 +145,6 @@ public struct SoundElement
     public SoundType type;
     public AudioClip[] clips;
     public AudioMixerGroup mixerGroup;
+
+    [SerializeField][UnityEngine.RangeAttribute(0.0f, 1.0f)]  public float Volume;
 }

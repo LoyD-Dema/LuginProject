@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 950851738969937403}
   - component: {fileID: 3478372837709230359}
   - component: {fileID: 6381822784382712652}
+  - component: {fileID: 1656822279278292850}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -63,3 +64,30 @@ MonoBehaviour:
   bulletSpeedMultiplayerToDecrese: 0.2
   bulletDmnMultiplayerToDecrese: 0.2
   iceEffectDurarion: 1
+--- !u!114 &1656822279278292850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6769288219605623156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590c3871aa71d794ebc99a32fd1cdf74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  powerUpCanvas: {fileID: 0}
+  cardUIList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  powerUpCardsPanel: {fileID: 0}
+  chooseChamberPanel: {fileID: 0}
+  chooseChamberScript: {fileID: 0}
+  allPowerUp:
+  - {fileID: 11400000, guid: 52a4d17c0fd68f644a976be7f6634472, type: 2}
+  - {fileID: 11400000, guid: 99171e3becdb1c94f8175be5c29986a9, type: 2}
+  - {fileID: 11400000, guid: 9e33ca8acb67ad94eb42db7c647bfbbe, type: 2}
+  - {fileID: 11400000, guid: 052c15cf14ee44742ac40c7e6bf34705, type: 2}
+  player: {fileID: 0}
+  levelBar: {fileID: 0}
