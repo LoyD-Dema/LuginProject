@@ -30,13 +30,17 @@ public class AIController : MonoBehaviour
     private ShootComponent playerShootComponent;
     private NavMeshAgent navAgent;
     private Material material;
-
+    private Animator animator;
+    private Rigidbody rb;
+    
     private void Start()
     {
         //movementComponent = GetComponent<MovementComponent>();
         playerShootComponent = GetComponent<ShootComponent>();
         navAgent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<Renderer>().material;
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
 
         statesColors[States.Moving] = Color.blue;
         statesColors[States.Shooting] = Color.red;
@@ -75,7 +79,19 @@ public class AIController : MonoBehaviour
 
                 navAgent.SetDestination(target.position);
                 //movementComponent.SetDirection(new Vector2(transform.forward.x, transform.forward.z));
+                
+                //Animations
+                animator.SetBool("IsMoving", true);
 
+                Vector3 velocity = navAgent.desiredVelocity;
+                Debug.Log(velocity);
+
+                float speed = velocity.magnitude;
+                animator.SetFloat("Speed", speed);
+                Vector3 localVelocity = transform.InverseTransformDirection(velocity.normalized);
+                animator.SetFloat("Horizontal", localVelocity.x);
+                animator.SetFloat("Vertical", localVelocity.z);
+                
                 break;
             case States.Shooting:
                 
@@ -86,7 +102,10 @@ public class AIController : MonoBehaviour
                     currentState = States.Moving;
                     navAgent.isStopped = false;
                 }
-
+                
+                //Animations
+                animator.SetFloat("ShootingSpeedMult",1f/0.5f);
+                animator.SetTrigger("Shoot");
                 break;
             default:
                 Debug.Log("Nessuno stato trovato :c");
