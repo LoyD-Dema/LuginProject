@@ -7,7 +7,7 @@ public class ShootComponent : MonoBehaviour
 {
     [Range(0.1f, 5.0f)]
     [SerializeField] float fireRate = 0.5f;
-    private float FireRate => fireRate;
+    public float FireRate => fireRate;
     public bool bCanFire = true;
     
     private float elapsedFireRateTime;
