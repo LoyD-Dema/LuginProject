@@ -52,7 +52,11 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         if (IsDead) return;
         
         CurrentHealth -= damage;
+        
         Damage?.Invoke();
+
+        if (gameObject.tag == "Enemy") AudioManager.PlaySound3D(SoundType.OutlawHurt, gameObject.transform.position);
+        else if (gameObject.tag == "Player") AudioManager.PlaySound3D(SoundType.BaseBulletImpact, gameObject.transform.position);
 
         if (gameObject.tag == "Enemy")
         {
@@ -80,7 +84,10 @@ public class HealthComponent : MonoBehaviour, IHealthReceiver
         IsDead = true;
         
         Debug.Log("I am dead");
-        
+
+        if(gameObject.tag == "Player") AudioManager.PlaySound2D(SoundType.CowboyDead, 1);
+        else AudioManager.PlaySound3D(SoundType.OutlawDead, gameObject.transform.position);
+
         Death?.Invoke(gameObject);
     }
 

@@ -23,8 +23,9 @@ public class PauseComponent : MonoBehaviour
     private void OnEnable()
     {
         playerController.OnPausePressed += TogglePauseMenu;
-        pauseMenuCanvas.GetComponent<PauseMenuActions>().OnResumeGame += TogglePauseMenu; 
+        pauseMenuCanvas.GetComponent<PauseMenuActions>().OnResumeGame += TogglePauseMenu;
         //levelBar.OnLevelUp += TogglePowerUpMenu;
+        
     }
 
     private void OnDisable()
@@ -37,6 +38,7 @@ public class PauseComponent : MonoBehaviour
     private void TogglePauseMenu()
     {
         isPaused = !isPaused;
+        AudioManager.PlaySound2D(SoundType.MenuOpen);
         playerController.IsPaused = isPaused;
         Time.timeScale = isPaused ? 0f : 1.0f;
         pauseMenuCanvas.gameObject.SetActive(isPaused);

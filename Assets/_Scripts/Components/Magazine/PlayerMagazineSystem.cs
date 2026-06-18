@@ -57,8 +57,12 @@ public class PlayerMagazineSystem : MagazineSystem
 
     public override BulletBehavior GetBullet()
     {
-        
-        if (shotBulletCount >= maxChambers) return null;
+
+        if (shotBulletCount >= maxChambers)
+        {
+            AudioManager.PlaySound3D(SoundType.NoAmmo, transform.position);
+            return null;
+        }
 
         BulletBehavior bullet = bulletPool.Get();  // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
 
@@ -115,6 +119,7 @@ public class PlayerMagazineSystem : MagazineSystem
 
     public void Reload()
     {
+        AudioManager.PlaySound3D(SoundType.Reload, gameObject.transform.position);
         shotBulletCount = 0;
     }
 

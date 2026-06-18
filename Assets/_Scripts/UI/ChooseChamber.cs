@@ -66,14 +66,18 @@ public class ChooseChamber : MonoBehaviour
     {
         if (playerMagazine == null || currentBulletData == null) return;
 
-        if (playerMagazine.ChamberTypes[currentChamberIndex] != BulletType.Normal) return; //magari aggiungere un sfx di errore
-
+        if (playerMagazine.ChamberTypes[currentChamberIndex] != BulletType.Normal)
+        {
+            AudioManager.PlaySound2D(SoundType.ErrorDrum);
+            return;
+        }
         playerMagazine.InfuseChamber(currentChamberIndex, currentBulletData.Modifier.bulletType);
 
         Debug.Log($"Proiettile {currentBulletData.Modifier.bulletType} inserito nella camera {currentChamberIndex}!");
 
         if (powerUpManager != null)
         {
+            AudioManager.PlaySound2D(SoundType.SelectionButton);
             powerUpManager.OnChamberSelectionConfirmed();
         }
     }
@@ -81,11 +85,13 @@ public class ChooseChamber : MonoBehaviour
     #region PlayerInput Helper
     public void MoveLeft()
     {
+        AudioManager.PlaySound2D(SoundType.RotateDrum);
         RotateDrum(-1);
     }
 
     public void MoveRight()
     {
+        AudioManager.PlaySound2D(SoundType.RotateDrum);
         RotateDrum(1);
     }
     #endregion

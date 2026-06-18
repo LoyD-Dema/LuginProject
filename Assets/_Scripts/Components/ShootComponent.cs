@@ -16,10 +16,15 @@ public class ShootComponent : MonoBehaviour
 
     public void Shoot()
     {
-        if (elapsedFireRateTime >= 0) return;
+        if (elapsedFireRateTime >= 0)
+            return;
 
         BulletBehavior newBullet = magazine.GetBullet();
-        if (!newBullet) return;
+        
+        if (!newBullet) 
+            return;
+
+        AudioManager.PlaySound3D(SoundType.CowboyShoot, transform.position,2);
         newBullet.transform.position = bulletSpawn.position;
         newBullet.transform.rotation = transform.rotation;
         elapsedFireRateTime = fireRate;

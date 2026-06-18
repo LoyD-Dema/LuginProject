@@ -49,6 +49,7 @@ public class LevelBar : MonoBehaviour
     private void CombatEvents_OnXpPickUp(XPPickUp obj)
     {
         AddExp(obj.Value);
+        AudioManager.PlaySound2D(SoundType.ColletExp);
     }
     
     private void CombatEvent_OnEnemyKilled(int exp)

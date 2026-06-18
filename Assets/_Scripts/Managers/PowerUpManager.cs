@@ -64,6 +64,7 @@ public class PowerUpManager : MonoBehaviour
 
     private void OpenPowerUpMenu()
     {
+        AudioManager.PlaySound2D(SoundType.LevelUpSound);
         playerInput.SwitchCurrentActionMap("UI");
         powerUpCardsPanel.SetActive(true);
         chooseChamberPanel.SetActive(false);

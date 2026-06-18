@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     public void OnReload(InputValue value)
     {
         OnReloadEvent?.Invoke();
+        AudioManager.PlaySound3D(SoundType.Reload, transform.position);
     }
 
     #region UI Input

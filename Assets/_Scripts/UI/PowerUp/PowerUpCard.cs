@@ -26,6 +26,7 @@ public class PowerUpCard : MonoBehaviour
 
     public void OnCardSelected()
     {
+        AudioManager.PlaySound2D(SoundType.SelectionButton);
         powerUpManager.ApplyPowerUp(data, value);
     }
 }

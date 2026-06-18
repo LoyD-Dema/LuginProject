@@ -66,6 +66,9 @@ public class MoveArrowsNextToSelectedCard : MonoBehaviour
 
 
         GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+
+        AudioManager.PlaySound2D(SoundType.HoverButton);
+
         RectTransform selectedCardRect = selectedObject.GetComponent<RectTransform>();
         if (!selectedCardRect) return;
 
