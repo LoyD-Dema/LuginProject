@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class AIController : MonoBehaviour
 {
     protected enum States
@@ -11,6 +13,7 @@ public class AIController : MonoBehaviour
         LAST
     }
 
+    [Header("Stats")]
     [SerializeField]
     private Transform target;
     [SerializeField]
@@ -23,14 +26,16 @@ public class AIController : MonoBehaviour
 
     private States currentState = States.Moving;
 
-    private MovementComponent movementComponent;
-    private ShootComponent _playerShootComponent;
+    //private MovementComponent movementComponent; // Not needed anymore since then navmesh agent handles everything
+    private ShootComponent playerShootComponent;
+    private NavMeshAgent navAgent;
     private Material material;
 
     private void Start()
     {
-        movementComponent = GetComponent<MovementComponent>();
-        _playerShootComponent = GetComponent<ShootComponent>();
+        //movementComponent = GetComponent<MovementComponent>();
+        playerShootComponent = GetComponent<ShootComponent>();
+        navAgent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<Renderer>().material;
 
         statesColors[States.Moving] = Color.blue;
@@ -41,6 +46,7 @@ public class AIController : MonoBehaviour
     {
         currentState = States.Moving;
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        if(!navAgent) navAgent = GetComponent<NavMeshAgent>();
     }
 
     private void OnDisable()
@@ -62,20 +68,23 @@ public class AIController : MonoBehaviour
                 if (dst.sqrMagnitude <= shootRadius * shootRadius)
                 {
                     currentState = States.Shooting;
-                    movementComponent.SetDirection(Vector2.zero);
+                    navAgent.isStopped = true;
+                    //movementComponent.SetDirection(Vector2.zero);
                     break;
                 }
 
-                movementComponent.SetDirection(new Vector2(transform.forward.x, transform.forward.z));
+                navAgent.SetDestination(target.position);
+                //movementComponent.SetDirection(new Vector2(transform.forward.x, transform.forward.z));
 
                 break;
             case States.Shooting:
                 
-                _playerShootComponent.Shoot();
+                playerShootComponent.Shoot();
                 
                 if (dst.sqrMagnitude > followRadius * followRadius)
                 {
                     currentState = States.Moving;
+                    navAgent.isStopped = false;
                 }
 
                 break;
