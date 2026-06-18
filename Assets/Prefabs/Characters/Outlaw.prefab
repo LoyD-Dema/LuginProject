@@ -1567,7 +1567,6 @@ GameObject:
   - component: {fileID: 2776848164275033699}
   - component: {fileID: 8912014974712471478}
   - component: {fileID: 3458968511574697220}
-  - component: {fileID: 6967226518141507058}
   m_Layer: 8
   m_Name: Outlaw
   m_TagString: Enemy
@@ -1789,18 +1788,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6967226518141507058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1942289980213182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 931c6d29f1714bd1870ee3d251b9b548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Controllers.AnimController
 --- !u!1 &1954743680365594
 GameObject:
   m_ObjectHideFlags: 0

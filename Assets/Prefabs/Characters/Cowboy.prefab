@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
+  bCanFire: 1
   magazine: {fileID: 8919947756050623743}
   bulletSpawn: {fileID: 7084283425039638442}
 --- !u!114 &8919947756050623743
@@ -1435,7 +1436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847fc75d1e1f46cb8e6f75b3cd7cc849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XPMagnet
-  radius: 1
+  radius: 3
 --- !u!1 &6044714389505839466
 GameObject:
   m_ObjectHideFlags: 0
