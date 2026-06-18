@@ -7,6 +7,9 @@ public class ShootComponent : MonoBehaviour
 {
     [Range(0.1f, 5.0f)]
     [SerializeField] float fireRate = 0.5f;
+    private float FireRate => fireRate;
+    public bool bCanFire = true;
+    
     private float elapsedFireRateTime;
     
     [SerializeField]
@@ -16,18 +19,21 @@ public class ShootComponent : MonoBehaviour
 
     public void Shoot()
     {
-        if (elapsedFireRateTime >= 0)
-            return;
+        if (elapsedFireRateTime >= 0) return;
 
         BulletBehavior newBullet = magazine.GetBullet();
+        if (!newBullet)
+            bCanFire = false;
+        else
+            bCanFire = true;
+        Debug.Log($"New bullet: {!newBullet}, Can fire: {bCanFire}");
         
-        if (!newBullet) 
-            return;
-
-        AudioManager.PlaySound3D(SoundType.CowboyShoot, transform.position,2);
-        newBullet.transform.position = bulletSpawn.position;
-        newBullet.transform.rotation = transform.rotation;
-        elapsedFireRateTime = fireRate;
+        if (bCanFire)
+        {
+            newBullet.transform.position = bulletSpawn.position;
+            newBullet.transform.rotation = transform.rotation;
+            elapsedFireRateTime = fireRate;
+        }
     }
 
     private void Update()

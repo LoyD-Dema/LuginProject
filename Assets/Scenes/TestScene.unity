@@ -716,6 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e996ee84896a29b4ba392d8ebc69b1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  choseChamberUI: {fileID: 0}
 --- !u!114 &331279640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
+  bCanFire: 1
   magazine: {fileID: 0}
   bulletSpawn: {fileID: 0}
 --- !u!114 &331279646
@@ -815,6 +817,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RotateToMouse
   rotationSpeed: 20
   shootPosition: {fileID: 0}
+  enableDebug: 0
+  size: {x: 150, y: 0.1, z: 150}
 --- !u!1818360608 &331279647
 PositionConstraint:
   m_ObjectHideFlags: 0
@@ -922,82 +926,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
---- !u!1001 &614717881
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1746743948028706, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_Name
-      value: SM_Wep_Revolver_02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.79963183
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.36094
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.034173727
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 64019680669939990, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 64169994023093708, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1746743948028706, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 931866467}
-    - targetCorrespondingSourceObject: {fileID: 1746743948028706, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 931866466}
-  m_SourcePrefab: {fileID: 100100000, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
---- !u!4 &621333008 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1692461832269770254, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
-  m_PrefabInstance: {fileID: 869996757}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &869996757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1026,6 +954,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 95fe4626e737cc842ab5aab00fe702b0, type: 2}
+    - target: {fileID: 5071183205946011245, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5990403518192266740, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_Name
       value: Cowboy
@@ -1123,58 +1055,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbb636f56db8e44bb9f1eac91677a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
---- !u!1 &931866465 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1746743948028706, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
-  m_PrefabInstance: {fileID: 614717881}
-  m_PrefabAsset: {fileID: 0}
---- !u!1818360609 &931866466
-RotationConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931866465}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_RotationAtRest: {x: 0, y: 0, z: -90}
-  m_RotationOffset: {x: 0, y: 180, z: 90}
-  m_AffectRotationX: 0
-  m_AffectRotationY: 0
-  m_AffectRotationZ: 0
-  m_Active: 1
-  m_IsLocked: 0
-  m_Sources:
-  - sourceTransform: {fileID: 621333008}
-    weight: 1
---- !u!1773428102 &931866467
-ParentConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931866465}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_TranslationAtRest: {x: 0.79963183, y: 1.36094, z: -0.034173727}
-  m_RotationAtRest: {x: 0, y: 0, z: -90}
-  m_TranslationOffsets:
-  - {x: 0, y: 0, z: 0}
-  m_RotationOffsets:
-  - {x: 0, y: 180, z: 90}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_AffectRotationX: 1
-  m_AffectRotationY: 1
-  m_AffectRotationZ: 1
-  m_Active: 1
-  m_IsLocked: 0
-  m_Sources:
-  - sourceTransform: {fileID: 621333008}
-    weight: 1
 --- !u!1 &936475116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +1737,7 @@ GameObject:
   - component: {fileID: 1477076591}
   - component: {fileID: 1477076592}
   - component: {fileID: 1477076594}
+  - component: {fileID: 1477076595}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -2027,8 +1908,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootComponent
   fireRate: 0.5
+  bCanFire: 1
   magazine: {fileID: 0}
   bulletSpawn: {fileID: 0}
+--- !u!195 &1477076595
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477076586}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &1616081190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2652,4 +2556,3 @@ SceneRoots:
   - {fileID: 936475119}
   - {fileID: 959594946}
   - {fileID: 198439906}
-  - {fileID: 614717881}

@@ -7,14 +7,17 @@ namespace Controllers
     {
         private Animator animator;
         private Rigidbody rb;
+        private ShootComponent shootComponent;
 
         private bool bIsMoving = false;
         private bool bIsShooting = false;
+
         
         private void Start()
         {
             animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
+            shootComponent = GetComponent<ShootComponent>();
         }
 
         public void OnMove(InputValue value)
@@ -26,18 +29,23 @@ namespace Controllers
 
         public void OnShoot(InputValue value)
         {
-            Debug.Log(value.Get<float>());
-            float v = value.Get<float>();
-            bIsShooting = v > 0.5f;
-            animator.SetBool("IsShooting", bIsShooting);
-        }
+            Debug.Log($"Can fire: {shootComponent.bCanFire}, fire input: {value.Get<float>() > 0.5f}");
 
+            if(value.Get<float>() > 0.5f && shootComponent.bCanFire)
+                animator.SetBool("CanShoot", true);
+            else
+                animator.SetBool("CanShoot", false);                
+        }
         
         public void FixedUpdate()
         {
+            Vector3 velocity = rb.linearVelocity;
+            
+            float speed = velocity.magnitude;
+            animator.SetFloat("Speed", speed);
+            
             if (bIsMoving)
             {
-                Vector3 velocity = rb.linearVelocity;
                 Vector3 localVelocity = transform.InverseTransformDirection(velocity.normalized);
 
                 Debug.Log($"Horizontal {localVelocity.x} Vertical {localVelocity.z}");
