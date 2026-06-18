@@ -9,6 +9,7 @@ namespace Controllers
         private Rigidbody rb;
 
         private bool bIsMoving = false;
+        private bool bIsShooting = false;
         
         private void Start()
         {
@@ -23,6 +24,15 @@ namespace Controllers
             animator.SetBool("IsMoving", bIsMoving);
         }
 
+        public void OnShoot(InputValue value)
+        {
+            Debug.Log(value.Get<float>());
+            float v = value.Get<float>();
+            bIsShooting = v > 0.5f;
+            animator.SetBool("IsShooting", bIsShooting);
+        }
+
+        
         public void FixedUpdate()
         {
             if (bIsMoving)
