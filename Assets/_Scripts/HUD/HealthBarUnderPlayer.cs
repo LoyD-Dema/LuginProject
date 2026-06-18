@@ -9,6 +9,11 @@ public class HealthBarUnderPlayer : MonoBehaviour
     [Header("Images")]
     [SerializeField] Image healthFillImage;
     [SerializeField] Image visualFillImage;
+    [SerializeField] Image skull;
+
+    [Header("Sprites")]
+    [SerializeField] private Sprite normalSprite;
+    [SerializeField] private Sprite hitSprite;
 
     [SerializeField] float lerpSpeed = 3.0f;
 
@@ -43,6 +48,8 @@ public class HealthBarUnderPlayer : MonoBehaviour
         targetFillAmt = healthComponent.CurrentHealth / healthComponent.MaxHealth;
         healthFillImage.fillAmount = targetFillAmt;
         visualFillImage.fillAmount = targetFillAmt;
+
+        skull.sprite = normalSprite;  
     }
 
     private void Update()
@@ -55,7 +62,15 @@ public class HealthBarUnderPlayer : MonoBehaviour
         {
             if (Mathf.Abs(healthFillImage.fillAmount - targetFillAmt) < 0.005f) //Ho provato con Mathf.Approximately ma ci mette troppo a sparire
             {
-                visualFillImage.fillAmount = targetFillAmt; 
+                //visualFillImage.fillAmount = targetFillAmt;
+
+                visualFillImage.fillAmount = Mathf.Lerp(visualFillImage.fillAmount, targetFillAmt, lerpSpeed * Time.deltaTime * 1.5f);
+
+                if(Mathf.Abs(visualFillImage.fillAmount - targetFillAmt) < 0.005f)
+                {
+                    visualFillImage.fillAmount = targetFillAmt;
+                    skull.sprite = normalSprite;
+                }
             }
         }
         else
@@ -69,5 +84,6 @@ public class HealthBarUnderPlayer : MonoBehaviour
         if (!healthComponent || healthComponent.MaxHealth <= 0) return;
 
         targetFillAmt = healthComponent.CurrentHealth / healthComponent.MaxHealth;
+        skull.sprite = hitSprite;
     }
 }

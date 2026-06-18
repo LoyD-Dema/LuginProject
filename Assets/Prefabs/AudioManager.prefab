@@ -53,66 +53,86 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 5477dbd2d60ef7a4aad5d8655a3c8e5b, type: 3}
     - {fileID: 8300000, guid: f74b5f7e05b78494da53d7791c747634, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   - type: 1
     clips:
     - {fileID: 8300000, guid: 461d798e807ccb64f8ec865f43a1c502, type: 3}
     - {fileID: 8300000, guid: 12d19c6dc1583b241a33df05fd3dcfa9, type: 3}
     - {fileID: 8300000, guid: c554f8b94d5c2a949980ab022661ff45, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   - type: 2
     clips:
     - {fileID: 8300000, guid: 8cb36c6f0d80a9f42bd16cfa00cf3195, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   - type: 5
     clips:
-    - {fileID: 8300000, guid: a68aabcf86e3b4444bac4342dd279680, type: 3}
+    - {fileID: 8300000, guid: 7c4efa6fb8b665f4983a1e7c73a0c7aa, type: 3}
     - {fileID: 8300000, guid: fd524906ae8e377429749b4cfdadd70e, type: 3}
     - {fileID: 8300000, guid: 94c9ba44350ec96458f8b444e75a9287, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.2
   - type: 6
     clips:
     - {fileID: 8300000, guid: 34d6b8b5caa1ff745ab4d3a6b5273255, type: 3}
     - {fileID: 8300000, guid: 26ce1346cbf6c05418fcda4d50f12ae8, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.3
   - type: 7
     clips:
     - {fileID: 8300000, guid: 73a359a384c1d594ab462fa5b46b15ab, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   - type: 8
     clips:
     - {fileID: 8300000, guid: 77c75ea8dc271de48b2a695bd36c736e, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.2
   - type: 9
     clips:
     - {fileID: 8300000, guid: 6a8f699f29b36734098c87b679dca54c, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.35
   - type: 10
     clips:
     - {fileID: 8300000, guid: 273c9bf97128a60448e571c59eef5876, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   - type: 11
     clips:
     - {fileID: 8300000, guid: 94a40a3ebd4d3984ba3a504b7cd073ec, type: 3}
     - {fileID: 8300000, guid: dd4e8ddb56d3b6c438475f5400ee6ddc, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   - type: 12
     clips:
     - {fileID: 8300000, guid: ea1fd305b6f6cef4da6d9ffa5420b465, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0
   - type: 13
     clips:
     - {fileID: 8300000, guid: cfdfae8211d137543bb4f008b06a9cea, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   - type: 14
     clips:
     - {fileID: 8300000, guid: bb3d22045ec2b5646ba31032b7eb6a44, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   - type: 3
     clips:
     - {fileID: 8300000, guid: 087d8304bf9b06b47875687675014d7d, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   - type: 4
     clips:
     - {fileID: 8300000, guid: c8a77bc5963f91240bb49e30f9a47d13, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
+  - type: 15
+    clips:
+    - {fileID: 8300000, guid: f5feb5e9e3e658b4ba31f0342447e4d9, type: 3}
+    mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.5
   spawnAudioPrefab: {fileID: 3179908470204314477, guid: b96904660d105744a907c55f02f44880, type: 3}
