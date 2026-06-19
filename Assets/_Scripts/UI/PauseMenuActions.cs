@@ -10,6 +10,7 @@ public class PauseMenuActions : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         Time.timeScale = 1.0f;
+        GetComponent<MoveObjectNextToSelectedUIObject>().enabled = false;
         StartCoroutine(PlaySoundAndLoadScene(sceneName));
     }
 

@@ -61,6 +61,7 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
 
     private void OnDisable()
     {
+        StopAllCoroutines();
         resetSelection.OnSelectedElementChange -= ResetSelection_OnSelectedElementChange;
     }
 

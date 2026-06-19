@@ -27058,6 +27058,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cowboy
       objectReference: {fileID: 0}
+    - target: {fileID: 7049774884085379359, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: pauseMenuCanvas
+      value: 
+      objectReference: {fileID: 847359112}
     - target: {fileID: 8166924362150774812, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.46
@@ -28251,7 +28255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7084879880381538149, guid: c2bb657e9d66ebb43acfa15f3f70d035, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: TestScene
+      value: MainLevel
       objectReference: {fileID: 0}
     - target: {fileID: 9188388404071036015, guid: c2bb657e9d66ebb43acfa15f3f70d035, type: 3}
       propertyPath: m_AnchorMax.y
@@ -28280,6 +28284,11 @@ PrefabInstance:
 --- !u!224 &847359111 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5181951799506331293, guid: c2bb657e9d66ebb43acfa15f3f70d035, type: 3}
+  m_PrefabInstance: {fileID: 847359110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &847359112 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1189680560836188479, guid: c2bb657e9d66ebb43acfa15f3f70d035, type: 3}
   m_PrefabInstance: {fileID: 847359110}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &852821418
