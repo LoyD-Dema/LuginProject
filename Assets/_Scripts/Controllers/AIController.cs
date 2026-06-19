@@ -105,7 +105,9 @@ public class AIController : MonoBehaviour
                 
                 //Animations
                 animator.SetFloat("ShootingSpeedMult",1f/0.5f);
+                animator.SetBool("IsMoving", false);
                 animator.SetTrigger("Shoot");
+                
                 break;
             default:
                 Debug.Log("Nessuno stato trovato :c");

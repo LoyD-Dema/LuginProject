@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Pool;
 using Utilities;
 
@@ -9,8 +10,8 @@ public class EnemyPool : MonoBehaviour
     [SerializeField][Range(1, 100)] private int capacity = 10;
     [SerializeField][Range(1, 100)] private int maxSize = 50;
     [SerializeField][Range(1, 100)] private int spawnRateS = 5;
-
-    [Header("SpaenDistances")]
+    
+    [Header("SpawnDistances")]
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float spawnDistance = 25;
     
@@ -23,11 +24,16 @@ public class EnemyPool : MonoBehaviour
             enemyPrefab,
             createFunc: CreateItem,
             onGet: e => e.SetActive(true),
-            onRelease: e => e.SetActive(false),
+            onRelease: OnRelease,
             onDestroy: e=> Destroy(e),
             capacity,
             maxSize
         );
+    }
+
+    private void OnRelease(GameObject obj)
+    {
+        obj.SetActive(false);
     }
 
     private void Start()
@@ -43,18 +49,39 @@ public class EnemyPool : MonoBehaviour
         {
             if (playerTransform != null)
             {
-                Vector2 randomDirection = Random.insideUnitCircle.normalized; //TODO: check this why it doesn't spawn in a random point in a radius
-
-                Vector3 spawnPoint = new Vector3(randomDirection.x, 0, randomDirection.y) * spawnDistance;
-
-                Vector3 spawnPosition = playerTransform.position + spawnPoint;
-
-                GameObject enemy = pool.Get();
-                enemy.transform.position = spawnPosition;
-
+                if (TryGetValidNavMeshSpawnPoint(out Vector3 finalSpawnPosition))
+                {
+                    GameObject enemy = pool.Get();
+                    if (enemy.TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))
+                    {
+                        agent.enabled = false;
+                        agent.Warp(finalSpawnPosition);
+                        agent.enabled = true;
+                    }
+                }
             }
             yield return new WaitForSeconds(interval);
         }
+    }
+
+    private bool TryGetValidNavMeshSpawnPoint(out Vector3 finalPosition)
+    {
+        int maxTry = 10;
+        finalPosition = Vector3.zero;
+
+        for (int i = 0; i < maxTry; i++)
+        {
+            Vector2 randomDirection = Random.insideUnitCircle.normalized;
+            Vector3 spawnPointOffset = new Vector3(randomDirection.x, 0, randomDirection.y) * spawnDistance;
+            Vector3 rawSpawnPosition = playerTransform.position + spawnPointOffset;
+
+            if (NavMesh.SamplePosition(rawSpawnPosition, out NavMeshHit hit, spawnDistance, NavMesh.AllAreas))
+            {
+                finalPosition = hit.position;
+                return true;
+            }
+        }
+        return false;
     }
 
     private void OnEnable()
