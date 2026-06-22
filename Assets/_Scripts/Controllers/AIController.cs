@@ -32,6 +32,11 @@ public class AIController : MonoBehaviour
     private Material material;
     private Animator animator;
     private Rigidbody rb;
+
+
+    [SerializeField] private float startSeed = 3.5f;
+    private float speedMultiplayer;
+    public float SpeedMultiplayer { get { return speedMultiplayer; } set { speedMultiplayer = value;  SetActualSpeed(); } }
     
     private void Start()
     {
@@ -44,6 +49,8 @@ public class AIController : MonoBehaviour
 
         statesColors[States.Moving] = Color.blue;
         statesColors[States.Shooting] = Color.red;
+
+        SpeedMultiplayer = 1.0f;
     }
 
     private void OnEnable()
@@ -84,7 +91,7 @@ public class AIController : MonoBehaviour
                 animator.SetBool("IsMoving", true);
 
                 Vector3 velocity = navAgent.desiredVelocity;
-                Debug.Log(velocity);
+                //Debug.Log(velocity);
 
                 float speed = velocity.magnitude;
                 animator.SetFloat("Speed", speed);
@@ -116,4 +123,10 @@ public class AIController : MonoBehaviour
 
         material.color = statesColors[currentState];
     }
+
+    private void SetActualSpeed()
+    {
+        navAgent.speed = startSeed * speedMultiplayer; 
+    }
+
 }

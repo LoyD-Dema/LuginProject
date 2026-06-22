@@ -56,7 +56,7 @@ public class ChooseChamber : MonoBehaviour
     {
         targetRotation += direction * 60f;
 
-        currentChamberIndex += direction;
+        currentChamberIndex += -direction;
 
         currentChamberIndex = (currentChamberIndex % 6 + 6) % 6;
 
@@ -71,6 +71,7 @@ public class ChooseChamber : MonoBehaviour
             AudioManager.PlaySound2D(SoundType.ErrorDrum);
             return;
         }
+        Debug.Log(currentChamberIndex);
         playerMagazine.InfuseChamber(currentChamberIndex, currentBulletData.Modifier.bulletType);
 
         Debug.Log($"Proiettile {currentBulletData.Modifier.bulletType} inserito nella camera {currentChamberIndex}!");

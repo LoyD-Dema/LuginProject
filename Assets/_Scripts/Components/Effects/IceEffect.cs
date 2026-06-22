@@ -7,7 +7,7 @@ public class IceEffect : MonoBehaviour
     
     private float speedReduction;
 
-    private MovementComponent movement;
+    private AIController AIController;
 
     private void Awake()
     {
@@ -18,16 +18,16 @@ public class IceEffect : MonoBehaviour
     private void OnEnable()
     {
         Reset();
-        if(movement == null)
+        if(AIController == null)
         {
-            movement = GetComponent<MovementComponent>();
+            AIController = GetComponent<AIController>();
         }
-        movement.SpeedMultiplayer -= speedReduction;
+        AIController.SpeedMultiplayer -= speedReduction;
     }
 
     private void OnDisable()
     {
-        movement.SpeedMultiplayer += speedReduction; 
+        AIController.SpeedMultiplayer += speedReduction; 
     }
 
     private void Update()
