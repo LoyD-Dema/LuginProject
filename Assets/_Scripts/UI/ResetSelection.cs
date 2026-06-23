@@ -11,9 +11,9 @@ public class ResetSelection : MonoBehaviour
 
     private void Start()
     {
-        EventSystem.current.SetSelectedGameObject(firstSelected);
-        lastSelectedElement = EventSystem.current.currentSelectedGameObject;
-        OnSelectedElementChange?.Invoke();
+        //EventSystem.current.SetSelectedGameObject(firstSelected);
+        //lastSelectedElement = EventSystem.current.currentSelectedGameObject;
+        //OnSelectedElementChange?.Invoke();
     }
 
     private void Update()
