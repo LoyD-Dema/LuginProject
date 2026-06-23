@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SelectButtonOnHoover : MonoBehaviour, IPointerEnterHandler
+public class SelectOnHoover : MonoBehaviour, IPointerEnterHandler
 {
-    private Button button;
+    private Selectable button;
 
     private void Awake()
     {
-        button = GetComponent<Button>();
+        button = GetComponent<Selectable>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

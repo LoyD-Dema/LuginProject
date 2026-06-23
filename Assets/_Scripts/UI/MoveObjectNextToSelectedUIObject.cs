@@ -112,8 +112,6 @@ public class MoveObjectNextToSelectedUIObject : MonoBehaviour
             MoveObject();
         }
     }
-
-
     private void MoveObject()
     {
         int elemetsReached = 0;
