@@ -2248,7 +2248,7 @@ GameObject:
   - component: {fileID: 749661298}
   - component: {fileID: 749661297}
   m_Layer: 5
-  m_Name: TXT_Menu
+  m_Name: TXT_Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2293,7 +2293,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Settings
+  m_text: 'Options
 
 '
   m_isRightToLeft: 0
@@ -2322,7 +2322,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.5
+  m_fontSize: 25.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
