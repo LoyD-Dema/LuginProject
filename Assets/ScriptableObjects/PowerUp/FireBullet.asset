@@ -15,7 +15,7 @@ MonoBehaviour:
   powerUpName: Fire Bullet
   description: Infuse a chamber of the revolver with a Fire Bullet that deals damage
     over time to the enemy
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e7c349c990f87e94ba7ffa5115979f18, type: 3}
   modifier:
     statType: 3
     minIncrease: 0
