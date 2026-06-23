@@ -21,6 +21,7 @@ public enum SoundType
     RotateDrum,
     ErrorDrum,
     ColletExp,
+    FireBulletImpact
 }
 public class AudioManager : MonoBehaviour
 {

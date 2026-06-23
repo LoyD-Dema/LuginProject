@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d736c2eccbaa5ea4182669c6bbd1b7e4, type: 3}
-  m_Name: IceBullet
+  m_Name: FireBullet
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
-  powerUpName: Ice Bullet
-  description: Infuse a chamber of the revolver with an Ice Bullet the slow the enemy
-  icon: {fileID: 21300000, guid: 67a319632e987ca4d8fac245d0ac9446, type: 3}
+  powerUpName: Fire Bullet
+  description: Infuse a chamber of the revolver with a Fire Bullet that deals damage
+    over time to the enemy
+  icon: {fileID: 0}
   modifier:
     statType: 3
     minIncrease: 0
     maxIncrease: 0
     CapPercentage: 1
-    bulletType: 2
+    bulletType: 1
