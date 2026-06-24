@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class FireEffect : MonoBehaviour
 {
-    private float effectDuration = 5.0f;
-    private float damageInterval = 1.0f;
-    private float damageAmount = 10f;
+    private float effectDuration;
+    private float damageInterval;
+    private float damageAmount;
 
     private HealthComponent healthComponent;
     private Coroutine fireCoroutine;
@@ -13,6 +13,10 @@ public class FireEffect : MonoBehaviour
     private void Awake()
     {
         healthComponent = GetComponent<HealthComponent>();
+
+        effectDuration = EffectsManager.I.FireEffectDuration;
+        damageInterval = EffectsManager.I.FireDamageInterval;
+        damageAmount = EffectsManager.I.FireDamageAmount;
     }
 
     private void OnEnable()

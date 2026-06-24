@@ -13,24 +13,36 @@ public enum BulletType
 
 public class EffectsManager : MonoBehaviour
 {
-    public static EffectsManager I {  get; private set; }
+    public static EffectsManager I { get; private set; }
 
-    [Header("Params")]
     [Header("Params/Ice")]
-    [Range(0.0f, 1f)]
-    [SerializeField] private float characterSpeedMultiplayerToDecrese = 0.2f;
+    // Bullet
     [Range(0.0f, 1f)]
     [SerializeField] private float bulletSpeedMultiplayerToDecrese = 0.2f;
     [Range(0.0f, 1f)]
     [SerializeField] private float bulletDmnMultiplayerToDecrese = 0.2f;
+    // Effect
+    [Range(0.0f, 1f)]
+    [SerializeField] private float characterSpeedMultiplayerToDecrese = 0.2f;
     [SerializeField] private float iceEffectDurarion = 1.0f;
+    [Header("Params/Fire")]
+    // Effect
+    [SerializeField] private float fireEffectDuration = 5.0f;
+    [SerializeField] private float fireDamageInterval = 1.0f;
+    [SerializeField] private float fireDamageAmount = 10f;
+
 
 
     // Property
+    // Ice
     public float CharacterSpeedMultiplayerToDecrese => characterSpeedMultiplayerToDecrese;
     public float BulletSpeedMultiplayerToDecrese => bulletSpeedMultiplayerToDecrese;
     public float BulletDmnMultiplayerToDecrese => bulletDmnMultiplayerToDecrese;
     public float IceEffectDurarion => iceEffectDurarion;
+    // Fire
+    public float FireEffectDuration => fireEffectDuration;
+    public float FireDamageInterval => fireDamageInterval;
+    public float FireDamageAmount => fireDamageAmount;
 
     private void Awake()
     {
