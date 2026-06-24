@@ -5088,7 +5088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8620988077820726336, guid: e88cc58c4aa79fc47ab72adb18d81e81, type: 3}
       propertyPath: m_IsLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8620988077820726336, guid: e88cc58c4aa79fc47ab72adb18d81e81, type: 3}
       propertyPath: m_AffectTranslationX
