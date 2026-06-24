@@ -73,7 +73,7 @@ public class PlayerMagazineSystem : MagazineSystem
         switch (chamberTypes[selectedChamber])
         {
             case BulletType.Fire:
-                //CheckOrAddModifier(bullet, typeof(FireModifier));
+                CheckOrAddModifier(bullet, typeof(FireModifier));
                 break;
             case BulletType.Ice:
                 CheckOrAddModifier(bullet, typeof(IceModifier));
