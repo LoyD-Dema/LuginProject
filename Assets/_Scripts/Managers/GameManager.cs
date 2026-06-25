@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,12 +57,23 @@ public class GameManager : MonoBehaviour
 
 
     #region GameOver
-    private void OnActorDeath(GameObject deadObject)
+    private void OnActorDeath(GameObject obj)
     {
-        if (deadObject.CompareTag("Player"))
+        if (obj.CompareTag("Player"))
         {
-            TriggerGameOver();
+            if (obj.TryGetComponent<PlayerController>(out var controller)) controller.enabled = false;
+            if (obj.TryGetComponent<MovementComponent>(out var movement)) movement.enabled = false;
+            if (obj.TryGetComponent<RotateToMouse>(out var rotator)) rotator.enabled = false;
+            StartCoroutine(DelayedGameOver(3.2f));
+            //TriggerGameOver();
         }
+    }
+
+    private System.Collections.IEnumerator DelayedGameOver(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+
+        TriggerGameOver();
     }
 
     private void TriggerGameOver()

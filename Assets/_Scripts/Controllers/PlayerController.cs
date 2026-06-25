@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnReload(InputValue value)
     {
+        if (isPaused) return;
+
         OnReloadEvent?.Invoke();
         AudioManager.PlaySound3D(SoundType.Reload, transform.position);
     }

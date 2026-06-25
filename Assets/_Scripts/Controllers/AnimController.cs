@@ -18,7 +18,16 @@ namespace Controllers
         private Vector3 currentVelocity;
         private float acceleration = 1f;
 
-        
+        private void OnEnable()
+        {
+            HealthComponent.Death += OnDeath;
+        }
+
+        private void OnDisable()
+        {
+            HealthComponent.Death -= OnDeath;
+        }
+
         private void Start()
         {
             animator = GetComponent<Animator>();
@@ -60,6 +69,15 @@ namespace Controllers
             );
 
             rb.linearVelocity = currentVelocity;
+        }
+
+        private void OnDeath(GameObject obj)
+        {
+            if (obj == gameObject)
+            {
+            animator.SetTrigger("IsDead");
+            this.enabled = false;
+            }
         }
         
         void Update()
