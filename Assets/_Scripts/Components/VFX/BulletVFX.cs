@@ -17,7 +17,6 @@ namespace Components.VFX
     {
         [SerializeField] private GameObject hitVfxPrefab;
         //[SerializeField] private VisualEffectAsset hitEffectAsset; //particles to play when hit
-        private VisualEffect hitVfx;
 
         private BulletBehavior bulletBehavior;
         private GameObject go;
@@ -32,7 +31,7 @@ namespace Components.VFX
         {
             bulletBehavior.OnHitTrigger -= OnHit;
         }
-
+        
         private void OnHit(object sender, OnHitEventArgs e)
         {
             GameObject vfx = Instantiate(hitVfxPrefab, e.HitInfo.HitPoint, Quaternion.identity);
