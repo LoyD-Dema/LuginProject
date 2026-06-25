@@ -7754,26 +7754,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<color=#FF0000><size=140%>{VFX{</size></color>\nVFXs\nby Martina Tenani\n\n\n<color=#00FFFF><size=140%>*Music*</size></color>\nOutlaw
-    Loops - Modern Western Music\nby Josh Lim from Unity Asset Store\n\n\n<color=#FF00FF><size=140%>}Graphic}</size></color>\nPOLYGON
-    - Western Pack\nby Synty Studio from Synty Store\n\nEnchanted Crystal\nby TheTallOne
-    from Sketchfab\n\nLow Poly Spinning Heart\nby mano1creative from Sketchfab\n\nMini
-    Pocket Status\nby Humble Pixel from itch.io \n\nCheck\nby Google from Google
-    font\n\nCursor crossair\nby Boris Farias from Flaticon\n\nRevolver drum\nfrom
-    iStock\n\nPower-Ups\nby Riccardo Meloni\n\nBullets in drum\nby Lorenzo De Martino\n\n\n<color=#0000FF><size=140%><Sound
-    Effects></size></color>\n< hurt1\nby freesound_community from Pixabay\n\n< hurt2\nby
-    freesound_community from Pixabay\n\n< hurt3\nby freesound_community from Pixabay\n\n<
-    Death\nby u_r7cny11q7r from Pixabay\n\n< shot1\nby EAGLAXLE from Pixabay\n\n<
-    shot2\nby EAGLAXLE from Pixabay\n\n< shot3\nby EAGLAXLE from Pixabay\n\n< NoAmmo\nby
-    freesound_community from Pixabay\n\n< SandStep\nby freesound_community from Pixabay\n\n<
-    Death2\nby Universfield from Pixabay\n\n< IceImpact\nby Yodguard from Pixabay\n\n<
-    OpenMenuV1\nby Game Studio from Pixabay\n\n< PlayerDeath\nby Noctryx from Pixabay\n\n<
-    RevolverReload\nby freesound_community from Pixabay\n\n< SelectionShot\nby Vicki
-    Hamilton from Pixabay\n\n< TempHover\nby litupsubway from Pixabay\n\n< NormalImpact1\nby
-    adam katutis from Pixabay\n\n< NormalImpact2\nby u_68csiaifb5 from Pixabay\n\n<
-    Guitar\nby freesound_community from Pixabay\n\n< ErrorSound\nby SoundShelfStudio
-    from Pixabay\n\n< Tick\nby freesound_community from Pixabay\n\n< FireImpact\nby
-    u_xjrmmgxfru from Pixabay"
+  m_text: "<color=#FF0000><size=140%>{VFX{</size></color>\n{ VFXs\nby Martina Tenani\n\n\n<color=#00FFFF><size=140%>*Music*</size></color>\n*
+    Outlaw Loops - Modern Western Music\nby Josh Lim from Unity Asset Store\n\n\n<color=#FF00FF><size=140%>}Graphic}</size></color>\n}
+    POLYGON - Western Pack\nby Synty Studio from Synty Store\n\n} Enchanted Crystal\nby
+    TheTallOne from Sketchfab\n \n}Low Poly Spinning Heart\nby mano1creative from
+    Sketchfab\n\n} Mini Pocket Status\nby Humble Pixel from itch.io \n\n} Check\nby
+    Google from Google font\n\n} Cursor crossair\nby Boris Farias from Flaticon\n\n}
+    Revolver drum\nfrom iStock\n\n} Power-Ups\nby Riccardo Meloni\n\n} Bullets in
+    drum\nby Lorenzo De Martino\n\n\n<color=#0000FF><size=140%><Sound Effects></size></color>\n<
+    hurt1\nby freesound_community from Pixabay\n\n< hurt2\nby freesound_community
+    from Pixabay\n\n< hurt3\nby freesound_community from Pixabay\n\n< Death\nby u_r7cny11q7r
+    from Pixabay\n\n< shot1\nby EAGLAXLE from Pixabay\n\n< shot2\nby EAGLAXLE from
+    Pixabay\n\n< shot3\nby EAGLAXLE from Pixabay\n\n< NoAmmo\nby freesound_community
+    from Pixabay\n\n< SandStep\nby freesound_community from Pixabay\n\n< Death2\nby
+    Universfield from Pixabay\n\n< IceImpact\nby Yodguard from Pixabay\n\n< OpenMenuV1\nby
+    Game Studio from Pixabay\n\n< PlayerDeath\nby Noctryx from Pixabay\n\n< RevolverReload\nby
+    freesound_community from Pixabay\n\n< SelectionShot\nby Vicki Hamilton from Pixabay\n\n<
+    TempHover\nby litupsubway from Pixabay\n\n< NormalImpact1\nby adam katutis from
+    Pixabay\n\n< NormalImpact2\nby u_68csiaifb5 from Pixabay\n\n< Guitar\nby freesound_community
+    from Pixabay\n\n< ErrorSound\nby SoundShelfStudio from Pixabay\n\n< Tick\nby
+    freesound_community from Pixabay\n\n< FireImpact\nby u_xjrmmgxfru from Pixabay"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 404b134193344cf499ce7c08ca934237, type: 2}
   m_sharedMaterial: {fileID: -1166136633499703790, guid: 404b134193344cf499ce7c08ca934237, type: 2}
