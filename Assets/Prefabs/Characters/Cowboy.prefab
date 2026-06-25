@@ -1351,6 +1351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Components.VFX.ActorHitVFX
   hitParticlesAsset: {fileID: 0}
   hitMaterial: {fileID: -876546973899608171, guid: 48f18f1cf77c7fc49b12ed8a460fe371, type: 3}
+  healMaterial: {fileID: -876546973899608171, guid: f14b9b51158f8b2499494f808f7d7483, type: 3}
+  hitEffectDuration: 0.2
 --- !u!114 &4242352125128279403
 MonoBehaviour:
   m_ObjectHideFlags: 0

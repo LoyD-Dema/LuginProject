@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
-using Utilities;
 
 namespace Components.VFX
 {
@@ -16,18 +14,23 @@ namespace Components.VFX
     {
         private Renderer targetRenderer;
         private Material originalMaterial;
+        private Texture baseTexture;
         private Coroutine hitRoutine;
         
         private HealthComponent healthComponent;
-        
-        [SerializeField] private VisualEffectAsset hitParticlesAsset; //particles to play when hit
-        [SerializeField] private Material hitMaterial; //a shader to apply to the Actor when hit
-        
+
+        [Header("Material Settings")]
+        [SerializeField] private VisualEffectAsset hitParticlesAsset; // particles to play when hit
+        [SerializeField] private Material hitMaterial; // a shader to apply to the Actor when hit
+        private Material runtimeHitMaterial; //local copy
+        [SerializeField] private Material healMaterial; // a shader to apply to the Actor when hit
+        private Material runtimeHealMaterial; //local copy
+
         #region Utilities
         private GameObject go;
         private VisualEffect HitParticlesVfx;
-        private float hitEffcetDuration = 1f; //duration of the hit effect, we can adjust this based on the actual duration of the particle system or shader effect
-        private float lifetimeBuffer = .4f; //a small buffer to ensure that the effect is completely finished before destroying the game object
+        [SerializeField] private float hitEffectDuration = 0.2f;
+        private float lifetimeBuffer = .4f; 
         #endregion
 
         private void Awake()
@@ -39,44 +42,106 @@ namespace Components.VFX
         {
             healthComponent.Damage += OnDamage;
             healthComponent.Heal += OnHeal;
+            
+            ResetToOriginalMaterial();
         }
 
         private void OnDisable()
         {
             healthComponent.Damage -= OnDamage;
             healthComponent.Heal -= OnHeal;
+            
+            ResetToOriginalMaterial();
         }
         
         private void Start()
         {
-            targetRenderer = GetComponentInChildren<Renderer>();
-            originalMaterial = targetRenderer.material;
+            InitializeReferences();
         }
         
         private void OnHeal()
         {
-            throw new NotImplementedException();
+            if (runtimeHealMaterial == null) return; 
+            PlayTemporaryShaderEffect(runtimeHitMaterial);
         }
 
         private void OnDamage()
         {
-            PlayTemporaryShaderEffect(hitMaterial);
+            if (runtimeHitMaterial == null) return; 
+            PlayTemporaryShaderEffect(runtimeHitMaterial);
         }
 
         public void PlayTemporaryShaderEffect(Material material = null)
         {
-            if(hitRoutine != null)
+            if (hitRoutine != null)
                 StopCoroutine(hitRoutine);
 
             hitRoutine = StartCoroutine(RunShaderEffect(material));
         }
 
-        IEnumerator RunShaderEffect(Material shaderMaterial = null)
+        private IEnumerator RunShaderEffect(Material materialToRun)
         {
-            targetRenderer.material = shaderMaterial;
-            yield return new WaitForSeconds(hitEffcetDuration);
-            targetRenderer.material = originalMaterial;
+            targetRenderer.sharedMaterial = materialToRun;
+            yield return new WaitForSeconds(hitEffectDuration);
+            targetRenderer.sharedMaterial = originalMaterial;
+            
             hitRoutine = null;
+        }
+
+        private void OnDestroy()
+        {
+            if (runtimeHitMaterial != null)
+            {
+                Destroy(runtimeHitMaterial);
+            }
+        }
+        
+        private void InitializeReferences()
+        {
+            // Prevent double initialization if called by both Start and Reset
+            if (targetRenderer != null) return;
+
+            targetRenderer = GetComponentInChildren<Renderer>();
+            
+            if (targetRenderer != null)
+            {
+                originalMaterial = targetRenderer.sharedMaterial;
+                baseTexture = originalMaterial.mainTexture;
+                
+                if (hitMaterial != null)
+                {
+                    runtimeHitMaterial = new Material(hitMaterial);
+                    if (baseTexture != null) runtimeHitMaterial.SetTexture("_Texture", baseTexture);
+                }
+
+                if (healMaterial != null)
+                {
+                    runtimeHealMaterial = new Material(healMaterial);
+                    if (baseTexture != null) runtimeHealMaterial.SetTexture("_Texture", baseTexture);
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Safely strips the hit/heal shader and reverts the enemy back to normal.
+        /// </summary>
+        private void ResetToOriginalMaterial()
+        {
+            if (hitRoutine != null)
+            {
+                StopCoroutine(hitRoutine);
+                hitRoutine = null;
+            }
+
+            if (targetRenderer == null)
+            {
+                InitializeReferences();
+            }
+
+            if (targetRenderer != null && originalMaterial != null)
+            {
+                targetRenderer.sharedMaterial = originalMaterial;
+            }
         }
     }
 }
