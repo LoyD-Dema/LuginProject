@@ -15,6 +15,7 @@ public class IceModifier : BaseModifier
     {
         bullet.DamageMultiplayer -= amountDamageMultiplier;
         bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce, Usato solo x Test
+        bullet.ImpactVFX = EffectsManager.I.IceHitVfxPrefab;
     }
 
     protected override void OnEnable()

@@ -4065,9 +4065,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 461442899}
     - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: iceHitVfxPrefab
+      value: 
+      objectReference: {fileID: 504440573350591257, guid: 04f4989aa971bc046bdd852f184da238, type: 3}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
       propertyPath: iceEffectDurarion
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: normalHitVfxPrefab
+      value: 
+      objectReference: {fileID: 504440573350591257, guid: b095a28c758168a41ae3d79675f67c51, type: 3}
     - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
       propertyPath: characterSpeedMultiplayerToDecrese
       value: 0.8

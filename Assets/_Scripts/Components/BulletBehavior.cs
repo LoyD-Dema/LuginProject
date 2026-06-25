@@ -38,15 +38,18 @@ public class BulletBehavior : MonoBehaviour
         get { return speedMultiplayer; }
         set { speedMultiplayer = value; }
     }
-
+    
     private Rigidbody rigidBody;
     private CallOutOfRange outOfrange;
 
     internal bool bIsReleased = true;
 
-    // Le ho commentate perche' una non viene usata e l'altra non serve averla globale - Lorenzo
-    //private Vector3 previousPosition;
-    //private Vector3 impactPoint;
+    private GameObject impactVFX = null;
+    public GameObject ImpactVFX
+    {
+        get { return impactVFX; }
+        set { impactVFX = value; }
+    }
 
     // Events
     public event EventHandler<EventArgs> OnInstantiate;
@@ -97,11 +100,6 @@ public class BulletBehavior : MonoBehaviour
         //previousPosition = transform.position;
     }
 
-    private void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         if (isStartingTraveling)
@@ -125,7 +123,7 @@ public class BulletBehavior : MonoBehaviour
 
         other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
         Vector3 impactPoint = other.ClosestPoint(transform.position); //for the VFX position
-
+        
         OnHitTrigger?.Invoke(this, new OnHitEventArgs //spatial information about the collision
         {
             HitInfo = new HitInfo
@@ -135,6 +133,12 @@ public class BulletBehavior : MonoBehaviour
             Collider = other
         });
 
+        if (ImpactVFX != null)
+        {
+            GameObject vfx = Instantiate(ImpactVFX, impactPoint , Quaternion.identity);
+            Destroy(vfx, 1f);
+        }
+        
         if (currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
         {
             Pool.Relese(this);
