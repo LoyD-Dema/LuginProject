@@ -1,6 +1,8 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 /// <summary>
 /// This class is responsible for handling the player's input.
@@ -10,13 +12,20 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(MovementComponent))]
+[RequireComponent(typeof(RotateToMouse))]
 
 public class PlayerController : MonoBehaviour
 {
     private MovementComponent movementComponent;
     private ShootComponent playerShootComponent;
+    private RotateToMouse rotateToMouse;
+    [SerializeField] private GameObject controllerParticle;
+    //test
+    private PlayerInput playerInput;
     public event Action OnPausePressed;
     public static event Action OnReloadEvent;
+
+    private bool isGamepadInput;
 
     [SerializeField] private ChooseChamber choseChamberUI;
 
@@ -31,6 +40,27 @@ public class PlayerController : MonoBehaviour
     {
         movementComponent = GetComponent<MovementComponent>();
         playerShootComponent = GetComponent<ShootComponent>();
+        rotateToMouse = GetComponent<RotateToMouse>();
+        //test
+        playerInput = GetComponent<PlayerInput>();
+    }
+
+    private void OnEnable()
+    {
+        if (playerInput != null)
+            playerInput.onControlsChanged += OnControlsChanged;
+    }
+
+    private void OnDisable()
+    {
+        if (playerInput != null)
+            playerInput.onControlsChanged -= OnControlsChanged;
+    }
+
+    private void OnControlsChanged(PlayerInput input)
+    {
+        isGamepadInput = input.currentControlScheme == "Gamepad";
+        ToggleGamepad(isGamepadInput);
     }
 
     public void OnShoot(InputValue value)
@@ -58,6 +88,31 @@ public class PlayerController : MonoBehaviour
         movementComponent.SetDirection(new Vector2(direction.x, direction.z));
     }
 
+    public void OnLook(InputValue value)
+    {
+        if (isPaused) return;
+
+        Vector2 input = value.Get<Vector2>();
+
+        //isGamepadInput =  playerInput.currentControlScheme == "Gamepad";
+
+        if (isGamepadInput)
+        {
+            //ToggleGamepad(isGamepadInput);
+            rotateToMouse.RotateWithController(input);
+        }
+        else
+        {
+            //ToggleGamepad(isGamepadInput);
+            if (input == Vector2.zero && Mouse.current != null)
+            {
+                input = Mouse.current.position.ReadValue();
+            }
+            rotateToMouse.RotateWithMouse(input);
+        }
+
+    }
+
     public void OnPause(InputValue value)
     {
         if (value.isPressed)
@@ -74,6 +129,21 @@ public class PlayerController : MonoBehaviour
         OnReloadEvent?.Invoke();
         AudioManager.PlaySound3D(SoundType.Reload, transform.position);
     }
+
+    private void ToggleGamepad(bool isGamepad)
+    {
+        if (isGamepad)
+        {
+            controllerParticle.SetActive(true);
+            Cursor.visible = false;
+        }
+        else
+        {
+            controllerParticle.SetActive(false);
+            Cursor.visible = true;
+        }
+    }
+
 
     #region UI Input
     public void OnNavigate(InputValue value)

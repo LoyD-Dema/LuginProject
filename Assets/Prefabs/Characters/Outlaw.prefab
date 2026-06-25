@@ -1568,6 +1568,7 @@ GameObject:
   - component: {fileID: 8912014974712471478}
   - component: {fileID: 3458968511574697220}
   - component: {fileID: 1689826307187851451}
+  - component: {fileID: 3973965203228740952}
   m_Layer: 8
   m_Name: Outlaw
   m_TagString: Enemy
@@ -1806,6 +1807,18 @@ MonoBehaviour:
   hitMaterial: {fileID: -876546973899608171, guid: 48f18f1cf77c7fc49b12ed8a460fe371, type: 3}
   healMaterial: {fileID: -876546973899608171, guid: f14b9b51158f8b2499494f808f7d7483, type: 3}
   hitEffectDuration: 0.2
+--- !u!114 &3973965203228740952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942289980213182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1fe6aa6c38981498a1328763577294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimatorEventSound
 --- !u!1 &1954743680365594
 GameObject:
   m_ObjectHideFlags: 0
