@@ -27301,6 +27301,14 @@ PrefabInstance:
       propertyPath: choseChamberUI
       value: 
       objectReference: {fileID: 216780473}
+    - target: {fileID: 1709779877737534536, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: expToAdd
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709779877737534536, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: levelBar
+      value: 
+      objectReference: {fileID: 1236015730}
     - target: {fileID: 5071183205946011245, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_Enabled
       value: 1

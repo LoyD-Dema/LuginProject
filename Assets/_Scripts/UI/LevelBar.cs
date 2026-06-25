@@ -76,12 +76,11 @@ public class LevelBar : MonoBehaviour
 
     public void AddExp(float amount)
     {
+        if (amount <= 0) return;
         currentExperience += amount;
-
-        // Update UI
-        UpdateSlider();
-
-
+        
+        Debug.Log($"Current stored XP {currentExperience}");
+        
 #if UNITY_EDITOR
         // For Debug
         if (enableDebugMessages)
@@ -89,7 +88,7 @@ public class LevelBar : MonoBehaviour
             Debug.Log(currentExperience + " / " + currentExperienceRequiredToLevelUp);
         }
 #endif
-        if (currentExperience >= currentExperienceRequiredToLevelUp)
+        while (currentExperience >= currentExperienceRequiredToLevelUp)
         {
             experienceLeftOver = currentExperience - currentExperienceRequiredToLevelUp;
             currentExperience = experienceLeftOver;
@@ -109,10 +108,11 @@ public class LevelBar : MonoBehaviour
             // Update UI
             levelText.text = level.ToString();
             UpdateSlider();
-
         }
+        // Update UI
+        UpdateSlider();
     }
-
+    
     private void UpdateSlider()
     {
         slider.value = Mathf.Min(currentExperience / currentExperienceRequiredToLevelUp, currentExperienceRequiredToLevelUp);
