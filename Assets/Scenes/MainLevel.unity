@@ -4069,6 +4069,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 504440573350591257, guid: 04f4989aa971bc046bdd852f184da238, type: 3}
     - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: fireHitVFXPrefab
+      value: 
+      objectReference: {fileID: 504440573350591257, guid: af828d8701f0bd944932984041471828, type: 3}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
       propertyPath: iceEffectDurarion
       value: 1.5
       objectReference: {fileID: 0}
