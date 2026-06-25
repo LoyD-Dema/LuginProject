@@ -27379,15 +27379,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: 'chamberTypes.Array.data[0]'
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: 'chamberTypes.Array.data[1]'
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: 'chamberTypes.Array.data[2]'
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -72489,6 +72489,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 199603902}
     m_Modifications:
+    - target: {fileID: 76965731987820003, guid: cbfd4202b3ff2ff41a1460fe07a37088, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 76965731987820003, guid: cbfd4202b3ff2ff41a1460fe07a37088, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 76965731987820003, guid: cbfd4202b3ff2ff41a1460fe07a37088, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1253194216045072521, guid: cbfd4202b3ff2ff41a1460fe07a37088, type: 3}
       propertyPath: m_Name
       value: Healthbar
@@ -72572,6 +72584,18 @@ PrefabInstance:
     - target: {fileID: 1548010876521753226, guid: cbfd4202b3ff2ff41a1460fe07a37088, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549085770381814944, guid: cbfd4202b3ff2ff41a1460fe07a37088, type: 3}
+      propertyPath: m_Color.b
+      value: 0.06016379
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549085770381814944, guid: cbfd4202b3ff2ff41a1460fe07a37088, type: 3}
+      propertyPath: m_Color.g
+      value: 0.70680696
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549085770381814944, guid: cbfd4202b3ff2ff41a1460fe07a37088, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9811321
       objectReference: {fileID: 0}
     - target: {fileID: 4519628254258995895, guid: cbfd4202b3ff2ff41a1460fe07a37088, type: 3}
       propertyPath: m_AnchorMax.x

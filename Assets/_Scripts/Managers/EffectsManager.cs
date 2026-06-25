@@ -39,7 +39,7 @@ public class EffectsManager : MonoBehaviour
     [SerializeField] private float fireDamageAmount = 10f;
 
     [Header("VFX/Fire")]
-    [SerializeField] private GameObject fireHitVFXPrefab;
+    [SerializeField] private GameObject fireHitVfxPrefab;
 
     // Property
     // Ice
@@ -54,6 +54,7 @@ public class EffectsManager : MonoBehaviour
     
     public GameObject NormalHitVfxPrefab => normalHitVfxPrefab;
     public GameObject IceHitVfxPrefab => iceHitVfxPrefab;
+    public GameObject FireHitVfxPrefab => fireHitVfxPrefab;
 
     private void Awake()
     {

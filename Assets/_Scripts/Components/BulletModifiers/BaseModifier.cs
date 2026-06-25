@@ -29,6 +29,7 @@ public class BaseModifier : MonoBehaviour
         bullet.OnInstantiate -= Bullet_OnInstantiate;
         bullet.OnTraveling -= Bullet_OnTraveling;
         bullet.OnHitTrigger -= Bullet_OnHitTrigger;
+        enabled = false;
     }
 
     protected virtual void Bullet_OnInstantiate(object sender, EventArgs e)
@@ -44,7 +45,5 @@ public class BaseModifier : MonoBehaviour
     protected virtual void Bullet_OnHitTrigger(object sender, OnHitEventArgs e)
     {
         // Do the base logic of a modifer when the bullet hit a trigger
-        
-        enabled = false;    
     }
 }

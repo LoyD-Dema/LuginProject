@@ -44,7 +44,8 @@ public class BulletBehavior : MonoBehaviour
 
     internal bool bIsReleased = true;
 
-    [SerializeField] private GameObject impactVFX = null;
+    [SerializeField] private GameObject defaultImpactVFX;
+    private GameObject impactVFX;
     public GameObject ImpactVFX
     {
         get { return impactVFX; }
@@ -75,6 +76,7 @@ public class BulletBehavior : MonoBehaviour
     {
         bIsReleased = true;
         outOfrange.OnOutOfRange -= OutOfrange_OnOutOfRange;
+        var c = GetComponent<BaseModifier>();
     }
 
     private void OutOfrange_OnOutOfRange()
@@ -96,7 +98,8 @@ public class BulletBehavior : MonoBehaviour
         }
 
         currentPirce = maxNumOfObjectToPirce;
-        impactVFX = EffectsManager.I.NormalHitVfxPrefab;
+        defaultImpactVFX = EffectsManager.I.NormalHitVfxPrefab;
+        impactVFX = defaultImpactVFX;
     }
 
     private void FixedUpdate()
@@ -131,10 +134,21 @@ public class BulletBehavior : MonoBehaviour
             },
             Collider = other
         });
-
-        GameObject vfx = Instantiate(ImpactVFX, impactPoint , Quaternion.identity);
-        Destroy(vfx, 1f);
         
+        GameObject vfx;
+        if (TryGetComponent<BaseModifier>(out BaseModifier baseModifier))
+        {
+            Debug.Log(baseModifier);
+            if(baseModifier.isActiveAndEnabled)
+                vfx = Instantiate(ImpactVFX, impactPoint , Quaternion.identity);
+            else
+                vfx = Instantiate(defaultImpactVFX, impactPoint , Quaternion.identity);
+        }
+        else
+            vfx = Instantiate(defaultImpactVFX, impactPoint , Quaternion.identity);
+
+        Destroy(vfx, 1f);
+       
         if (currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
         {
             Pool.Relese(this);
