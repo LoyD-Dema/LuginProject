@@ -94,9 +94,21 @@ public class MagazineVisualizer : MonoBehaviour
 
     private void Reload()
     {
+        bool isEmpty = true;
+
         for (int i = 0; i < chambers.Length; i++)
         {
+            if(!chambers[i].IsShot)
+            {
+                isEmpty = false; 
+            }
+
             chambers[i].IsShot = false;
+        }
+
+        if (isEmpty)
+        {
+            bulletsContainer.transform.rotation = new Quaternion(0, 0, 0, 1);
         }
 
         UpdateUI();
