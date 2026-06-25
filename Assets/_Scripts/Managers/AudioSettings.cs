@@ -28,16 +28,12 @@ public class AudioSettings : MonoBehaviour
     private float maxVolume = 20.0f;
     private float minVolume = -80.0f;
 
-    private void Awake()
+    private void Start()
     {
         float masterAudio01 = PlayerPrefs.GetFloat("masterAudio", 0.5f);
         float SFXAudio01 = PlayerPrefs.GetFloat("SFXAudio", 0.75f);
         float musicAudio01 = PlayerPrefs.GetFloat("musicAudio", 0.75f);
-
-        masterSlide.value = masterAudio01;
-        SFXSlider.value = SFXAudio01;
-        musicSlider.value = musicAudio01;
-
+        
         SetVolume(AudioType.Master, masterAudio01);
         SetVolume(AudioType.SFX, SFXAudio01);
         SetVolume(AudioType.Music, musicAudio01);

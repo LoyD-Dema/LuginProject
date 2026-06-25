@@ -13,7 +13,7 @@ public class GraphicSettings : MonoBehaviour
     {
         applyButton.gameObject.SetActive(false);
         bool isFullScreen = PlayerPrefs.GetInt("fullScreen", 1) == 1;
-        fullScreenToggle.isOn = isFullScreen;
+        fullScreenToggle.SetIsOnWithoutNotify(isFullScreen);
         currentValue = isFullScreen;
         toggleValue = currentValue;
         Apply();
