@@ -44,7 +44,7 @@ public class BulletBehavior : MonoBehaviour
 
     internal bool bIsReleased = true;
 
-    private GameObject impactVFX = null;
+    private GameObject impactVFX = EffectsManager.I.NormalHitVfxPrefab;
     public GameObject ImpactVFX
     {
         get { return impactVFX; }

@@ -52,6 +52,7 @@ public class EffectsManager : MonoBehaviour
     public float FireDamageInterval => fireDamageInterval;
     public float FireDamageAmount => fireDamageAmount;
     
+    public GameObject NormalHitVfxPrefab => normalHitVfxPrefab;
     public GameObject IceHitVfxPrefab => iceHitVfxPrefab;
 
     private void Awake()
