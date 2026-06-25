@@ -105,8 +105,25 @@ public class EnemyPool : MonoBehaviour
     private void OnEnemyDead(GameObject enemy)
     {
         Debug.Log($"Morto {enemy}", enemy);
-        pool.Release(enemy);
+        StartCoroutine(ReleaseAfterAnimation(enemy));
+        //pool.Release(enemy);
         //Other stuff to do on death?
+    }
+
+    private IEnumerator ReleaseAfterAnimation(GameObject enemy)
+    {
+        if (enemy.TryGetComponent<NavMeshAgent>(out var agent)) agent.enabled = false;
+        if (enemy.TryGetComponent<Collider>(out var collider)) collider.enabled = false;
+        if (enemy.TryGetComponent<AIController>(out var controller)) controller.enabled = false;
+        if (enemy.TryGetComponent<Animator>(out var animator))
+        {
+            animator.SetTrigger("IsDead");
+        }
+        yield return new WaitForSeconds(3.2f);
+
+        if (collider != null) collider.enabled = true;
+        if (controller != null) controller.enabled = true;
+        pool.Release(enemy);
     }
 
 }

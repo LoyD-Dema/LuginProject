@@ -58,6 +58,7 @@ public class AIController : MonoBehaviour
         currentState = States.Moving;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         if(!navAgent) navAgent = GetComponent<NavMeshAgent>();
+        navAgent.enabled = true;
     }
 
     private void OnDisable()
@@ -65,9 +66,21 @@ public class AIController : MonoBehaviour
         currentState = States.None;
     }
 
+
     private void Update()
     {
         if (!target) return;
+
+        if (target.TryGetComponent<HealthComponent>(out var playerHealth) && playerHealth.IsDead)
+        {
+            if (navAgent && navAgent.isOnNavMesh && !navAgent.isStopped)
+            {
+                navAgent.isStopped = true;
+                animator.SetBool("IsMoving", false);
+                animator.SetFloat("Speed", 0f);
+            }
+            return;
+        }
 
         Vector3 dst = target.position - transform.position;
         Vector3 dstNormalized = dst.normalized;
