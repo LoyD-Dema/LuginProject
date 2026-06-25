@@ -24,7 +24,8 @@ public class BulletBehavior : MonoBehaviour
 
     [Header("Pool")]
     public BulletPool Pool;
-
+    private TrailRenderer bulletTrail;
+    
     // Multiplayer
     private float damageMultiplayer = 1.0f;
     public float DamageMultiplayer
@@ -63,6 +64,7 @@ public class BulletBehavior : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         outOfrange = GetComponent<CallOutOfRange>();
+        bulletTrail = GetComponentInChildren<TrailRenderer>();
     }
     
     private void OnEnable()
@@ -74,6 +76,7 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnDisable()
     {
+        bulletTrail.Clear();
         bIsReleased = true;
         outOfrange.OnOutOfRange -= OutOfrange_OnOutOfRange;
         var c = GetComponent<BaseModifier>();
