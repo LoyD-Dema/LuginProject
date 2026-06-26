@@ -4045,6 +4045,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 216780473}
     - target: {fileID: 1656822279278292850, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: allPowerUp.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656822279278292850, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: 'allPowerUp.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 65824134b0aa9474e9fa3e452691ac32, type: 2}
+    - target: {fileID: 1656822279278292850, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
       propertyPath: 'cardUIList.Array.data[0]'
       value: 
       objectReference: {fileID: 216780478}
@@ -26238,7 +26246,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4334703856756352874, guid: 42f222017e00c9541ae54c6d4b383974, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334703856756352874, guid: 42f222017e00c9541ae54c6d4b383974, type: 3}
+      propertyPath: spawnRateS
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4334703856756352874, guid: 42f222017e00c9541ae54c6d4b383974, type: 3}
       propertyPath: playerTransform
@@ -27406,6 +27418,22 @@ PrefabInstance:
     - target: {fileID: 8166924362150774812, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: test
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[1]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[2]'
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
