@@ -19,12 +19,23 @@ namespace Components.VFX
         
         private HealthComponent healthComponent;
 
+        private FireEffect fireEffect;
+        private IceEffect iceEffect;
+
         [Header("Material Settings")]
         [SerializeField] private VisualEffectAsset hitParticlesAsset; // particles to play when hit
         [SerializeField] private Material hitMaterial; // a shader to apply to the Actor when hit
         private Material runtimeHitMaterial; //local copy
         [SerializeField] private Material healMaterial; // a shader to apply to the Actor when hit
         private Material runtimeHealMaterial; //local copy
+
+        [SerializeField] private Material fireMaterial;
+        private Material runtimeFireMaterial;
+        [SerializeField] private Material iceMaterial;
+        private Material runtimeIceMaterial;
+
+        private bool isBurning;
+        private bool isFrozen;
 
         #region Utilities
         private GameObject go;
@@ -36,13 +47,17 @@ namespace Components.VFX
         private void Awake()
         {
             healthComponent = GetComponent<HealthComponent>();
+            fireEffect = GetComponent<FireEffect>();
+            iceEffect = GetComponent<IceEffect>();
         }
         
         private void OnEnable()
         {
             healthComponent.Damage += OnDamage;
             healthComponent.Heal += OnHeal;
-            
+
+            if (fireEffect != null) fireEffect.OnFireStateChange += OnFireStateChange;
+            if (iceEffect != null) iceEffect.OnIceStateChange += OnIceStateChange;
             ResetToOriginalMaterial();
         }
 
@@ -50,7 +65,10 @@ namespace Components.VFX
         {
             healthComponent.Damage -= OnDamage;
             healthComponent.Heal -= OnHeal;
-            
+
+            if (fireEffect != null) fireEffect.OnFireStateChange -= OnFireStateChange;
+            if (iceEffect != null) iceEffect.OnIceStateChange -= OnIceStateChange;
+
             ResetToOriginalMaterial();
         }
         
@@ -62,13 +80,43 @@ namespace Components.VFX
         private void OnHeal()
         {
             if (runtimeHealMaterial == null) return; 
-            PlayTemporaryShaderEffect(runtimeHitMaterial);
+            PlayTemporaryShaderEffect(runtimeHealMaterial);
         }
 
         private void OnDamage()
         {
             if (runtimeHitMaterial == null) return; 
             PlayTemporaryShaderEffect(runtimeHitMaterial);
+        }
+
+        private void OnFireStateChange(bool isActive)
+        {
+            isBurning = isActive;
+            UpdatePersistentMaterial();
+        }
+
+        private void OnIceStateChange(bool isActive)
+        {
+            isFrozen = isActive;
+            UpdatePersistentMaterial();
+        }
+
+        private void UpdatePersistentMaterial()
+        {
+            if (hitRoutine != null) return;
+
+            if (isFrozen && runtimeIceMaterial != null)
+            {
+                targetRenderer.sharedMaterial = runtimeIceMaterial;
+            }
+            else if (isBurning && runtimeFireMaterial != null)
+            {
+                targetRenderer.sharedMaterial = runtimeFireMaterial;
+            }
+            else
+            {
+                targetRenderer.sharedMaterial = originalMaterial;
+            }
         }
 
         public void PlayTemporaryShaderEffect(Material material = null)

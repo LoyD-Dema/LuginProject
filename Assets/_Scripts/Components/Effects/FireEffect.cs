@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class FireEffect : MonoBehaviour
 {
+    public event Action<bool> OnFireStateChange;
+
     private float effectDuration;
     private float damageInterval;
     private float damageAmount;
@@ -22,6 +25,7 @@ public class FireEffect : MonoBehaviour
     private void OnEnable()
     {
         ResetEffect();
+        OnFireStateChange?.Invoke(true);
     }
 
     private void OnDisable()
@@ -31,6 +35,7 @@ public class FireEffect : MonoBehaviour
             StopCoroutine(fireCoroutine);
             fireCoroutine = null;
         }
+        OnFireStateChange?.Invoke(false);
     }
 
     public void ResetEffect()
