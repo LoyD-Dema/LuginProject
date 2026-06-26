@@ -26207,7 +26207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4334703856756352874, guid: 42f222017e00c9541ae54c6d4b383974, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4334703856756352874, guid: 42f222017e00c9541ae54c6d4b383974, type: 3}
       propertyPath: playerTransform
@@ -27325,6 +27325,14 @@ PrefabInstance:
       propertyPath: pauseMenuCanvas
       value: 
       objectReference: {fileID: 847359112}
+    - target: {fileID: 8135281608737786271, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: maxSpawnRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135281608737786271, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: minSpawnRate
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8166924362150774812, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.46
@@ -27365,6 +27373,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[3]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[4]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[5]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045238507261057124, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: iceMaterial
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: efb88a14adddeba4191536ba200ca39a, type: 3}
+    - target: {fileID: 9045238507261057124, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: fireMaterial
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: d6a81ae330470ea42bf2994ba5334a4f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

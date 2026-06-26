@@ -49,6 +49,8 @@ namespace Components.VFX
             healthComponent = GetComponent<HealthComponent>();
             fireEffect = GetComponent<FireEffect>();
             iceEffect = GetComponent<IceEffect>();
+
+            InitializeReferences();
         }
         
         private void OnEnable()
@@ -105,6 +107,8 @@ namespace Components.VFX
         {
             if (hitRoutine != null) return;
 
+            if (targetRenderer == null) return;
+
             if (isFrozen && runtimeIceMaterial != null)
             {
                 targetRenderer.sharedMaterial = runtimeIceMaterial;
@@ -113,7 +117,7 @@ namespace Components.VFX
             {
                 targetRenderer.sharedMaterial = runtimeFireMaterial;
             }
-            else
+            else if (originalMaterial != null)
             {
                 targetRenderer.sharedMaterial = originalMaterial;
             }
@@ -129,19 +133,23 @@ namespace Components.VFX
 
         private IEnumerator RunShaderEffect(Material materialToRun)
         {
-            targetRenderer.sharedMaterial = materialToRun;
+            if (targetRenderer != null)
+            {
+                targetRenderer.sharedMaterial = materialToRun;
+            }
+
             yield return new WaitForSeconds(hitEffectDuration);
-            
+
             hitRoutine = null;
             UpdatePersistentMaterial();
         }
 
         private void OnDestroy()
         {
-            if (runtimeHitMaterial != null)
-            {
-                Destroy(runtimeHitMaterial);
-            }
+            if (runtimeHitMaterial != null) Destroy(runtimeHitMaterial);
+            if (runtimeHealMaterial != null) Destroy(runtimeHealMaterial);
+            if (runtimeFireMaterial != null) Destroy(runtimeFireMaterial);
+            if (runtimeIceMaterial != null) Destroy(runtimeIceMaterial);
         }
         
         private void InitializeReferences()
@@ -150,36 +158,33 @@ namespace Components.VFX
             if (targetRenderer != null) return;
 
             targetRenderer = GetComponentInChildren<Renderer>();
-            
+
             if (targetRenderer != null)
             {
                 originalMaterial = targetRenderer.sharedMaterial;
-                baseTexture = originalMaterial.mainTexture;
-                
-                if (hitMaterial != null)
+                if (originalMaterial != null)
                 {
-                    runtimeHitMaterial = new Material(hitMaterial);
-                    if (baseTexture != null) runtimeHitMaterial.SetTexture("_Texture", baseTexture);
+                    baseTexture = originalMaterial.mainTexture;
                 }
 
-                if (healMaterial != null)
-                {
-                    runtimeHealMaterial = new Material(healMaterial);
-                    if (baseTexture != null) runtimeHealMaterial.SetTexture("_Texture", baseTexture);
-                }
-                if (fireMaterial != null)
-                {
-                    runtimeFireMaterial = new Material(fireMaterial);
-                    if (baseTexture != null) runtimeFireMaterial.SetTexture("_Texture", baseTexture);
-                }
-                if (iceMaterial != null)
-                {
-                    runtimeIceMaterial = new Material(iceMaterial);
-                    if (baseTexture != null) runtimeIceMaterial.SetTexture("_Texture", baseTexture);
-                }
+                if (hitMaterial != null) SetupRuntimeMaterial(ref runtimeHitMaterial, hitMaterial);
+                if (healMaterial != null) SetupRuntimeMaterial(ref runtimeHealMaterial, healMaterial);
+                if (fireMaterial != null) SetupRuntimeMaterial(ref runtimeFireMaterial, fireMaterial);
+                if (iceMaterial != null) SetupRuntimeMaterial(ref runtimeIceMaterial, iceMaterial);
             }
         }
-        
+
+        private void SetupRuntimeMaterial(ref Material runtimeMat, Material sourceMat)
+        {
+            runtimeMat = new Material(sourceMat);
+            if (baseTexture != null)
+            {
+                if (runtimeMat.HasProperty("_Texture")) runtimeMat.SetTexture("_Texture", baseTexture);
+                else if (runtimeMat.HasProperty("_MainTex")) runtimeMat.SetTexture("_MainTex", baseTexture);
+                else if (runtimeMat.HasProperty("_BaseMap")) runtimeMat.SetTexture("_BaseMap", baseTexture); // URP standard
+            }
+        }
+
         /// <summary>
         /// Safely strips the hit/heal shader and reverts the enemy back to normal.
         /// </summary>
