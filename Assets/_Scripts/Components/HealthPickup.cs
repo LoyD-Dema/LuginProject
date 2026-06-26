@@ -16,6 +16,7 @@ public class HealthPickup : PickUp
 
     public override void Interact()
     {
+        AudioManager.PlaySound3D(SoundType.Heal, gameObject.transform.position);
         CombatEvents.OnHealthPickup(this);
     }
 }
