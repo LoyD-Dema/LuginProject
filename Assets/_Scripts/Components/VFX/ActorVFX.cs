@@ -131,9 +131,9 @@ namespace Components.VFX
         {
             targetRenderer.sharedMaterial = materialToRun;
             yield return new WaitForSeconds(hitEffectDuration);
-            targetRenderer.sharedMaterial = originalMaterial;
             
             hitRoutine = null;
+            UpdatePersistentMaterial();
         }
 
         private void OnDestroy()
@@ -167,6 +167,16 @@ namespace Components.VFX
                     runtimeHealMaterial = new Material(healMaterial);
                     if (baseTexture != null) runtimeHealMaterial.SetTexture("_Texture", baseTexture);
                 }
+                if (fireMaterial != null)
+                {
+                    runtimeFireMaterial = new Material(fireMaterial);
+                    if (baseTexture != null) runtimeFireMaterial.SetTexture("_Texture", baseTexture);
+                }
+                if (iceMaterial != null)
+                {
+                    runtimeIceMaterial = new Material(iceMaterial);
+                    if (baseTexture != null) runtimeIceMaterial.SetTexture("_Texture", baseTexture);
+                }
             }
         }
         
@@ -180,6 +190,9 @@ namespace Components.VFX
                 StopCoroutine(hitRoutine);
                 hitRoutine = null;
             }
+
+            isBurning = false;
+            isFrozen = false;
 
             if (targetRenderer == null)
             {
