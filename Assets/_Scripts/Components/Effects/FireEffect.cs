@@ -10,6 +10,8 @@ public class FireEffect : MonoBehaviour
     private HealthComponent healthComponent;
     private Coroutine fireCoroutine;
 
+    private GameObject vfx;
+
     private void Awake()
     {
         healthComponent = GetComponent<HealthComponent>();
@@ -17,6 +19,7 @@ public class FireEffect : MonoBehaviour
         effectDuration = EffectsManager.I.FireEffectDuration;
         damageInterval = EffectsManager.I.FireDamageInterval;
         damageAmount = EffectsManager.I.FireDamageAmount;
+        vfx = EffectsManager.I.FireHitVfxPrefab;
     }
 
     private void OnEnable()
@@ -30,6 +33,7 @@ public class FireEffect : MonoBehaviour
         {
             StopCoroutine(fireCoroutine);
             fireCoroutine = null;
+            enabled = false;
         }
     }
 

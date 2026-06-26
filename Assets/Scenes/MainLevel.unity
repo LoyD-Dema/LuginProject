@@ -4081,6 +4081,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 504440573350591257, guid: af828d8701f0bd944932984041471828, type: 3}
     - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: fireHitVfxPrefab
+      value: 
+      objectReference: {fileID: 504440573350591257, guid: af828d8701f0bd944932984041471828, type: 3}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
       propertyPath: iceEffectDurarion
       value: 1.5
       objectReference: {fileID: 0}
@@ -27425,15 +27429,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: 'chamberTypes.Array.data[0]'
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: 'chamberTypes.Array.data[1]'
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: 'chamberTypes.Array.data[2]'
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

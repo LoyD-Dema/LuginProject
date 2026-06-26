@@ -30,7 +30,8 @@ public class IceEffect : MonoBehaviour
 
     private void OnDisable()
     {
-        AIController.SpeedMultiplayer += speedReduction; 
+        AIController.SpeedMultiplayer += speedReduction;
+        enabled = false;
     }
 
     private void Update()
