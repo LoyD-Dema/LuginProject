@@ -26207,7 +26207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4334703856756352874, guid: 42f222017e00c9541ae54c6d4b383974, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4334703856756352874, guid: 42f222017e00c9541ae54c6d4b383974, type: 3}
       propertyPath: playerTransform
