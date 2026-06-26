@@ -13,6 +13,7 @@ public class FireModifier : BaseModifier
     private void Start()
     {
         bullet.ImpactVFX = EffectsManager.I.FireHitVfxPrefab;
+        bullet.TrailVFX = EffectsManager.I.FireTrailPrefab;
     }
 
     protected override void Bullet_OnHitTrigger(object sender, OnHitEventArgs e)

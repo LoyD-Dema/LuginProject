@@ -9,6 +9,9 @@ public class FireEffect : MonoBehaviour
 
     private HealthComponent healthComponent;
     private Coroutine fireCoroutine;
+    
+    private GameObject vfx;
+    private GameObject trail;
 
     private void Awake()
     {
@@ -17,6 +20,8 @@ public class FireEffect : MonoBehaviour
         effectDuration = EffectsManager.I.FireEffectDuration;
         damageInterval = EffectsManager.I.FireDamageInterval;
         damageAmount = EffectsManager.I.FireDamageAmount;
+        vfx = EffectsManager.I.FireHitVfxPrefab;
+        trail = EffectsManager.I.FireTrailPrefab;
     }
 
     private void OnEnable()

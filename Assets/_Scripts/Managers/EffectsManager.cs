@@ -17,6 +17,7 @@ public class EffectsManager : MonoBehaviour
 
     [Header("VFX/Normal")]
     [SerializeField] private GameObject normalHitVfxPrefab;
+    [SerializeField] private GameObject normalTrailPrefab;
     
     [Header("Params/Ice")]
     // Bullet
@@ -31,7 +32,8 @@ public class EffectsManager : MonoBehaviour
     
     [Header("VFX/Ice")]
     [SerializeField] private GameObject iceHitVfxPrefab;
-    
+    [SerializeField] private GameObject iceTrailPrefab;
+
     [Header("Params/Fire")]
     // Effect
     [SerializeField] private float fireEffectDuration = 5.0f;
@@ -40,6 +42,7 @@ public class EffectsManager : MonoBehaviour
 
     [Header("VFX/Fire")]
     [SerializeField] private GameObject fireHitVfxPrefab;
+    [SerializeField] private GameObject fireTrailPrefab;
 
     // Property
     // Ice
@@ -52,8 +55,11 @@ public class EffectsManager : MonoBehaviour
     public float FireDamageInterval => fireDamageInterval;
     public float FireDamageAmount => fireDamageAmount;
     
+    public GameObject NormalTrailPrefab => normalTrailPrefab;
     public GameObject NormalHitVfxPrefab => normalHitVfxPrefab;
+    public GameObject IceTrailPrefab => iceTrailPrefab;
     public GameObject IceHitVfxPrefab => iceHitVfxPrefab;
+    public GameObject FireTrailPrefab => fireTrailPrefab;
     public GameObject FireHitVfxPrefab => fireHitVfxPrefab;
 
     private void Awake()

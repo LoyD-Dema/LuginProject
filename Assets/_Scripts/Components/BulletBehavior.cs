@@ -24,7 +24,6 @@ public class BulletBehavior : MonoBehaviour
 
     [Header("Pool")]
     public BulletPool Pool;
-    private TrailRenderer bulletTrail;
     
     // Multiplayer
     private float damageMultiplayer = 1.0f;
@@ -45,13 +44,28 @@ public class BulletBehavior : MonoBehaviour
 
     internal bool bIsReleased = true;
 
-    [SerializeField] private GameObject defaultImpactVFX;
+    #region bullet VFX 
+    [Header("VFX Prefabs")]
+    private GameObject defaultImpactVFX;
     private GameObject impactVFX;
     public GameObject ImpactVFX
     {
-        get { return impactVFX; }
-        set { impactVFX = value; }
+        get => impactVFX;
+        set => impactVFX = value;
     }
+    
+    private GameObject defaultTrailVFX;
+    private GameObject trailVFX;
+    public GameObject TrailVFX
+    {
+        get => trailVFX;
+        set => trailVFX = value;
+    }
+
+    // Dynamic Runtime References
+    private GameObject activeTrailInstance; 
+    private TrailRenderer cachedTrailRenderer;
+    #endregion
 
     // Events
     public event EventHandler<EventArgs> OnInstantiate;
@@ -64,7 +78,6 @@ public class BulletBehavior : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         outOfrange = GetComponent<CallOutOfRange>();
-        bulletTrail = GetComponentInChildren<TrailRenderer>();
     }
     
     private void OnEnable()
@@ -72,20 +85,30 @@ public class BulletBehavior : MonoBehaviour
         isStartingTraveling = true;
         outOfrange.OnOutOfRange += OutOfrange_OnOutOfRange;
         bIsReleased = false;
+
+        ResetTrailForPooling();
     }
 
     private void OnDisable()
     {
-        bulletTrail.Clear();
         bIsReleased = true;
         outOfrange.OnOutOfRange -= OutOfrange_OnOutOfRange;
-        var c = GetComponent<BaseModifier>();
+    
+        if (activeTrailInstance != null)
+        {
+            // 1. Force the trail to stop generating any visual path geometry
+            if (cachedTrailRenderer != null)
+            {
+                cachedTrailRenderer.emitting = false;
+            }
+            activeTrailInstance.SetActive(false);
+        }
     }
 
     private void OutOfrange_OnOutOfRange()
     {
         if(!bIsReleased)
-            Pool.Relese(this);
+            Pool.Release(this);
     }
 
     private void Start()
@@ -101,8 +124,67 @@ public class BulletBehavior : MonoBehaviour
         }
 
         currentPirce = maxNumOfObjectToPirce;
+        
         defaultImpactVFX = EffectsManager.I.NormalHitVfxPrefab;
         impactVFX = defaultImpactVFX;
+        
+        defaultTrailVFX = EffectsManager.I.NormalTrailPrefab;
+        trailVFX = defaultTrailVFX;
+
+        InitializeTrailInstance();
+    }
+
+    private void InitializeTrailInstance()
+    {
+        if (activeTrailInstance != null) return;
+
+        GameObject archetype = defaultTrailVFX;
+        if (TryGetComponent<BaseModifier>(out BaseModifier baseModifier) && baseModifier.isActiveAndEnabled)
+        {
+            archetype = trailVFX;
+        }
+
+        if (archetype != null)
+        {
+            activeTrailInstance = Instantiate(archetype, this.transform);
+            activeTrailInstance.transform.localPosition = Vector3.zero;
+            activeTrailInstance.transform.localRotation = Quaternion.identity;
+            
+            cachedTrailRenderer = activeTrailInstance.GetComponent<TrailRenderer>();
+        }
+    }
+
+    private void ResetTrailForPooling()
+    {
+        if (activeTrailInstance == null)
+        {
+            InitializeTrailInstance();
+        }
+
+        if (activeTrailInstance != null)
+        {
+            activeTrailInstance.SetActive(true);
+        
+            if (cachedTrailRenderer != null)
+            {
+                // 2. Clear out any residual world-space position history
+                cachedTrailRenderer.Clear();
+            
+                // 3. Keep it completely disabled for an instant split-second
+                cachedTrailRenderer.emitting = false;
+            
+                // 4. Safely tell the trail to start rendering again, starting *from* the new position
+                Invoke(nameof(EnableTrailEmission), 0.01f);
+            }
+        }
+    }
+    
+    private void EnableTrailEmission()
+    {
+        if (cachedTrailRenderer != null && !bIsReleased)
+        {
+            cachedTrailRenderer.emitting = true;
+        }
     }
 
     private void FixedUpdate()
@@ -119,17 +201,23 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //evaluate the damage
+        // Evaluate the damage
         HealthEffect healthEffect = new HealthEffect
         {
             Amount = EvalBulletDamage(),
             Type = HealthEffectType.Damage
         };
 
-        other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); //apply hit effects
-        Vector3 impactPoint = other.ClosestPoint(transform.position); //for the VFX position
+        other.GetComponent<IHealthReceiver>()?.ApplyEffect(healthEffect); 
         
-        OnHitTrigger?.Invoke(this, new OnHitEventArgs //spatial information about the collision
+        Vector3 impactPoint = transform.position;
+        Ray ray = new Ray(transform.position, -transform.forward);
+        if (other.Raycast(ray, out RaycastHit hit, 3f))
+        {
+            impactPoint = hit.point;
+        }
+        
+        OnHitTrigger?.Invoke(this, new OnHitEventArgs 
         {
             HitInfo = new HitInfo
             {
@@ -138,23 +226,22 @@ public class BulletBehavior : MonoBehaviour
             Collider = other
         });
         
-        GameObject vfx;
-        if (TryGetComponent<BaseModifier>(out BaseModifier baseModifier))
+        // VFX Hit Spawn Handling
+        GameObject vfxTemplate = defaultImpactVFX;
+        if (TryGetComponent<BaseModifier>(out BaseModifier baseModifier) && baseModifier.isActiveAndEnabled)
         {
-            Debug.Log(baseModifier);
-            if(baseModifier.isActiveAndEnabled)
-                vfx = Instantiate(ImpactVFX, impactPoint , Quaternion.identity);
-            else
-                vfx = Instantiate(defaultImpactVFX, impactPoint , Quaternion.identity);
+            vfxTemplate = ImpactVFX;
         }
-        else
-            vfx = Instantiate(defaultImpactVFX, impactPoint , Quaternion.identity);
 
-        Destroy(vfx, 1f);
-       
-        if (currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
+        if (vfxTemplate != null)
         {
-            Pool.Relese(this);
+            GameObject vfxInstance = Instantiate(vfxTemplate, impactPoint, Quaternion.identity);
+            Destroy(vfxInstance, 1f);
+        }
+        
+        if (currentPirce <= 0) 
+        {
+            Pool.Release(this);
             return;
         }
         else
@@ -171,20 +258,18 @@ public class BulletBehavior : MonoBehaviour
 
     public void IncreaseDamage(float amount)
     {
-        if (amount <= 0)
-            return;
-
+        if (amount <= 0) return;
         damage += amount;
     }
+    
     public void IncreaseSpeed(float amount)
     {
-        if (amount <= 0)
-            return;
+        if (amount <= 0) return;
         speed += amount;
     }
 
     private float EvalBulletDamage()
     {
-        return damage * DamageMultiplayer; //moved it to a function if we want to make it more complex
+        return damage * DamageMultiplayer; 
     }
 }

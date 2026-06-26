@@ -10,12 +10,14 @@ public class IceEffect : MonoBehaviour
     private AIController AIController;
 
     private GameObject vfx;
+    private GameObject trail;
 
     private void Awake()
     {
         speedReduction = EffectsManager.I.CharacterSpeedMultiplayerToDecrese;
         duration = EffectsManager.I.IceEffectDurarion;
         vfx = EffectsManager.I.IceHitVfxPrefab;
+        trail = EffectsManager.I.IceTrailPrefab;
     }
 
     private void OnEnable()

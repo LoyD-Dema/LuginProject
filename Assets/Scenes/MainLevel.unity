@@ -4073,6 +4073,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 461442899}
     - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: iceTrailPrefab
+      value: 
+      objectReference: {fileID: 1772511955414512728, guid: d0819449343e21d4a949107f3a363600, type: 3}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: fireTrailPrefab
+      value: 
+      objectReference: {fileID: 1772511955414512728, guid: 08a7cda5bac52a242b1b90fe27797b0a, type: 3}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
       propertyPath: iceHitVfxPrefab
       value: 
       objectReference: {fileID: 504440573350591257, guid: 04f4989aa971bc046bdd852f184da238, type: 3}
@@ -4081,9 +4089,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 504440573350591257, guid: af828d8701f0bd944932984041471828, type: 3}
     - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: fireHitVfxPrefab
+      value: 
+      objectReference: {fileID: 504440573350591257, guid: af828d8701f0bd944932984041471828, type: 3}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
       propertyPath: iceEffectDurarion
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      propertyPath: normalTrailPrefab
+      value: 
+      objectReference: {fileID: 1772511955414512728, guid: 7f8676d26c6d0714996890aa5cb13ba8, type: 3}
     - target: {fileID: 6381822784382712652, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
       propertyPath: normalHitVfxPrefab
       value: 

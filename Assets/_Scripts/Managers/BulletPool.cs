@@ -40,7 +40,7 @@ public class BulletPool : MonoBehaviour
     {
         return pool.Get();
     }
-    public void Relese(BulletBehavior bullet)
+    public void Release(BulletBehavior bullet)
     {
         if(!bullet.bIsReleased)
             pool.Release(bullet);
