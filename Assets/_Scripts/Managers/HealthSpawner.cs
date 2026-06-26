@@ -29,10 +29,11 @@ public class HealthSpawner : MonoBehaviour
     {
         while (true)
         {
-            float spawnTime = Random.Range(minSpawnRate, Mathf.Max(minSpawnRate, maxSpawnRate * randomness));
+            float spawnTime = Random.Range(minSpawnRate, Mathf.Max(minSpawnRate, maxSpawnRate * randomness)) * 60;
             Vector3 randomPointInCircle = Random.insideUnitSphere * spawnRadius;
             Vector3 spawnPosition = new Vector3(transform.position.x + randomPointInCircle.x, transform.position.y + 1, transform.position.z + randomPointInCircle.z);
-            yield return new WaitForSeconds(spawnTime * 60);
+            Debug.Log($"Next heart in {spawnTime} seconds");
+            yield return new WaitForSeconds(spawnTime);
             Instantiate(healthPickup, spawnPosition, Quaternion.identity);
         }
     }
