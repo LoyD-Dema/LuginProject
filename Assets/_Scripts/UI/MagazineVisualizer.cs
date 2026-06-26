@@ -108,7 +108,9 @@ public class MagazineVisualizer : MonoBehaviour
 
         if (isEmpty)
         {
-            bulletsContainer.transform.rotation = new Quaternion(0, 0, 0, 1);
+            //bulletsContainer.transform.rotation = Quaternion.identity;
+            rotationToReach = Quaternion.identity;
+            canRotateChamber = true;
         }
 
         UpdateUI();

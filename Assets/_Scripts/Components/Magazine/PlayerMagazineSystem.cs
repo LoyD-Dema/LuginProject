@@ -120,6 +120,11 @@ public class PlayerMagazineSystem : MagazineSystem
     public void Reload()
     {
         AudioManager.PlaySound3D(SoundType.Reload, gameObject.transform.position);
+        if(shotBulletCount >= maxChambers)
+        {
+            selectedChamber = 0;
+        }
+
         shotBulletCount = 0;
     }
 
