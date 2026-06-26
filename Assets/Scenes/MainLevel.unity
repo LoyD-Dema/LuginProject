@@ -4091,8 +4091,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6769288219605623156, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 571349943}
   m_SourcePrefab: {fileID: 100100000, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+--- !u!1 &113686357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6769288219605623156, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
+  m_PrefabInstance: {fileID: 113686356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &116497078 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1453011437210574, guid: 45474d70eaa8bda4e9db7db645bc8642, type: 3}
@@ -18507,12 +18515,25 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1656822279278292850, guid: 9b476d367a8436c4f8f84e7e3251ed77, type: 3}
   m_PrefabInstance: {fileID: 113686356}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 113686357}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 590c3871aa71d794ebc99a32fd1cdf74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &571349943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113686357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd24b57b28fee341a21e0977a2ec2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayMusic
+  musicAudioType: 19
 --- !u!1001 &572541908
 PrefabInstance:
   m_ObjectHideFlags: 0

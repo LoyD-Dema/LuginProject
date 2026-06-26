@@ -135,4 +135,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: f5feb5e9e3e658b4ba31f0342447e4d9, type: 3}
     mixerGroup: {fileID: 6818276424436596533, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
     Volume: 0.5
+  - type: 19
+    clips:
+    - {fileID: 8300000, guid: cb77d981f397d430887833b51b845eb2, type: 3}
+    mixerGroup: {fileID: 8681695542105469810, guid: 8a4ba7676158b9640ac6873da7e0986c, type: 2}
+    Volume: 0.3
   spawnAudioPrefab: {fileID: 3179908470204314477, guid: b96904660d105744a907c55f02f44880, type: 3}
