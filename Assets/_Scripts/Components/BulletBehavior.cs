@@ -167,13 +167,8 @@ public class BulletBehavior : MonoBehaviour
         
             if (cachedTrailRenderer != null)
             {
-                // 2. Clear out any residual world-space position history
                 cachedTrailRenderer.Clear();
-            
-                // 3. Keep it completely disabled for an instant split-second
                 cachedTrailRenderer.emitting = false;
-            
-                // 4. Safely tell the trail to start rendering again, starting *from* the new position
                 Invoke(nameof(EnableTrailEmission), 0.01f);
             }
         }
