@@ -1158,6 +1158,8 @@ GameObject:
   - component: {fileID: 6669462377766634422}
   - component: {fileID: 5944463574617670772}
   - component: {fileID: 4680525025561460578}
+  - component: {fileID: 8135281608737786271}
+  - component: {fileID: 2258816960758498051}
   m_Layer: 6
   m_Name: Cowboy
   m_TagString: Player
@@ -1467,6 +1469,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa960d0308217e14c9728980a798c3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayFootstep
+--- !u!114 &8135281608737786271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5486030605e954785305d2a885e50f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSpawner
+  healthPickup: {fileID: 8977774641174537674, guid: dea97f5d66a98324da1a79349cba8c2f, type: 3}
+  minSpawnRate: 1
+  maxSpawnRate: 2
+  randomness: 0
+  spawnRadius: 30
+--- !u!114 &2258816960758498051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990403518192266740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b7d60f885d0ce41b3b263b5589e557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthInteractionComponent
 --- !u!1 &6044714389505839466
 GameObject:
   m_ObjectHideFlags: 0
