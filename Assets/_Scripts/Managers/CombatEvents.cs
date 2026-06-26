@@ -8,4 +8,5 @@ public static class CombatEvents
 {
     public static Action<int> OnEnemyKilled;
     public static Action<XPPickUp> OnExperiencePickUp;
+    public static Action<HealthPickup> OnHealthPickup;
 }
