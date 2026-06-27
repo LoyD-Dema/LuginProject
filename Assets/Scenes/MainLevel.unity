@@ -27432,6 +27432,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[3]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[4]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: 'chamberTypes.Array.data[5]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045238507261057124, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: iceMaterial
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: efb88a14adddeba4191536ba200ca39a, type: 3}
+    - target: {fileID: 9045238507261057124, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
+      propertyPath: fireMaterial
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: d6a81ae330470ea42bf2994ba5334a4f, type: 3}
+    - target: {fileID: 8919947756050623743, guid: c67e473a33a5fe046ae820850fbed4a8, type: 3}
       propertyPath: test
       value: 0
       objectReference: {fileID: 0}
