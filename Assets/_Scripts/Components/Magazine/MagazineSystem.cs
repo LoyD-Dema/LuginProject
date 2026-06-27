@@ -15,7 +15,15 @@ public class MagazineSystem : MonoBehaviour
 
     public virtual BulletBehavior GetBullet()
     {
-        BulletBehavior bullet = bulletPool.Get(); 
+        BulletBehavior bullet = bulletPool.Get();
+
+        bullet.ResetBulletStats();
+
+        BaseModifier[] modifiers = bullet.GetComponents<BaseModifier>();
+        foreach (var m in modifiers)
+        {
+            m.enabled = false;
+        }
 
         ChangeChamber();
 

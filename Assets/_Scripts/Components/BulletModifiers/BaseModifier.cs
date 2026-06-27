@@ -18,6 +18,8 @@ public class BaseModifier : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        if (bullet == null) bullet = GetComponent<BulletBehavior>();
+
         bullet.OnInstantiate += Bullet_OnInstantiate;
         bullet.OnTraveling += Bullet_OnTraveling;
         bullet.OnHitTrigger += Bullet_OnHitTrigger;
@@ -26,10 +28,12 @@ public class BaseModifier : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        bullet.OnInstantiate -= Bullet_OnInstantiate;
-        bullet.OnTraveling -= Bullet_OnTraveling;
-        bullet.OnHitTrigger -= Bullet_OnHitTrigger;
-        enabled = false;
+        if (bullet != null)
+        {
+            bullet.OnInstantiate -= Bullet_OnInstantiate;
+            bullet.OnTraveling -= Bullet_OnTraveling;
+            bullet.OnHitTrigger -= Bullet_OnHitTrigger;
+        }
     }
 
     protected virtual void Bullet_OnInstantiate(object sender, EventArgs e)

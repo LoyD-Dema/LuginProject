@@ -8,19 +8,17 @@ public class IceModifier : BaseModifier
     {
         base.Awake();
         enabled = false;
-
-    }
-
-    private void Start()
-    {
-        bullet.DamageMultiplayer -= amountDamageMultiplier;
-        bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce, Usato solo x Test
-        bullet.ImpactVFX = EffectsManager.I.IceHitVfxPrefab;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        if (bullet != null)
+        {
+            bullet.DamageMultiplayer -= amountDamageMultiplier;
+            bullet.IncreaseNumOfObjectToPirce(1); // Magic number per aumnetare quanto oggeti puo' fare il pirce, Usato solo x Test
+            bullet.ImpactVFX = EffectsManager.I.IceHitVfxPrefab;
+        }
     }
 
     protected override void Bullet_OnHitTrigger(object sender, OnHitEventArgs e)

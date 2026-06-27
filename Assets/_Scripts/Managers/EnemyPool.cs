@@ -23,12 +23,20 @@ public class EnemyPool : MonoBehaviour
             "outlawPool",
             enemyPrefab,
             createFunc: CreateItem,
-            onGet: e => e.SetActive(true),
+            onGet: OnGetEnemy,
             onRelease: OnRelease,
             onDestroy: e=> Destroy(e),
             capacity,
             maxSize
         );
+    }
+
+    private void OnGetEnemy(GameObject enemy)
+    {
+        if (enemy.TryGetComponent<FireEffect>(out var fire)) fire.enabled = false;
+        if (enemy.TryGetComponent<IceEffect>(out var ice)) ice.enabled = false;
+
+        enemy.SetActive(true);
     }
 
     private void OnRelease(GameObject obj)

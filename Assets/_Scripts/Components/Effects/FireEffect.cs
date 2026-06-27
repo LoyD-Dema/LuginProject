@@ -37,7 +37,6 @@ public class FireEffect : MonoBehaviour
         {
             StopCoroutine(fireCoroutine);
             fireCoroutine = null;
-            enabled = false;
         }
         OnFireStateChange?.Invoke(false);
     }
