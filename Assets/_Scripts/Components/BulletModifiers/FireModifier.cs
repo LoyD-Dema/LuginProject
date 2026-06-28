@@ -10,9 +10,10 @@ public class FireModifier : BaseModifier
         enabled = false;
     }
 
-    private void Start()
+    protected override void OnEnable()
     {
-        bullet.ImpactVFX = EffectsManager.I.FireHitVfxPrefab;
+        base.OnEnable();
+        if (bullet != null) bullet.ImpactVFX = EffectsManager.I.FireHitVfxPrefab;
     }
 
     protected override void Bullet_OnHitTrigger(object sender, OnHitEventArgs e)

@@ -136,18 +136,44 @@ public class BulletBehavior : MonoBehaviour
         });
         
         GameObject vfx;
-        if (TryGetComponent<BaseModifier>(out BaseModifier baseModifier))
+
+        BaseModifier activeModifier = null;
+        BaseModifier[] allModifiers = GetComponents<BaseModifier>();
+        foreach (var mod in allModifiers)
         {
-            Debug.Log(baseModifier);
-            if(baseModifier.isActiveAndEnabled)
-                vfx = Instantiate(ImpactVFX, impactPoint , Quaternion.identity);
-            else
-                vfx = Instantiate(defaultImpactVFX, impactPoint , Quaternion.identity);
+            if (mod.isActiveAndEnabled)
+            {
+                activeModifier = mod;
+                break;
+            }
+        }
+
+        if (activeModifier != null && ImpactVFX != null)
+        {
+            vfx = Instantiate(ImpactVFX, impactPoint, Quaternion.identity);
         }
         else
-            vfx = Instantiate(defaultImpactVFX, impactPoint , Quaternion.identity);
+        {
+            vfx = Instantiate(defaultImpactVFX, impactPoint, Quaternion.identity);
+        }
 
-        Destroy(vfx, 1f);
+        if (vfx != null)
+        {
+            Destroy(vfx, 1f);
+        }
+        //Qui si fermava sempre al primo modificatore, ecco perche' non spawnava l'effetto corretto
+        //if (TryGetComponent<BaseModifier>(out BaseModifier baseModifier))
+        //{
+        //    Debug.Log(baseModifier);
+        //    if(baseModifier.isActiveAndEnabled)
+        //        vfx = Instantiate(ImpactVFX, impactPoint , Quaternion.identity);
+        //    else
+        //        vfx = Instantiate(defaultImpactVFX, impactPoint , Quaternion.identity);
+        //}
+        //else
+        //    vfx = Instantiate(defaultImpactVFX, impactPoint , Quaternion.identity);
+
+        //Destroy(vfx, 1f);
        
         if (currentPirce == 0) //evaluate potential piercing TODO: check this. Should apply partial piercing damage?
         {
@@ -183,5 +209,22 @@ public class BulletBehavior : MonoBehaviour
     private float EvalBulletDamage()
     {
         return damage * DamageMultiplayer; //moved it to a function if we want to make it more complex
+    }
+
+    public void ResetBulletStats()
+    {
+        if (bulletDataSO != null && !useTestParameters)
+        {
+            speed = bulletDataSO.BaseSpeed;
+            damage = bulletDataSO.BaseDamage;
+            maxNumOfObjectToPirce = bulletDataSO.BaseNumObjectToPirce;
+        }
+
+        currentPirce = maxNumOfObjectToPirce;
+        DamageMultiplayer = 1.0f;
+        SpeedMultiplayer = 1.0f;
+
+        defaultImpactVFX = EffectsManager.I.NormalHitVfxPrefab;
+        ImpactVFX = defaultImpactVFX;
     }
 }

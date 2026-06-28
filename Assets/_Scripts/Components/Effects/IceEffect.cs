@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class IceEffect : MonoBehaviour
 {
+
+    public event Action<bool> OnIceStateChange;
     private float duration;
     private float elapsedTime;
     
@@ -20,18 +23,27 @@ public class IceEffect : MonoBehaviour
 
     private void OnEnable()
     {
-        Reset();
         if(AIController == null)
         {
             AIController = GetComponent<AIController>();
         }
-        AIController.SpeedMultiplayer -= speedReduction;
+
+        Reset();
+
+        if (AIController != null)
+        {
+            AIController.SpeedMultiplayer -= speedReduction;
+        }
+        OnIceStateChange?.Invoke(true);
     }
 
     private void OnDisable()
     {
-        AIController.SpeedMultiplayer += speedReduction;
-        enabled = false;
+        if (AIController != null)
+        {
+            AIController.SpeedMultiplayer += speedReduction;
+        }
+        OnIceStateChange?.Invoke(false);
     }
 
     private void Update()

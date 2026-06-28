@@ -9,7 +9,7 @@ public class HealthInteractionComponent : MonoBehaviour
 
     private void OnDisable()
     {
-        CombatEvents.OnHealthPickup += AddHealth;
+        CombatEvents.OnHealthPickup -= AddHealth;
     }
 
     private void AddHealth(HealthPickup pickUp)

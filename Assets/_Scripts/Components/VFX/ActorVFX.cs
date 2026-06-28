@@ -19,12 +19,23 @@ namespace Components.VFX
         
         private HealthComponent healthComponent;
 
+        private FireEffect fireEffect;
+        private IceEffect iceEffect;
+
         [Header("Material Settings")]
         [SerializeField] private VisualEffectAsset hitParticlesAsset; // particles to play when hit
         [SerializeField] private Material hitMaterial; // a shader to apply to the Actor when hit
         private Material runtimeHitMaterial; //local copy
         [SerializeField] private Material healMaterial; // a shader to apply to the Actor when hit
         private Material runtimeHealMaterial; //local copy
+
+        [SerializeField] private Material fireMaterial;
+        private Material runtimeFireMaterial;
+        [SerializeField] private Material iceMaterial;
+        private Material runtimeIceMaterial;
+
+        private bool isBurning;
+        private bool isFrozen;
 
         #region Utilities
         private GameObject go;
@@ -36,13 +47,19 @@ namespace Components.VFX
         private void Awake()
         {
             healthComponent = GetComponent<HealthComponent>();
+            fireEffect = GetComponent<FireEffect>();
+            iceEffect = GetComponent<IceEffect>();
+
+            InitializeReferences();
         }
         
         private void OnEnable()
         {
             healthComponent.Damage += OnDamage;
             healthComponent.Heal += OnHeal;
-            
+
+            if (fireEffect != null) fireEffect.OnFireStateChange += OnFireStateChange;
+            if (iceEffect != null) iceEffect.OnIceStateChange += OnIceStateChange;
             ResetToOriginalMaterial();
         }
 
@@ -50,7 +67,10 @@ namespace Components.VFX
         {
             healthComponent.Damage -= OnDamage;
             healthComponent.Heal -= OnHeal;
-            
+
+            if (fireEffect != null) fireEffect.OnFireStateChange -= OnFireStateChange;
+            if (iceEffect != null) iceEffect.OnIceStateChange -= OnIceStateChange;
+
             ResetToOriginalMaterial();
         }
         
@@ -62,13 +82,45 @@ namespace Components.VFX
         private void OnHeal()
         {
             if (runtimeHealMaterial == null) return; 
-            PlayTemporaryShaderEffect(runtimeHitMaterial);
+            PlayTemporaryShaderEffect(runtimeHealMaterial);
         }
 
         private void OnDamage()
         {
             if (runtimeHitMaterial == null) return; 
             PlayTemporaryShaderEffect(runtimeHitMaterial);
+        }
+
+        private void OnFireStateChange(bool isActive)
+        {
+            isBurning = isActive;
+            UpdatePersistentMaterial();
+        }
+
+        private void OnIceStateChange(bool isActive)
+        {
+            isFrozen = isActive;
+            UpdatePersistentMaterial();
+        }
+
+        private void UpdatePersistentMaterial()
+        {
+            if (hitRoutine != null) return;
+
+            if (targetRenderer == null) return;
+
+            if (isFrozen && runtimeIceMaterial != null)
+            {
+                targetRenderer.sharedMaterial = runtimeIceMaterial;
+            }
+            else if (isBurning && runtimeFireMaterial != null)
+            {
+                targetRenderer.sharedMaterial = runtimeFireMaterial;
+            }
+            else if (originalMaterial != null)
+            {
+                targetRenderer.sharedMaterial = originalMaterial;
+            }
         }
 
         public void PlayTemporaryShaderEffect(Material material = null)
@@ -81,19 +133,23 @@ namespace Components.VFX
 
         private IEnumerator RunShaderEffect(Material materialToRun)
         {
-            targetRenderer.sharedMaterial = materialToRun;
+            if (targetRenderer != null)
+            {
+                targetRenderer.sharedMaterial = materialToRun;
+            }
+
             yield return new WaitForSeconds(hitEffectDuration);
-            targetRenderer.sharedMaterial = originalMaterial;
-            
+
             hitRoutine = null;
+            UpdatePersistentMaterial();
         }
 
         private void OnDestroy()
         {
-            if (runtimeHitMaterial != null)
-            {
-                Destroy(runtimeHitMaterial);
-            }
+            if (runtimeHitMaterial != null) Destroy(runtimeHitMaterial);
+            if (runtimeHealMaterial != null) Destroy(runtimeHealMaterial);
+            if (runtimeFireMaterial != null) Destroy(runtimeFireMaterial);
+            if (runtimeIceMaterial != null) Destroy(runtimeIceMaterial);
         }
         
         private void InitializeReferences()
@@ -102,26 +158,33 @@ namespace Components.VFX
             if (targetRenderer != null) return;
 
             targetRenderer = GetComponentInChildren<Renderer>();
-            
+
             if (targetRenderer != null)
             {
                 originalMaterial = targetRenderer.sharedMaterial;
-                baseTexture = originalMaterial.mainTexture;
-                
-                if (hitMaterial != null)
+                if (originalMaterial != null)
                 {
-                    runtimeHitMaterial = new Material(hitMaterial);
-                    if (baseTexture != null) runtimeHitMaterial.SetTexture("_Texture", baseTexture);
+                    baseTexture = originalMaterial.mainTexture;
                 }
 
-                if (healMaterial != null)
-                {
-                    runtimeHealMaterial = new Material(healMaterial);
-                    if (baseTexture != null) runtimeHealMaterial.SetTexture("_Texture", baseTexture);
-                }
+                if (hitMaterial != null) SetupRuntimeMaterial(ref runtimeHitMaterial, hitMaterial);
+                if (healMaterial != null) SetupRuntimeMaterial(ref runtimeHealMaterial, healMaterial);
+                if (fireMaterial != null) SetupRuntimeMaterial(ref runtimeFireMaterial, fireMaterial);
+                if (iceMaterial != null) SetupRuntimeMaterial(ref runtimeIceMaterial, iceMaterial);
             }
         }
-        
+
+        private void SetupRuntimeMaterial(ref Material runtimeMat, Material sourceMat)
+        {
+            runtimeMat = new Material(sourceMat);
+            if (baseTexture != null)
+            {
+                if (runtimeMat.HasProperty("_Texture")) runtimeMat.SetTexture("_Texture", baseTexture);
+                else if (runtimeMat.HasProperty("_MainTex")) runtimeMat.SetTexture("_MainTex", baseTexture);
+                else if (runtimeMat.HasProperty("_BaseMap")) runtimeMat.SetTexture("_BaseMap", baseTexture); // URP standard
+            }
+        }
+
         /// <summary>
         /// Safely strips the hit/heal shader and reverts the enemy back to normal.
         /// </summary>
@@ -132,6 +195,9 @@ namespace Components.VFX
                 StopCoroutine(hitRoutine);
                 hitRoutine = null;
             }
+
+            isBurning = false;
+            isFrozen = false;
 
             if (targetRenderer == null)
             {

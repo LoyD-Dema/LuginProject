@@ -38,7 +38,7 @@ public class PlayerMagazineSystem : MagazineSystem
 
     private void Start()
     {
-        if(test)
+        if (test)
         {
             for (int i = 0; i < chamberTypes.Length; i++)
             {
@@ -64,13 +64,19 @@ public class PlayerMagazineSystem : MagazineSystem
             return null;
         }
 
-        BulletBehavior bullet = bulletPool.Get();  // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
+        int chamberJustShot = selectedChamber;
+
+        //All bullets are cleared also in the MagazineSystem
+        BulletBehavior bullet = base.GetBullet();  // Can't call base.GetBullet() because it will update the selectedChamber before we do the operations
 
         //Debug.Log($"Chamber type: {chamberTypes[shotBulletCount]}");
 
         BulletBehavior bulletBehavior = bullet.GetComponent<BulletBehavior>();
         bulletBehavior.DamageMultiplayer = currentDamageMultiplier;
-        switch (chamberTypes[selectedChamber])
+
+        bulletBehavior.ResetBulletStats();
+
+        switch (chamberTypes[chamberJustShot])
         {
             case BulletType.Fire:
                 CheckOrAddModifier(bullet, typeof(FireModifier));
@@ -80,16 +86,16 @@ public class PlayerMagazineSystem : MagazineSystem
                 break;
             default:
             case BulletType.Normal:
-
                 break;
         }
-        
+
         //if (chamberTypes[selectedChamber] != BulletType.Normal)
         //    Debug.Log($"Sto ritornando un proiettile magicoh: {chamberTypes[selectedChamber]}");
 
-        OnShoot?.Invoke(selectedChamber);
+        OnShoot?.Invoke(chamberJustShot);
 
-        ChangeChamber();
+        //This is also called in the base class
+        //ChangeChamber();
 
         ++shotBulletCount;
 
@@ -98,21 +104,28 @@ public class PlayerMagazineSystem : MagazineSystem
 
     private void CheckOrAddModifier(BulletBehavior bullet, Type modifierType)
     {
+        BaseModifier[] modifiers = bullet.GetComponents<BaseModifier>();
+        foreach (var m in modifiers)
+        {
+            if (m.GetType() != modifierType) m.enabled = false;
+        }
         if (bullet.TryGetComponent(modifierType, out Component modifier))
         {
-            if(modifier is Behaviour behaviour)
+            if (modifier is Behaviour behaviour)
             {
+                behaviour.enabled = false; //Set to false then to true to be sure to trigger the OnEnable()
                 Debug.Log($"Enabled {modifierType}");
                 behaviour.enabled = true;
             }
         }
         else
         {
-            Debug.Log($"Added {modifierType}");
-            Component component = bullet.gameObject.AddComponent(modifierType);
-            if (component is Behaviour behaviour)
+            Behaviour newModifier = bullet.gameObject.AddComponent(modifierType) as Behaviour;
+            Debug.Log($"Added {newModifier}");
+            if (newModifier != null)
             {
-                behaviour.enabled = true;
+                newModifier.enabled = false;
+                newModifier.enabled = true;
             }
         }
     }
@@ -120,7 +133,7 @@ public class PlayerMagazineSystem : MagazineSystem
     public void Reload()
     {
         AudioManager.PlaySound3D(SoundType.Reload, gameObject.transform.position);
-        if(shotBulletCount >= maxChambers)
+        if (shotBulletCount >= maxChambers)
         {
             selectedChamber = 0;
         }

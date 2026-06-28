@@ -22,11 +22,6 @@ public class BulletPool : MonoBehaviour
         );
     }
 
-    private void Start()
-    {
-        pool.Release(CreateItem());
-    }
-
     private BulletBehavior CreateItem()
     {
         BulletBehavior bullet = Instantiate(bulletPrefab);
@@ -54,6 +49,13 @@ public class BulletPool : MonoBehaviour
     private void OnReleaseItem(BulletBehavior bullet)
     {
         bullet.gameObject.SetActive(false);
+
+        BaseModifier[] modifiers = bullet.GetComponents<BaseModifier>();
+            foreach(var m in modifiers)
+        {
+            m.enabled = false;
+        }
+        bullet.ResetBulletStats();
     }
 
     private void OnDestroyItem(BulletBehavior bullet)
