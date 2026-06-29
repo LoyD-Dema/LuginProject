@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1989995892}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.16717456
+  m_Size: 0.1608254
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3976,13 +3976,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
   m_Content: {fileID: 194350191}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 45
   m_Viewport: {fileID: 1372112543}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 333381951}
@@ -6254,8 +6254,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8, y: -100}
-  m_SizeDelta: {x: -48, y: -203.4}
+  m_AnchoredPosition: {x: 8, y: -120}
+  m_SizeDelta: {x: -48, y: -223.4}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1372112544
 MonoBehaviour:
